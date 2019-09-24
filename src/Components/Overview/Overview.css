@@ -1,0 +1,52 @@
+.overview {
+  background-color: blueviolet;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  position: relative;
+  height: 300px;
+}
+
+.overview-macro {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.progress-ring__circle {
+  transition: 0.35s stroke-dashoffset;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+/*.protein {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 80px;
+}
+.carbs {
+  position: fixed;
+  top: 10px;
+  left: 100px;
+  width: 80px;
+}
+
+.fats {
+  position: fixed;
+  top: 10px;
+  left: 200px;
+  width: 80px;
+}*/

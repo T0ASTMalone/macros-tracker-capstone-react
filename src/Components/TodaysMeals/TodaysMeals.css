@@ -1,0 +1,25 @@
+.todays-meals {
+  border: 1px solid black;
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-meal {
+  margin: 10px;
+}
+
+.section-title {
+  font-size: 30px;
+}
+
+.button {
+  height: 40px;
+}
+
+.add-meal-button {
+  width: 75px;
+  margin-bottom: 10px;
+}

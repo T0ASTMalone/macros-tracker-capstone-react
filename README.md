@@ -3,6 +3,7 @@
 The macros tracker allows you to track your macro nutrients (Proteins, Carbs, and Fats) throughout your day in order to meet your daily goals. By creating meals and adding them to your day you can see the total macros you have eaten and how many you have left.
 
 ## Site map
+
 ---
 
 url: https://www.gloomaps.com/JKGJNe7Aqb
@@ -10,6 +11,7 @@ url: https://www.gloomaps.com/JKGJNe7Aqb
 ![Site Map](/screenshots/macros-tracker-sitemap.png)
 
 ## User Stories
+
 ---
 
 **Home**
@@ -67,20 +69,21 @@ As a user, I want to see the meals that I have logged.
 ![Food Log Page](/screenshots/wireframes/add-existing.jpg)
 
 ## Technical
+
 ---
 
 Macrofy was built with:
 
 #### Front End
 
-* HTML5
-* CSS3
-* JavaScript
-* ReactJS
+- HTML5
+- CSS3
+- JavaScript
+- ReactJS
 
 #### Back End
 
-* Node.js
-* Express.js
-* PostgreSQL
-* Mocha and Chai for testing
+- Node.js
+- Express.js
+- PostgreSQL
+- Mocha and Chai for testing

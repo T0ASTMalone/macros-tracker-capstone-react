@@ -1,0 +1,23 @@
+.register-user {
+  margin: 20px;
+  padding: 10px;
+}
+
+.register-user,
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  width: 100px;
+}
+
+.button-container {
+  margin: 10px;
+}
+
+.register {
+  margin: 10px;
+  align-self: center;
+}

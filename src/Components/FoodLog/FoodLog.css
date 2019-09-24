@@ -1,0 +1,21 @@
+.flog-item {
+  border: 1px solid black;
+  margin: 20px;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.food-macros {
+  width: 200px;
+  justify-content: space-between;
+}
+
+.add-food {
+  flex-direction: column;
+}
+
+.food-macros,
+.flog-item,
+.add-food {
+  display: flex;
+}

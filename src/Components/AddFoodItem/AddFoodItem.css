@@ -1,0 +1,4 @@
+.create-food-item {
+  display: flex;
+  flex-direction: column;
+}
