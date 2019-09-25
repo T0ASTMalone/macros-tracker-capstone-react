@@ -1,5 +1,6 @@
 import React from 'react';
 import './SignIn.css';
+import SignInError from './SignInError';
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -30,6 +31,33 @@ export default class SignIn extends React.Component {
     this.props.history.push('/user/:id');
   };
 
+  updateEmail = email => {
+    this.setState({ email: { value: email, touched: true } });
+  };
+  updatePassword = password => {
+    this.setState({ password: { value: password, touched: true } });
+  };
+
+  validateEmail() {
+    const email = this.state.email.value;
+    if (email < 1) {
+      return 'An email is required';
+    }
+  }
+
+  validatePassword() {
+    const password = this.state.password.value;
+    if (password < 1) {
+      return 'A password is required';
+    }
+  }
+  validateConfirmPassword() {
+    const confirmPassword = this.state.confirmPassword.value;
+    if (confirmPassword < 1) {
+      return 'You must confirm the password';
+    }
+  }
+
   render() {
     return (
       <div>
@@ -42,12 +70,20 @@ export default class SignIn extends React.Component {
             onChange={e => this.handleUpdateEmail(e.target.value)}
             //required
           />
+          <SignInError
+            hasError={this.validateEmail()}
+            touched={this.state.email.touched}
+          />
           <label htmlFor="password">Password</label>
           <input
             type="password"
             onChange={e => this.handleUpdatePassword(e.target.value)}
             //required
             id="password"
+          />
+          <SignInError
+            hasError={this.validatePassword()}
+            touched={this.state.password.touched}
           />
           <button>Sign In</button>
         </form>

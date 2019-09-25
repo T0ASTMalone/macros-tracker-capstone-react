@@ -1,13 +1,16 @@
 import React from 'react';
 import './AddMeal.css';
+//import { Redirect } from 'react-router-dom';
 
 export default class AddMeal extends React.Component {
   handleAddExisting = () => {
     this.props.history.push('/user/:id/meal-log');
+    //<Redirect to="/user/:id/meal-log" />
   };
 
   handleAddFoodItem = () => {
     this.props.history.push('/user/:id/add-food');
+    // return <Redirect to="/user/:id/add-food" />;
   };
 
   render() {
