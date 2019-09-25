@@ -13,6 +13,7 @@ export default function FoodItem(props) {
           <p>Fats: {props.macros.fats}</p>
         </div>
       </div>
+      {/*move form bellow to FoodLog.js */}
       <form action="add-food" className="add-food">
         <label htmlFor="servings">Servings</label>
         <input type="number" id="servings" min="1" />
