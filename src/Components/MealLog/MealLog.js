@@ -4,22 +4,35 @@ import STORE from '../../store';
 import MealItem from '../Mealitem/MealItem';
 
 export default class MealLog extends Component {
-  render() {
-    console.log(STORE.mealLog);
+  constructor(props) {
+    super(props);
+    this.state = {
+      mealLog: []
+    };
+  }
 
+  componentDidMount() {
+    const meals = STORE.mealLog;
+    this.setState({ mealLog: [...meals] });
+  }
+
+  render() {
     return (
       <>
         <section id="meal-log-container">
-          {STORE.mealLog.map((meal, i) => {
+          {this.state.mealLog.map((meal, i) => {
             const { protein, carbs, fats } = meal;
             const macros = { protein, carbs, fats };
             return (
-              <MealItem
-                key={i}
-                id={i}
-                macros={macros}
-                name={`Meal ${meal.mealId}`}
-              />
+              <div key={i} className="meal-log-item">
+                <MealItem
+                  key={i}
+                  id={i}
+                  macros={macros}
+                  name={`Meal ${meal.meal_id}`}
+                />
+                <button className="add-meal-log-item">Add</button>
+              </div>
             );
           })}
         </section>

@@ -3,16 +3,53 @@ import './Dashboard.css';
 import Overview from '../../Components/Overview/Overview';
 import TodaysMeals from '../../Components/TodaysMeals/TodaysMeals';
 import Stats from '../../Components/Stats/Stats';
+import STORE from '../../store';
 
 export default class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todaysMeals: [],
+      usersMacros: {},
+      macrosSoFar: []
+    };
+  }
+
+  componentDidMount() {
+    const meals = STORE.todaysMeals;
+    const { protein, carbs, fats } = STORE.macros[1];
+    const macros = { protein, carbs, fats };
+    this.setState({ todaysMeals: [...meals], usersMacros: macros });
+  }
+
+  calculateMacrosSoFar() {
+    const meals = this.state.todaysMeals;
+    let protein = 0;
+    let carbs = 0;
+    let fats = 0;
+    for (let i = 0; i < meals.length; ++i) {
+      const meal = meals[i];
+      for (let k in meal) {
+        if (k === 'protein') protein += parseInt(meals[i].protein);
+        if (k === 'carbs') carbs += parseInt(meals[i].carbs);
+        if (k === 'fats') fats += parseInt(meals[i].fats);
+      }
+    }
+
+    console.log(protein, fats, carbs);
+    return { protein };
+  }
+
   render() {
-    console.log(this.props.history);
+    if (this.state.todaysMeals.length > 0) {
+      this.calculateMacrosSoFar();
+    }
     return (
       <>
         <div className="overview">
-          <Overview radius={60} stroke={8} progress={75} class="protein" />
-          <Overview radius={60} stroke={8} progress={80} class="carbs" />
-          <Overview radius={60} stroke={8} progress={35} class="fats" />
+          <Overview radius={60} stroke={8} progress={100} class="protein" />
+          <Overview radius={60} stroke={8} progress={60} class="carbs" />
+          <Overview radius={60} stroke={8} progress={40} class="fats" />
         </div>
         <section className="todays meals">
           <TodaysMeals history={this.props.history} />

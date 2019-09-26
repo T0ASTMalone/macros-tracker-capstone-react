@@ -60,13 +60,14 @@ export default class SignIn extends React.Component {
 
   render() {
     return (
-      <div>
-        <form action="sign-in" onSubmit={this.handleSubmit}>
+      <div className="sign-in-form">
+        <form action="sign-in" className="sign-in" onSubmit={this.handleSubmit}>
           <legend>Sign In</legend>
           <label htmlFor="user">Email</label>
           <input
             id="user"
             type="email"
+            className="email"
             onChange={e => this.handleUpdateEmail(e.target.value)}
             //required
           />
@@ -77,6 +78,7 @@ export default class SignIn extends React.Component {
           <label htmlFor="password">Password</label>
           <input
             type="password"
+            className="password"
             onChange={e => this.handleUpdatePassword(e.target.value)}
             //required
             id="password"

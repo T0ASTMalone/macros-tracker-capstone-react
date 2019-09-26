@@ -7,26 +7,36 @@ export default class FoodLog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      foods: [],
       servings: {
         value: '',
         touched: false
       }
-    }
+    };
   }
   componentDidMount() {
-    //fetch food logs from the past two days or so
+    const userFood = STORE.foods;
+    this.setState({ foods: [...userFood] });
   }
 
   render() {
+    console.log(this.state.foods);
     return (
       <>
         <section className="food-log-container">
-          {STORE.foods.map((food, i) => {
+          {this.state.foods.map((food, i) => {
             const { protein, carbs, fats } = food;
             const macros = { protein, carbs, fats };
-            //create div around FoodItem and append form from FoodItem.js to div
-            //following the FoodItem component.
-            return <FoodItem key={i} macros={macros} name={food.name} />;
+            return (
+              <div key={food.food_id} className="food-item-container">
+                <FoodItem key={food.food_id} macros={macros} name={food.name} />
+                <form action="add-food" className="add-food">
+                  <label htmlFor="servings">Servings</label>
+                  <input type="number" id="servings" min="1" />
+                  <button type="submit">Add</button>
+                </form>
+              </div>
+            );
           })}
         </section>
       </>

@@ -3,3 +3,18 @@
   flex-direction: column;
   align-items: center;
 }
+
+.meal-log-item {
+  border: 1px solid black;
+  margin: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+
+.add-meal-log-item {
+  height: 40px;
+  width: 10%;
+}

@@ -21,12 +21,14 @@ export default class TodaysMeals extends React.Component {
             const { protein, carbs, fats } = meal;
             const macros = { protein, carbs, fats };
             return (
-              <MealItem
-                key={i}
-                id={i}
-                macros={macros}
-                name={`Meal ${meal.mealId}`}
-              />
+              <div key={i} className="todays-meal-item">
+                <MealItem
+                  id={i}
+                  macros={macros}
+                  name={`Meal ${meal.meal_id}`}
+                />
+                <button className="delete-todays-meal">Delete</button>
+              </div>
             );
           })}
           <button className="button add-meal-button" onClick={this.handleClick}>

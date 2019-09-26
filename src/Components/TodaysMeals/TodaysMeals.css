@@ -1,7 +1,6 @@
 .todays-meals {
   border: 1px solid black;
   margin: 20px;
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,4 +21,14 @@
 .add-meal-button {
   width: 75px;
   margin-bottom: 10px;
+}
+
+.todays-meal-item {
+  border: 1px solid black;
+  margin: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
 }

@@ -42,11 +42,10 @@ export default class Overview extends React.Component {
   };
 
   render() {
-    console.log(this.state.progress);
     const { radius, stroke } = this.props;
     const strokeDashoffset =
       this.circumference - (this.state.progress / 100) * this.circumference;
-    console.log(strokeDashoffset);
+
     return (
       <div className="overview-macro">
         {/*

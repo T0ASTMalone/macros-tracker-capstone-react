@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './AddFoodItem.css';
 import AddFoodItemError from './AddFoodItemError';
+import { Link } from 'react-router-dom';
 
 export default class AddFoodItem extends Component {
   constructor(props) {
@@ -30,7 +31,10 @@ export default class AddFoodItem extends Component {
   }
 
   handleAddExisting = () => {
-    this.props.history.push('/user/:id/food-log');
+    //this.props.history.push('/user/:id/food-log');
+    return (
+      <Link addFoodItem={this.props.addFoodItem} to="/user/:id/food-log" />
+    );
   };
 
   updateFoodName = name => {
@@ -197,8 +201,9 @@ export default class AddFoodItem extends Component {
           <header>
             <h2>Add existing food</h2>
           </header>
-          <button className="button" onClick={this.handleAddExisting}>
-            Add existing food
+          {console.log(this.props.location.state)}
+          <button className="button">
+            <Link to="/user/:id/food-log">Add existing food</Link>
           </button>
         </section>
       </>

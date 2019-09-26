@@ -64,73 +64,85 @@ const STORE = {
   todaysMeals: [
     {
       user: '1',
-      mealId: '1',
+      meal_id: '1',
       protein: '20',
       carbs: '200',
-      fats: '10'
+      fats: '10',
+      date: new Date()
     },
     {
       user: '1',
-      mealId: '2',
+      meal_id: '2',
       protein: '20',
       carbs: '200',
-      fats: '10'
+      fats: '10',
+      date: new Date()
     },
     {
       user: '1',
-      mealId: '3',
+      meal_id: '3',
       protein: '0',
       carbs: '1',
-      fats: '0'
+      fats: '0',
+      date: new Date()
     },
     {
       user: '1',
-      mealId: '4',
+      meal_id: '4',
       protein: '20',
       carbs: '200',
-      fats: '10'
+      fats: '10',
+      date: new Date()
     }
   ],
 
   foods: [
     {
-      meal: '1',
+      meal_id: '1',
+      food_id: '1',
       name: 'rice krispies',
       servings: '10',
       protein: '2',
       carbs: '20',
-      fats: '1'
+      fats: '1',
+      date: new Date()
     },
     {
-      meal: '2',
+      meal_id: '2',
+      food_id: '2',
       name: 'chocolate',
       servings: '1',
       protein: '2',
       carbs: '20',
-      fats: '10'
+      fats: '10',
+      date: new Date()
     },
     {
-      meal: '2',
+      meal_id: '2',
+      food_id: '3',
       name: 'ice cream',
       servings: '1',
       protein: '3',
       carbs: '7',
-      fats: '7'
+      fats: '7',
+      date: new Date()
     },
     {
-      meal: '3',
+      meal_id: '3',
+      food_id: '4',
       name: 'lettuce',
       servings: '100',
       protein: '0',
       carbs: '1',
-      fats: '0'
+      fats: '0',
+      date: new Date()
     }
   ],
 
   mealLog: [
     {
       user: '1',
-      mealId: '1',
+      meal_id: '1',
       protein: '20',
       carbs: '200',
       fats: '10',
@@ -138,28 +150,7 @@ const STORE = {
     },
     {
       user: '1',
-      mealId: '2',
-      protein: '20',
-      carbs: '200',
-      fats: '10'
-    },
-    {
-      user: '1',
-      mealId: '3',
-      protein: '0',
-      carbs: '1',
-      fats: '0'
-    },
-    {
-      user: '1',
-      mealId: '4',
-      protein: '20',
-      carbs: '200',
-      fats: '10'
-    },
-    {
-      user: '1',
-      mealId: '1',
+      meal_id: '2',
       protein: '20',
       carbs: '200',
       fats: '10',
@@ -167,24 +158,51 @@ const STORE = {
     },
     {
       user: '1',
-      mealId: '2',
-      protein: '20',
-      carbs: '200',
-      fats: '10'
-    },
-    {
-      user: '1',
-      mealId: '3',
+      meal_id: '3',
       protein: '0',
       carbs: '1',
-      fats: '0'
+      fats: '0',
+      date: new Date()
     },
     {
       user: '1',
-      mealId: '4',
+      meal_id: '4',
       protein: '20',
       carbs: '200',
-      fats: '10'
+      fats: '10',
+      date: new Date()
+    },
+    {
+      user: '1',
+      meal_id: '5',
+      protein: '20',
+      carbs: '200',
+      fats: '10',
+      date: new Date()
+    },
+    {
+      user: '1',
+      meal_id: '6',
+      protein: '20',
+      carbs: '200',
+      fats: '10',
+      date: new Date()
+    },
+    {
+      user: '1',
+      meal_id: '7',
+      protein: '0',
+      carbs: '1',
+      fats: '0',
+      date: new Date()
+    },
+    {
+      user: '1',
+      meal_id: '8',
+      protein: '20',
+      carbs: '200',
+      fats: '10',
+      date: new Date()
     }
   ]
 };
