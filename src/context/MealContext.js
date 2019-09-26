@@ -17,8 +17,9 @@ const MealsContext = React.createContext({
 
 export default MealsContext;
 
-export class MealsProvider extends Component {
+export class MealProvider extends Component {
   constructor(props) {
+    super(props);
     this.state = {
       meal: nullMeal,
       error: null

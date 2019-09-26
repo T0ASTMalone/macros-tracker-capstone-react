@@ -4,6 +4,7 @@ import Overview from '../../Components/Overview/Overview';
 import TodaysMeals from '../../Components/TodaysMeals/TodaysMeals';
 import Stats from '../../Components/Stats/Stats';
 import STORE from '../../store';
+import MealListContext from '../../context/MealLIstContext';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -15,11 +16,14 @@ export default class Dashboard extends React.Component {
     };
   }
 
+  static contextType = MealListContext;
+
   componentDidMount() {
     const meals = STORE.todaysMeals;
     const { protein, carbs, fats } = STORE.macros[1];
+    this.context.setMealList(meals);
     const macros = { protein, carbs, fats };
-    this.setState({ todaysMeals: [...meals], usersMacros: macros });
+    //this.setState({ usersMacros: macros });
   }
 
   calculateMacrosSoFar() {
@@ -40,10 +44,16 @@ export default class Dashboard extends React.Component {
     return { protein };
   }
 
+  renderMeals() {
+    const { mealsList = [] } = this.context;
+    return <TodaysMeals meals={mealsList} />;
+  }
+
   render() {
     if (this.state.todaysMeals.length > 0) {
       this.calculateMacrosSoFar();
     }
+    console.log(this.state);
     return (
       <>
         <div className="overview">
@@ -52,7 +62,8 @@ export default class Dashboard extends React.Component {
           <Overview radius={60} stroke={8} progress={40} class="fats" />
         </div>
         <section className="todays meals">
-          <TodaysMeals history={this.props.history} />
+          {this.renderMeals()}
+          {/*<TodaysMeals history={this.props.history} />*/}
         </section>
         <section>
           <Stats />

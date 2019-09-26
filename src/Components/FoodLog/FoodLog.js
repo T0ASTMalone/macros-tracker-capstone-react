@@ -20,7 +20,6 @@ export default class FoodLog extends React.Component {
   }
 
   render() {
-    console.log(this.state.foods);
     return (
       <>
         <section className="food-log-container">

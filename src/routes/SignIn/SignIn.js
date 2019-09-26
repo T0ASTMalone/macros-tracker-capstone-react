@@ -78,7 +78,7 @@ export default class SignIn extends React.Component {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            className="password"
+            className="input password"
             onChange={e => this.handleUpdatePassword(e.target.value)}
             //required
             id="password"

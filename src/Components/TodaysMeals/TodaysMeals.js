@@ -1,14 +1,16 @@
 import React from 'react';
 import './TodaysMeals.css';
 import MealItem from '../../Components/Mealitem/MealItem';
+import { Link } from 'react-router-dom';
 import STORE from '../../store';
 
 export default class TodaysMeals extends React.Component {
-  handleClick = () => {
+  /*handleClick = () => {
     this.props.history.push('/user/:user/add-meal');
     console.log(this.props.history);
-  };
+  };*/
   render() {
+    console.log(this.props.meals);
     return (
       <>
         <h2 className="section-title">Todays Meals</h2>
@@ -32,7 +34,7 @@ export default class TodaysMeals extends React.Component {
             );
           })}
           <button className="button add-meal-button" onClick={this.handleClick}>
-            Add Meal
+            <Link to="/user/:user/add-meal">Add Meal</Link>
           </button>
         </div>
       </>

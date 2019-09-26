@@ -11,16 +11,6 @@ export default class AddMeal extends React.Component {
     };
   }
 
-  handleAddExisting = () => {
-    //this.props.history.push('/user/:id/meal-log');
-    return;
-  };
-
-  handleAddFoodItem = () => {
-    //this.props.history.push('/user/:id/add-food');
-    return;
-  };
-
   addFoodItem = newFood => {
     console.log('ran');
     // const foods = this.state.foods;
