@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 export const nullMeal = {
   name: '',
-  meal_id: '',
   foods: [],
   macros: []
 };
@@ -43,6 +42,7 @@ export class MealProvider extends Component {
   };
 
   render() {
+    console.log(this.context.foods)
     const value = {
       meal: this.state.meal,
       foods: this.state.foods,
