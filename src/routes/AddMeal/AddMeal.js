@@ -2,29 +2,26 @@ import React from 'react';
 import './AddMeal.css';
 import { Link } from 'react-router-dom';
 import FoodItem from '../../Components/FoodItem/FoodItem';
+import MealsContext from '../../context/MealContext';
 
 export default class AddMeal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      error: null,
       foods: []
     };
   }
 
-  addFoodItem = newFood => {
-    console.log('ran');
-    // const foods = this.state.foods;
-    //this.setState({ foods: [...foods, newFood] });
-  };
+  static contextType = MealsContext;
+  
+  componentDidMount() {
+   console.log(this.context.foods);
+  }
 
-  deleteFood = id => {
-    const updatedFoods = this.state.foods.filter(food => food.id !== id);
-    this.setState({ foods: [...updatedFoods] });
-  };
 
   render() {
-    const refCallback = this.addFoodItem;
-    console.log(refCallback);
+    console.log(this.context.foods)
     return (
       <div className="add-meal">
         <div className="food-items">

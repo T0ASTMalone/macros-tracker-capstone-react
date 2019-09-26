@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AddFoodItem.css';
 import AddFoodItemError from './AddFoodItemError';
 import { Link } from 'react-router-dom';
+import MealsContext from '../../context/MealContext';
 
 export default class AddFoodItem extends Component {
   constructor(props) {
@@ -29,6 +30,8 @@ export default class AddFoodItem extends Component {
       }
     };
   }
+
+  static contextType = MealsContext;
 
   handleAddExisting = () => {
     //this.props.history.push('/user/:id/food-log');
@@ -93,10 +96,19 @@ export default class AddFoodItem extends Component {
 
   handleCreateFoodSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    const newFood = {
+      foodName: this.state.foodName.value,
+      protein: this.state.protein.value,
+      carbs: this.state.carbs.value,
+      fats: this.state.fats.value,
+      servings: this.state.servings.value
+    }
+    console.log(newFood);
+    this.context.addFood(newFood);
   };
 
   render() {
+    console.log(this.context.foods)
     return (
       <>
         <section>
