@@ -17,8 +17,16 @@
   border: 1px solid black;
   margin: 10px;
   display: flex;
-  justify-content: center;
   align-items: center;
+}
+
+.empty {
+  justify-content: center;
+}
+
+.new {
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .add {

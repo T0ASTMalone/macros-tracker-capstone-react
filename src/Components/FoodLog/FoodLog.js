@@ -2,18 +2,18 @@ import React from 'react';
 import STORE from '../../store';
 import './FoodLog.css';
 import FoodItem from '../FoodItem/FoodItem';
+import AddFoodLogItem from '../AddFoodLogItem/AddFoodLogItem';
+//move this component to AddFoodLogItem.js
+//import AddFoodItemError from '../AddFoodItem/AddFoodItemError';
 
 export default class FoodLog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      foods: [],
-      servings: {
-        value: '',
-        touched: false
-      }
+      foods: []
     };
   }
+
   componentDidMount() {
     const userFood = STORE.foods;
     this.setState({ foods: [...userFood] });
@@ -28,12 +28,12 @@ export default class FoodLog extends React.Component {
             const macros = { protein, carbs, fats };
             return (
               <div key={food.food_id} className="food-item-container">
-                <FoodItem key={food.food_id} macros={macros} name={food.name} />
-                <form action="add-food" className="add-food">
-                  <label htmlFor="servings">Servings</label>
-                  <input type="number" id="servings" min="1" />
-                  <button type="submit">Add</button>
-                </form>
+                <FoodItem
+                  key={food.food_id}
+                  macros={macros}
+                  name={food.food_name}
+                />
+                <AddFoodLogItem key={food.fod_id} food={food} />
               </div>
             );
           })}

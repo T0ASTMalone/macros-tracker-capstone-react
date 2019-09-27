@@ -14,14 +14,21 @@ export default class AddMeal extends React.Component {
   }
 
   static contextType = MealsContext;
-  
+
   componentDidMount() {
-   console.log(this.context.foods);
+    console.log(this.context.foods);
+    const foodList = this.context.foods;
+    if (foodList !== undefined) {
+      this.setState({ foods: [...this.context.foods] });
+    }
   }
 
+  handleDeleteItem = id => {
+    console.log(id);
+    this.context.deleteFood(id);
+  };
 
   render() {
-    console.log(this.context.foods)
     return (
       <div className="add-meal">
         <div className="food-items">
@@ -29,17 +36,25 @@ export default class AddMeal extends React.Component {
             <h1>Add Meal</h1>
           </header>
           <div className="foods" id="foods">
-            {this.state.foods.length < 1 ? (
-              <div className="food-item">
-                <button className="add" onClick={this.handleAddFoodItem}>
-                  +
-                </button>
+            {this.context.foods === undefined || this.context.foods < 1 ? (
+              <div className="food-item empty">
+                <button className="add">+</button>
               </div>
             ) : (
-              this.state.foods.map(food => {
+              this.state.foods.map((food, i) => {
                 const { protein, carbs, fats } = food;
                 const macros = { protein, carbs, fats };
-                return <FoodItem name={food.name} macros={macros} />;
+                return (
+                  <div key={i} className="food-item new">
+                    <FoodItem name={food.food_name} macros={macros} />
+                    <button
+                      className="delete"
+                      onClick={() => this.handleDeleteItem(food.food_id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                );
               })
             )}
           </div>

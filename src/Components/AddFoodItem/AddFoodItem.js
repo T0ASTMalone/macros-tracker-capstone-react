@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import './AddFoodItem.css';
 import AddFoodItemError from './AddFoodItemError';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import MealsContext from '../../context/MealContext';
 
 export default class AddFoodItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      foodName: {
+      added: false,
+      food_name: {
         value: '',
         touched: false
       },
@@ -41,7 +42,7 @@ export default class AddFoodItem extends Component {
   };
 
   updateFoodName = name => {
-    this.setState({ foodName: { value: name, touched: true } });
+    this.setState({ food_name: { value: name, touched: true } });
   };
 
   updateProtein = g => {
@@ -61,7 +62,7 @@ export default class AddFoodItem extends Component {
   };
 
   validateFoodName() {
-    let name = this.state.foodName.value;
+    let name = this.state.food_name.value;
     if (name.length < 1) {
       return 'A food name is required';
     }
@@ -97,18 +98,21 @@ export default class AddFoodItem extends Component {
   handleCreateFoodSubmit = e => {
     e.preventDefault();
     const newFood = {
-      foodName: this.state.foodName.value,
+      food_name: this.state.food_name.value,
       protein: this.state.protein.value,
       carbs: this.state.carbs.value,
       fats: this.state.fats.value,
       servings: this.state.servings.value
-    }
-    console.log(newFood);
+    };
     this.context.addFood(newFood);
+    this.setState({ added: true });
   };
 
   render() {
-    console.log(this.context.foods)
+    console.log(this.context.foods);
+    if (this.state.added) {
+      return <Redirect to="/user/:id/add-meal" />;
+    }
     return (
       <>
         <section>
@@ -141,7 +145,7 @@ export default class AddFoodItem extends Component {
             />
             <AddFoodItemError
               hasError={this.validateFoodName()}
-              touched={this.state.foodName.touched}
+              touched={this.state.food_name.touched}
             />
             <label htmlFor="protein">Protein</label>
             <input

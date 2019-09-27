@@ -23,12 +23,7 @@ export default class Dashboard extends React.Component {
     const { protein, carbs, fats } = STORE.macros[1];
     this.context.setMealList(meals);
     const macros = { protein, carbs, fats };
-<<<<<<< HEAD
-    this.setState({ usersMacros: macros });
-=======
-    console.log(macros)
-    //this.setState({ usersMacros: macros });
->>>>>>> 7097e144ff65425f93bf911692a7369c59c8a2b2
+    console.log(macros);
   }
 
   calculateMacrosSoFar() {
@@ -59,6 +54,7 @@ export default class Dashboard extends React.Component {
     if (mealList.length > 0) {
       this.calculateMacrosSoFar();
     }
+    this.calculateMacrosSoFar();
     return (
       <>
         <div className="overview">

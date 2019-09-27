@@ -100,7 +100,7 @@ const STORE = {
     {
       meal_id: '1',
       food_id: '1',
-      name: 'rice krispies',
+      food_name: 'rice krispies',
       servings: '10',
       protein: '2',
       carbs: '20',
@@ -110,7 +110,7 @@ const STORE = {
     {
       meal_id: '2',
       food_id: '2',
-      name: 'chocolate',
+      food_name: 'chocolate',
       servings: '1',
       protein: '2',
       carbs: '20',
@@ -120,7 +120,7 @@ const STORE = {
     {
       meal_id: '2',
       food_id: '3',
-      name: 'ice cream',
+      food_name: 'ice cream',
       servings: '1',
       protein: '3',
       carbs: '7',
@@ -130,7 +130,7 @@ const STORE = {
     {
       meal_id: '3',
       food_id: '4',
-      name: 'lettuce',
+      food_name: 'lettuce',
       servings: '100',
       protein: '0',
       carbs: '1',
