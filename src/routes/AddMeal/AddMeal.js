@@ -1,6 +1,5 @@
 import React from 'react';
 import './AddMeal.css';
-import { Link } from 'react-router-dom';
 import FoodItem from '../../Components/FoodItem/FoodItem';
 import MealsContext from '../../context/MealContext';
 
@@ -8,11 +7,15 @@ export default class AddMeal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
+      error: null
     };
   }
 
   static contextType = MealsContext;
+
+  handleRedirect = () => {
+    this.props.history.push('/user/:id/add-food');
+  };
 
   handleDeleteItem = id => {
     this.context.deleteFood(id);
@@ -26,9 +29,12 @@ export default class AddMeal extends React.Component {
             <h1>Add Meal</h1>
           </header>
           <div className="foods" id="foods">
-            {this.context.meal.foods === undefined || this.context.meal.foods < 1 ? (
+            {this.context.meal.foods === undefined ||
+            this.context.meal.foods < 1 ? (
               <div className="food-item empty">
-                <button className="add">+</button>
+                <button className="add" onClick={this.handleRedirect}>
+                  +
+                </button>
               </div>
             ) : (
               this.context.meal.foods.map((food, i) => {
@@ -49,16 +55,14 @@ export default class AddMeal extends React.Component {
             )}
           </div>
           <div className="button-container">
-            <button className="button-add-food">
-              <Link to="/user/:id/add-food">Add Food Item</Link>
+            <button className="button-add-food" onClick={this.handleRedirect}>
+              Add Food Item
             </button>
             <button className="button create-meal">Create Meal</button>
           </div>
         </div>
 
-        <button className="add-existing">
-          <Link to="/user/:id/meal-log">Add Existing</Link>
-        </button>
+        <button className="add-existing">Add From Your Log</button>
       </div>
     );
   }

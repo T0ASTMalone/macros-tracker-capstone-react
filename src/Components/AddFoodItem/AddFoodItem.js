@@ -108,8 +108,11 @@ export default class AddFoodItem extends Component {
     this.setState({ added: true });
   };
 
+  handleRedirect = () => {
+    this.props.history.push('/user/:id/food-log');
+  };
+
   render() {
-    console.log(this.context.foods);
     if (this.state.added) {
       return <Redirect to="/user/:id/add-meal" />;
     }
@@ -217,9 +220,8 @@ export default class AddFoodItem extends Component {
           <header>
             <h2>Add existing food</h2>
           </header>
-          {console.log(this.props.location.state)}
-          <button className="button">
-            <Link to="/user/:id/food-log">Add existing food</Link>
+          <button className="button" onClick={this.handleRedirect}>
+            Add existing food
           </button>
         </section>
       </>

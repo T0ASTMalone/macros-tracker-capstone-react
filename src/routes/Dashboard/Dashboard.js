@@ -10,9 +10,7 @@ export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todaysMeals: [],
-      usersMacros: {},
-      macrosSoFar: []
+      error: null
     };
   }
 
@@ -20,41 +18,10 @@ export default class Dashboard extends React.Component {
 
   componentDidMount() {
     const meals = STORE.todaysMeals;
-    const { protein, carbs, fats } = STORE.macros[1];
     this.context.setMealList(meals);
-    const macros = { protein, carbs, fats };
-    console.log(macros);
-  }
-
-  calculateMacrosSoFar() {
-    const meals = this.state.todaysMeals;
-    let protein = 0;
-    let carbs = 0;
-    let fats = 0;
-    for (let i = 0; i < meals.length; ++i) {
-      const meal = meals[i];
-      for (let k in meal) {
-        if (k === 'protein') protein += parseInt(meals[i].protein);
-        if (k === 'carbs') carbs += parseInt(meals[i].carbs);
-        if (k === 'fats') fats += parseInt(meals[i].fats);
-      }
-    }
-
-    console.log(protein, fats, carbs);
-    return { protein };
-  }
-
-  renderMeals() {
-    const { mealsList = [] } = this.context;
-    return <TodaysMeals meals={mealsList} />;
   }
 
   render() {
-    const { mealList = [] } = this.context;
-    if (mealList.length > 0) {
-      this.calculateMacrosSoFar();
-    }
-    this.calculateMacrosSoFar();
     return (
       <>
         <div className="overview">
@@ -63,8 +30,7 @@ export default class Dashboard extends React.Component {
           <Overview radius={60} stroke={8} progress={40} class="fats" />
         </div>
         <section className="todays meals">
-          {this.renderMeals()}
-          {/*<TodaysMeals history={this.props.history} />*/}
+          <TodaysMeals />
         </section>
         <section>
           <Stats />

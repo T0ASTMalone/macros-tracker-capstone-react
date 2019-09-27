@@ -26,7 +26,7 @@ export class MealProvider extends Component {
   }
 
   setFoods = foods => {
-    this.setState({ meal: {meal_name: 'temp', foods, macros: [] }});
+    this.setState({ meal: { meal_name: 'temp', foods, macros: [] } });
   };
 
   addFood = food => {
@@ -37,11 +37,8 @@ export class MealProvider extends Component {
 
   deleteFood = foodId => {
     const updatedFoods = this.state.meal.foods.filter(food => {
-      console.log(food.food_id);
-
       return food.food_id !== foodId;
     });
-    console.log(updatedFoods);
     this.setFoods([...updatedFoods]);
   };
 
