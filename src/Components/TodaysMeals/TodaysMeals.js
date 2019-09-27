@@ -2,7 +2,6 @@ import React from 'react';
 import './TodaysMeals.css';
 import MealItem from '../../Components/Mealitem/MealItem';
 import { Redirect } from 'react-router-dom';
-
 import MealListContext from '../../context/MealLIstContext';
 
 export default class TodaysMeals extends React.Component {
@@ -16,11 +15,16 @@ export default class TodaysMeals extends React.Component {
     this.setState({ addMeal: true });
   };
 
+  handleDelete = mealId => {
+    this.context.deleteMeal(mealId);
+  };
+
   render() {
     const todaysMeals = this.context.mealList || [];
     if (this.state.addMeal === true) {
       return <Redirect to="/user/:id/add-meal" push />;
     }
+    console.log(todaysMeals);
 
     return (
       <>
@@ -41,7 +45,12 @@ export default class TodaysMeals extends React.Component {
                     macros={macros}
                     name={`Meal ${meal.meal_id}`}
                   />
-                  <button className="delete-todays-meal">Delete</button>
+                  <button
+                    className="delete-todays-meal"
+                    onClick={() => this.handleDelete(meal.meal_id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               );
             })

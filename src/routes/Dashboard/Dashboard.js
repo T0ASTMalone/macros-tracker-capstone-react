@@ -17,8 +17,10 @@ export default class Dashboard extends React.Component {
   static contextType = MealListContext;
 
   componentDidMount() {
-    const meals = STORE.todaysMeals;
-    this.context.setMealList(meals);
+    if (this.context.mealList < 1) {
+      const meals = STORE.todaysMeals;
+      this.context.setMealList(meals);
+    }
   }
 
   render() {

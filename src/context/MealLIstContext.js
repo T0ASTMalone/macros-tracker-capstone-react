@@ -26,8 +26,20 @@ export class MealListProvider extends Component {
   };
 
   setMealList = mealList => {
-    console.log(mealList);
     this.setState({ mealList });
+  };
+
+  addMeal = newMeal => {
+    this.state.mealList === undefined
+      ? this.setMealList([newMeal])
+      : this.setMealList([...this.state.mealList, newMeal]);
+  };
+
+  deleteMeal = mealId => {
+    const updatedMealList = this.state.mealList.filter(meal => {
+      return meal.meal_id !== mealId;
+    });
+    this.setMealList(updatedMealList);
   };
 
   render() {
@@ -36,7 +48,9 @@ export class MealListProvider extends Component {
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
-      setMealList: this.setMealList
+      setMealList: this.setMealList,
+      deleteMeal: this.deleteMeal,
+      addMeal: this.addMeal
     };
 
     return (

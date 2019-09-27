@@ -29,6 +29,10 @@ export class MealProvider extends Component {
     this.setState({ meal: { meal_name: 'temp', foods, macros: [] } });
   };
 
+  clearFoods = () => {
+    this.setState({ meal: nullMeal });
+  };
+
   addFood = food => {
     this.state.meal.foods === undefined
       ? this.setFoods([food])
@@ -49,7 +53,8 @@ export class MealProvider extends Component {
       error: this.state.error,
       setFoods: this.setFoods,
       addFood: this.addFood,
-      deleteFood: this.deleteFood
+      deleteFood: this.deleteFood,
+      clearFoods: this.clearFoods
     };
 
     return (

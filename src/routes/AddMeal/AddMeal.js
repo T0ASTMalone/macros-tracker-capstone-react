@@ -2,68 +2,112 @@ import React from 'react';
 import './AddMeal.css';
 import FoodItem from '../../Components/FoodItem/FoodItem';
 import MealsContext from '../../context/MealContext';
+import MealListContext from '../../context/MealLIstContext';
+import uuid from 'uuid';
 
 export default class AddMeal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null
+      error: null,
+      mealId: ''
     };
+  }
+
+  componentDidMount() {
+    this.setState({ mealId: uuid() });
   }
 
   static contextType = MealsContext;
 
-  handleRedirect = () => {
+  handleAddFood = () => {
     this.props.history.push('/user/:id/add-food');
   };
 
-  handleDeleteItem = id => {
+  handleDeleteFoodItem = id => {
     this.context.deleteFood(id);
+  };
+
+  handleAddExisting = () => {
+    this.props.history.push('/user/:id/meal-log');
   };
 
   render() {
     return (
-      <div className="add-meal">
-        <div className="food-items">
-          <header>
-            <h1>Add Meal</h1>
-          </header>
-          <div className="foods" id="foods">
-            {this.context.meal.foods === undefined ||
-            this.context.meal.foods < 1 ? (
-              <div className="food-item empty">
-                <button className="add" onClick={this.handleRedirect}>
-                  +
-                </button>
-              </div>
-            ) : (
-              this.context.meal.foods.map((food, i) => {
-                const { protein, carbs, fats } = food;
-                const macros = { protein, carbs, fats };
-                return (
-                  <div key={i} className="food-item new">
-                    <FoodItem name={food.food_name} macros={macros} />
-                    <button
-                      className="delete"
-                      onClick={() => this.handleDeleteItem(food.food_id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                );
-              })
-            )}
-          </div>
-          <div className="button-container">
-            <button className="button-add-food" onClick={this.handleRedirect}>
-              Add Food Item
-            </button>
-            <button className="button create-meal">Create Meal</button>
-          </div>
-        </div>
+      <MealListContext.Consumer>
+        {ListContext => {
+          const meal = {
+            meal_id: this.state.mealId,
+            meal_name: 'temp',
+            ...this.context.meal
+          };
 
-        <button className="add-existing">Add From Your Log</button>
-      </div>
+          const handleAddMeal = () => {
+            if (meal.foods.length >= 1) {
+              ListContext.addMeal(meal);
+              this.props.history.push('/user/:id/dashboard');
+              this.context.clearFoods();
+            } else if (meal.foods.length < 1)
+              console.log('There needs to be at least one food item');
+          };
+
+          return (
+            <div className="add-meal">
+              <div className="food-items">
+                <header>
+                  <h1>Add Meal</h1>
+                </header>
+                <div className="foods" id="foods">
+                  {this.context.meal.foods === undefined ||
+                  this.context.meal.foods < 1 ? (
+                    <div className="food-item empty">
+                      <button className="add" onClick={this.handleAddFood}>
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                    this.context.meal.foods.map((food, i) => {
+                      const { protein, carbs, fats } = food;
+                      const macros = { protein, carbs, fats };
+                      return (
+                        <div key={i} className="food-item new">
+                          <FoodItem name={food.food_name} macros={macros} />
+                          <button
+                            className="delete"
+                            onClick={() =>
+                              this.handleDeleteFoodItem(food.food_id)
+                            }
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+                <div className="button-container">
+                  <button
+                    className="button-add-food"
+                    onClick={this.handleAddFood}
+                  >
+                    Add Food Item
+                  </button>
+                  <button
+                    className="button create-meal"
+                    onClick={handleAddMeal}
+                  >
+                    Create Meal
+                  </button>
+                </div>
+              </div>
+
+              <button className="add-existing" onClick={this.handleAddExisting}>
+                Add From Your Log
+              </button>
+            </div>
+          );
+        }}
+      </MealListContext.Consumer>
     );
   }
 }

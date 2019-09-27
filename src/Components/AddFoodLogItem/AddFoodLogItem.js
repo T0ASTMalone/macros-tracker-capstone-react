@@ -21,7 +21,6 @@ export default class AddFoodLogItem extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let food_id = uuid();
-
     const { food_name, protein, carbs, fats } = this.props.food;
     const servings = this.state.servings.value;
     const food = { food_id, food_name, protein, carbs, fats, servings };

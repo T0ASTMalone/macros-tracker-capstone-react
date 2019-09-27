@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MealLog.css';
 import STORE from '../../store';
 import MealItem from '../Mealitem/MealItem';
+import MealListContext from '../../context/MealLIstContext';
 
 export default class MealLog extends Component {
   constructor(props) {
@@ -11,10 +12,20 @@ export default class MealLog extends Component {
     };
   }
 
+  static contextType = MealListContext;
+
   componentDidMount() {
     const meals = STORE.mealLog;
     this.setState({ mealLog: [...meals] });
   }
+
+  handleAddMeal = meal => {
+    const { meal_id, protein, carbs, fats } = meal;
+    const newMeal = { meal_name: 'temp', meal_id, protein, carbs, fats };
+    console.log(newMeal);
+    this.context.addMeal(newMeal);
+    this.props.history.push('/user/:id/dashboard');
+  };
 
   render() {
     return (
@@ -31,7 +42,12 @@ export default class MealLog extends Component {
                   macros={macros}
                   name={`Meal ${meal.meal_id}`}
                 />
-                <button className="add-meal-log-item">Add</button>
+                <button
+                  className="add-meal-log-item"
+                  onClick={() => this.handleAddMeal(meal)}
+                >
+                  Add
+                </button>
               </div>
             );
           })}
