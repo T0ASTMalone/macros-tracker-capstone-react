@@ -9,24 +9,13 @@ export default class AddMeal extends React.Component {
     super(props);
     this.state = {
       error: null,
-      foods: []
     };
   }
 
   static contextType = MealsContext;
 
-  componentDidMount() {
-    console.log(this.context.foods);
-    const foodList = this.context.foods;
-    if (foodList !== undefined) {
-      this.setState({ foods: [...this.context.foods] });
-    }
-  }
-
   handleDeleteItem = id => {
-    console.log(id);
     this.context.deleteFood(id);
-    this.forceUpdate();
   };
 
   render() {
@@ -37,12 +26,12 @@ export default class AddMeal extends React.Component {
             <h1>Add Meal</h1>
           </header>
           <div className="foods" id="foods">
-            {this.context.foods === undefined || this.context.foods < 1 ? (
+            {this.context.meal.foods === undefined || this.context.meal.foods < 1 ? (
               <div className="food-item empty">
                 <button className="add">+</button>
               </div>
             ) : (
-              this.context.foods.map((food, i) => {
+              this.context.meal.foods.map((food, i) => {
                 const { protein, carbs, fats } = food;
                 const macros = { protein, carbs, fats };
                 return (

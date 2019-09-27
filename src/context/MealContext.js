@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export const nullMeal = {
-  name: '',
+  meal_name: '',
   foods: [],
   macros: []
 };
@@ -26,17 +26,17 @@ export class MealProvider extends Component {
   }
 
   setFoods = foods => {
-    this.setState({ foods });
+    this.setState({ meal: {meal_name: 'temp', foods, macros: [] }});
   };
 
   addFood = food => {
-    this.state.foods === undefined
+    this.state.meal.foods === undefined
       ? this.setFoods([food])
-      : this.setFoods([...this.state.foods, food]);
+      : this.setFoods([...this.state.meal.foods, food]);
   };
 
   deleteFood = foodId => {
-    const updatedFoods = this.state.foods.filter(food => {
+    const updatedFoods = this.state.meal.foods.filter(food => {
       console.log(food.food_id);
 
       return food.food_id !== foodId;

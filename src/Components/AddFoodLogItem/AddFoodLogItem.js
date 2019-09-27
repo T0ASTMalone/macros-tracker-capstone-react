@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MealContext from '../../context/MealContext';
 import { Redirect } from 'react-router-dom';
+import uuid from 'uuid';
 
 export default class AddFoodLogItem extends Component {
   state = {
@@ -19,13 +20,12 @@ export default class AddFoodLogItem extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let food_id;
-    this.context.foods === undefined
-      ? (food_id = 1)
-      : (food_id = this.context.foods.length + 1);
+    let food_id = uuid();
+    
     const { food_name, protein, carbs, fats } = this.props.food;
     const servings = this.state.servings.value;
     const food = { food_id, food_name, protein, carbs, fats, servings };
+    console.log(food);
     this.context.addFood(food);
     this.setState({ added: true });
   };
