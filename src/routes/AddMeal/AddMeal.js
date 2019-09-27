@@ -26,6 +26,7 @@ export default class AddMeal extends React.Component {
   handleDeleteItem = id => {
     console.log(id);
     this.context.deleteFood(id);
+    this.forceUpdate();
   };
 
   render() {
@@ -41,7 +42,7 @@ export default class AddMeal extends React.Component {
                 <button className="add">+</button>
               </div>
             ) : (
-              this.state.foods.map((food, i) => {
+              this.context.foods.map((food, i) => {
                 const { protein, carbs, fats } = food;
                 const macros = { protein, carbs, fats };
                 return (
