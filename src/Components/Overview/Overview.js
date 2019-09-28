@@ -7,12 +7,9 @@ export default class Overview extends React.Component {
     const { radius, stroke, progress } = this.props;
     this.normalizedRadius = radius - stroke * 2;
     this.circumference = this.normalizedRadius * 2 * Math.PI;
-    this.state = {
-      progress
-    };
   }
 
-  circleProgress() {
+  /*circleProgress() {
     var circle = document.querySelector('circle');
     var radius = circle.r.baseVal.value;
     var circumference = radius * 2 * Math.PI;
@@ -33,34 +30,14 @@ export default class Overview extends React.Component {
         setProgress(input.value);
       }
     });
-  }
-
-  updateProgress = e => {
-    this.setState({
-      progress: e
-    });
-  };
+  }*/
 
   render() {
-    const { radius, stroke } = this.props;
+    const { radius, stroke, progress } = this.props;
     const strokeDashoffset =
-      this.circumference - (this.state.progress / 100) * this.circumference;
-
+      this.circumference - (progress / 100) * this.circumference;
     return (
       <div className="overview-macro">
-        {/*
-          <input
-            className={this.props.class}
-            type="number"
-            value={this.state.progress}
-            step="5"
-            min="0"
-            max="100"
-            placeholder="progress"
-            onChange={e => this.updateProgress(e.target.value)}
-          ></input>
-        */}
-
         <svg height={radius * 2} width={radius * 2}>
           <circle
             stroke="white"
@@ -73,7 +50,7 @@ export default class Overview extends React.Component {
             cy={radius}
           />
         </svg>
-        <p>{this.state.progress}%</p>
+        <p>{progress}%</p>
       </div>
     );
   }

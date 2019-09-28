@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 const MealListContext = React.createContext({
   mealList: [],
+  totalMacros: {},
+  userMacros: {},
   error: null,
   setError: () => {},
   clearError: () => {},
@@ -13,6 +15,8 @@ export default MealListContext;
 export class MealListProvider extends Component {
   state = {
     mealList: [],
+    totalMacros: {},
+    userMacros: {},
     error: null
   };
 
@@ -27,6 +31,15 @@ export class MealListProvider extends Component {
 
   setMealList = mealList => {
     this.setState({ mealList });
+  };
+
+  setMacros = macros => {
+    console.log(macros);
+    console.log(this.state);
+  };
+
+  setUserMacros = macros => {
+    this.setState({ userMacros: macros });
   };
 
   addMeal = newMeal => {
@@ -44,13 +57,17 @@ export class MealListProvider extends Component {
 
   render() {
     const value = {
+      totalMacros: this.state.totalMacros,
       mealList: this.state.mealList,
+      userMacros: this.state.userMacros,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
       setMealList: this.setMealList,
       deleteMeal: this.deleteMeal,
-      addMeal: this.addMeal
+      addMeal: this.addMeal,
+      setMacros: this.setMacros,
+      setUserMacros: this.setUserMacros
     };
 
     return (

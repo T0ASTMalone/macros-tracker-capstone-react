@@ -26,7 +26,7 @@ export class MealProvider extends Component {
   }
 
   setFoods = foods => {
-    this.setState({ meal: { meal_name: 'temp', foods, macros: [] } });
+    this.setState({ meal: { meal_name: 'temp', foods, macros: {} } });
   };
 
   clearFoods = () => {

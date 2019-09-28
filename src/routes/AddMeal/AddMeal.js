@@ -3,6 +3,7 @@ import './AddMeal.css';
 import FoodItem from '../../Components/FoodItem/FoodItem';
 import MealsContext from '../../context/MealContext';
 import MealListContext from '../../context/MealLIstContext';
+import MacrosService from '../../Services/macros-services';
 import uuid from 'uuid';
 
 export default class AddMeal extends React.Component {
@@ -32,14 +33,22 @@ export default class AddMeal extends React.Component {
     this.props.history.push('/user/:id/meal-log');
   };
 
+  calculateTotalMacros() {
+    return MacrosService.totalMealMacros(this.context.meal.foods);
+  }
+
   render() {
     return (
       <MealListContext.Consumer>
         {ListContext => {
+          const { protein, carbs, fats } = this.calculateTotalMacros();
           const meal = {
             meal_id: this.state.mealId,
             meal_name: 'temp',
-            ...this.context.meal
+            ...this.context.meal,
+            protein,
+            carbs,
+            fats
           };
 
           const handleAddMeal = () => {
