@@ -3,6 +3,7 @@ import './AddFoodItem.css';
 import AddFoodItemError from './AddFoodItemError';
 import { Link, Redirect } from 'react-router-dom';
 import MealsContext from '../../context/MealContext';
+import SearchFoods from '../SearchFoods/SearchFoods';
 
 export default class AddFoodItem extends Component {
   constructor(props) {
@@ -119,14 +120,15 @@ export default class AddFoodItem extends Component {
     return (
       <>
         <section>
-          <form action="search">
+          {/* <form action="search">
             <legend>
               <h2>Search for foods</h2>
             </legend>
             <input type="text" placeholder="Food name" />
             <button type="submit">Search</button>
           </form>
-          <div className="search-results"></div>
+    <div className="search-results"></div>*/}
+          <SearchFoods />
         </section>
 
         <section>
@@ -167,7 +169,7 @@ export default class AddFoodItem extends Component {
             <input
               type="number"
               id="carbs"
-              min="1"
+              min="0"
               placeholder="10"
               //required
               onChange={e => this.updateCarbs(e.target.value)}
@@ -180,7 +182,7 @@ export default class AddFoodItem extends Component {
             <input
               type="number"
               id="fats"
-              min="1"
+              min="0"
               placeholder="10"
               //required
               onChange={e => this.updateFats(e.target.value)}
@@ -194,7 +196,7 @@ export default class AddFoodItem extends Component {
               type="number"
               id="servings"
               placeholder="1"
-              min="1"
+              min="0"
               //required
               onChange={e => this.updateServings(e.target.value)}
             />

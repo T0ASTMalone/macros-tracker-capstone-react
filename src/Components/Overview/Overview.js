@@ -4,7 +4,7 @@ import './Overview.css';
 export default class Overview extends React.Component {
   constructor(props) {
     super(props);
-    const { radius, stroke, progress } = this.props;
+    const { radius, stroke } = this.props;
     this.normalizedRadius = radius - stroke * 2;
     this.circumference = this.normalizedRadius * 2 * Math.PI;
   }

@@ -29,7 +29,6 @@ const MacrosService = {
   },
 
   totalMealMacros(foods) {
-    console.log(foods);
     let protein = 0;
     let carbs = 0;
     let fats = 0;
@@ -39,9 +38,14 @@ const MacrosService = {
       carbs += parseInt(food.carbs) * parseInt(food.servings);
       fats += parseInt(food.fats) * parseInt(food.servings);
     });
-    console.log(protein, carbs, fats);
     const macros = { protein, carbs, fats };
     return macros;
+  },
+
+  totalFoodMacros(food) {
+    let protein = 0;
+    let carbs = 0;
+    let fats = 0;
   }
 };
 

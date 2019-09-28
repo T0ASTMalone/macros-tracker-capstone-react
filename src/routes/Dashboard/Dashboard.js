@@ -43,7 +43,7 @@ export default class Dashboard extends React.Component {
     if (this.context.mealList.length >= 1) {
       macros = this.getProgress();
     }
-
+    console.log(this.context.mealList);
     return (
       <>
         <div className="overview">

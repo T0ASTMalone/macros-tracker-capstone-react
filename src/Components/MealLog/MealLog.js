@@ -22,7 +22,6 @@ export default class MealLog extends Component {
   handleAddMeal = meal => {
     const { meal_id, protein, carbs, fats } = meal;
     const newMeal = { meal_name: 'temp', meal_id, protein, carbs, fats };
-    console.log(newMeal);
     this.context.addMeal(newMeal);
     this.props.history.push('/user/:id/dashboard');
   };

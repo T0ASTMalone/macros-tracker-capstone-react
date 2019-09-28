@@ -24,15 +24,16 @@ export default class TodaysMeals extends React.Component {
     if (this.state.addMeal === true) {
       return <Redirect to="/user/:id/add-meal" push />;
     }
-    console.log(todaysMeals);
 
     return (
       <>
         <h2 className="section-title">Todays Meals</h2>
         <div className="todays-meals">
           {todaysMeals < 1 ? (
-            <div className="todays-meal-item">
-              <button>+</button>
+            <div className="todays-meal-item empty">
+              <button className="empty-button" onClick={this.handleRedirect}>
+                +
+              </button>
             </div>
           ) : (
             todaysMeals.map((meal, i) => {
@@ -40,11 +41,7 @@ export default class TodaysMeals extends React.Component {
               const macros = { protein, carbs, fats };
               return (
                 <div key={i} className="todays-meal-item">
-                  <MealItem
-                    id={i}
-                    macros={macros}
-                    name={`Meal ${meal.meal_id}`}
-                  />
+                  <MealItem id={i} macros={macros} name={meal.meal_name} />
                   <button
                     className="delete-todays-meal"
                     onClick={() => this.handleDelete(meal.meal_id)}

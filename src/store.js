@@ -65,6 +65,7 @@ const STORE = {
     {
       user: '1',
       meal_id: '1',
+      meal_name: 'Shake',
       protein: '20',
       carbs: '200',
       fats: '10',
@@ -73,6 +74,7 @@ const STORE = {
     {
       user: '1',
       meal_id: '2',
+      meal_name: 'twinkies',
       protein: '20',
       carbs: '200',
       fats: '10',
@@ -81,6 +83,7 @@ const STORE = {
     {
       user: '1',
       meal_id: '3',
+      meal_name: 'salad',
       protein: '0',
       carbs: '1',
       fats: '0',
@@ -89,6 +92,7 @@ const STORE = {
     {
       user: '1',
       meal_id: '4',
+      meal_name: 'carb city',
       protein: '20',
       carbs: '200',
       fats: '10',
