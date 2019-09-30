@@ -4,7 +4,9 @@ import FoodItem from '../../Components/FoodItem/FoodItem';
 import MealsContext from '../../context/MealContext';
 import MealListContext from '../../context/MealLIstContext';
 import MacrosService from '../../Services/macros-services';
+import './AddMealError.js';
 import uuid from 'uuid';
+import AddMealError from './AddMealError.js';
 
 export default class AddMeal extends React.Component {
   constructor(props) {
@@ -45,6 +47,16 @@ export default class AddMeal extends React.Component {
     this.setState({ mealName: { value: name, touched: true } });
   };
 
+  validateName = () => {
+    const name = this.state.mealName.value.trim();
+    if(name.length < 1 ){
+      return 'A meal name is required';
+    }
+    if(name.length > 50 ){
+      return 'The meal name must be under 50 characters';
+    }
+  }
+
   render() {
     return (
       <MealListContext.Consumer>
@@ -60,15 +72,24 @@ export default class AddMeal extends React.Component {
           };
 
           const handleAddMeal = () => {
-            if (meal.foods.length >= 1) {
+            if (meal.foods.length >= 1 && this.state.mealName.length > 1) {
               ListContext.addMeal(meal);
               this.props.history.push('/user/:id/dashboard');
               this.context.clearFoods();
-            } else if (meal.foods.length < 1)
+            } else if (meal.foods.length < 1 || this.state.mealName.length < 1)
               this.setState({
-                error: 'There needs to be at least one food item'
+                error: 'There needs to be at least one food item',
+                mealName: {value: '', touched: true}
               });
+              
           };
+
+          //Questions for mentor
+          //The user has to leave this view to add food items to their meal 
+          //So if they input the meal name before they add an item
+          //When they go to do so the meal name will be deleted
+          //Would it be a good idea to store it in local storage so that it persists
+          //Then clear local storage when they click the Add meal item
 
           return (
             <div className="add-meal">
@@ -86,12 +107,7 @@ export default class AddMeal extends React.Component {
                   onChange={e => this.updateName(e.target.value)}
                   placeholder="Chicken and waffles"
                 />
-                {this.state.error !== null ? (
-                  <div className="error">{this.state.error}</div>
-                ) : (
-                  <></>
-                )}
-
+                <AddMealError hasError={this.validateName()} touched={this.state.mealName.touched}/>
                 <div className="foods" id="foods">
                   {this.context.meal.foods === undefined ||
                   this.context.meal.foods < 1 ? (
@@ -119,7 +135,12 @@ export default class AddMeal extends React.Component {
                       );
                     })
                   )}
+                  
                 </div>
+                {this.state.error !== null 
+                  ? (<div className="error">{this.state.error}</div>)
+                  : (<></>)
+                }
                 <div className="button-container">
                   <button
                     className="button-add-food"
