@@ -1,6 +1,8 @@
 import React from 'react';
 import './Register.css';
 import RegisterError from './RegisterError';
+import MacrosService from '../../Services/macros-services';
+import convert from 'convert-units';
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -11,21 +13,70 @@ export default class Register extends React.Component {
       confirmPassword: { value: '', touched: false },
       age: { value: '', touched: false },
       gender: { value: '', touched: false },
-      height: { value: '', touched: false },
+      feet: { value: '', touched: false },
+      cm: { value: '', touched: false },
+      inches: { value: '', touched: true },
       weight: { value: '', touched: false },
       goals: { value: '', touched: false },
       activityLvl: { value: '', touched: false },
-      unit: { value: '', touched: false }
+      unit: { value: 'imperial', touched: false },
+      userMacros: {}
     };
   }
 
-  handleClick = e => {
-    console.log(e);
+  handleUnitSelect = e => {
+    this.setState({ unit: { value: e, touched: true } });
   };
+
+  convertHeight = () => {
+    const unit = this.state.unit.value;
+    let height;
+    if (unit === 'imperial') {
+      let feet = Math.floor(
+        convert(parseInt(this.state.feet.value))
+          .from('ft')
+          .to('cm')
+      );
+      let inches = Math.floor(
+        convert(parseInt(this.state.inches.value))
+          .from('in')
+          .to('cm')
+      );
+      height = feet + inches;
+    } else {
+      height = this.state.cm.value;
+    }
+
+    return height;
+  };
+
+  convertWeight = () => {
+    const unit = this.state.unit.value;
+    let weight;
+    if (unit === 'imperial') {
+      weight = convert(parseInt(this.state.weight.value))
+        .from('lb')
+        .to('kg');
+    } else weight = this.state.weight.value;
+    return weight;
+  };
+
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    //this.props.history.push('/dashboard/:user');
+    const info = this.state;
+    const user = {
+      email: info.email.value,
+      password: info.password.value,
+      age: info.age.value,
+      gender: info.gender.value,
+      height: this.convertHeight(),
+      weight: this.convertWeight(),
+      goals: info.goals.value,
+      activityLvl: info.activityLvl.value
+    };
+
+    const userMacros = MacrosService.calculateUserMacros(user);
+    this.setState({ userMacros });
   };
 
   updateEmail = email => {
@@ -45,8 +96,11 @@ export default class Register extends React.Component {
   updateGender = gender => {
     this.setState({ gender: { value: gender, touched: true } });
   };
-  updateHeight = height => {
-    this.setState({ height: { value: height, touched: true } });
+  updateFeet = feet => {
+    this.setState({ feet: { value: feet, touched: true } });
+  };
+  updateInches = inches => {
+    this.setState({ inches: { value: inches, touched: true } });
   };
   updateWeight = weight => {
     this.setState({ weight: { value: weight, touched: true } });
@@ -59,6 +113,9 @@ export default class Register extends React.Component {
   };
   updateUnit = unit => {
     this.setState({ unit: { value: unit, touched: true } });
+  };
+  updateCm = cm => {
+    this.setState({ cm: { value: '', touched: true } });
   };
 
   validateEmail() {
@@ -87,7 +144,7 @@ export default class Register extends React.Component {
     }
   }
   validateHeight() {
-    const height = this.state.height.value;
+    const height = this.state.feet.value;
     if (height < 1) {
       return 'An height is required';
     }
@@ -161,6 +218,7 @@ export default class Register extends React.Component {
             <select
               id="gender"
               onChange={e => this.updateGender(e.target.value)}
+              defaultValue="male"
             >
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -172,7 +230,8 @@ export default class Register extends React.Component {
                 className="button metric"
                 value="metric"
                 name="unit"
-                onClick={e => this.handleClick(e.target.value)}
+                select="true"
+                onClick={e => this.handleUnitSelect(e.target.value)}
               >
                 Metric
               </button>
@@ -181,20 +240,46 @@ export default class Register extends React.Component {
                 className="button imperial"
                 value="imperial"
                 name="unit"
-                onClick={e => this.handleClick(e.target.value)}
+                onClick={e => this.handleUnitSelect(e.target.value)}
               >
                 Imperial
               </button>
             </div>
 
             <label htmlFor="height">Height</label>
-            <input
-              type="number"
-              id="height"
-              min="0"
-              onChange={e => this.updateHeight(e.target.value)}
-            />
-            <RegisterError hasError={this.validateHeight()} />
+            {this.state.unit.value === 'metric' ? (
+              <>
+                <label htmlFor="cm">cm</label>
+                <input
+                  type="number"
+                  id="cm"
+                  className="height"
+                  min="0"
+                  onChange={e => this.updateCm(e.target.value)}
+                />
+              </>
+            ) : (
+              <>
+                <label htmlFor="ft">ft</label>
+                <input
+                  type="number"
+                  id="ft"
+                  className="height"
+                  min="0"
+                  onChange={e => this.updateFeet(e.target.value)}
+                />
+                <label htmlFor="in">in</label>
+                <input
+                  type="number"
+                  id="in"
+                  className="height"
+                  min="0"
+                  onChange={e => this.updateInches(e.target.value)}
+                />
+                <RegisterError hasError={this.validateHeight()} />
+              </>
+            )}
+
             <label htmlFor="weight">Weight</label>
             <input
               type="number"
@@ -208,11 +293,21 @@ export default class Register extends React.Component {
               <input
                 id="level-of-activity"
                 type="range"
-                min="1"
-                max="100"
+                min="1.2"
+                max="1.9"
                 className="slider"
+                step=".175"
+                defaultValue="1.55"
                 onChange={e => this.updateActivityLvl(e.target.value)}
+                list="volsettings"
               />
+              <datalist id="volsettings">
+                <option value="1.2">0</option>
+                <option value="1.375">1</option>
+                <option value="1.55">2</option>
+                <option value="1.725">3</option>
+                <option value="1.9">4</option>
+              </datalist>
               <RegisterError hasError={this.validateActivityLvl()} />
             </div>
             <label htmlFor="fitness-goals">Fitness Goals</label>
@@ -230,6 +325,13 @@ export default class Register extends React.Component {
           <button type="submit" className="button register">
             Register
           </button>
+
+          <div className="display-results">
+            <h2>Recommended Macronutrients</h2>
+            <p>Protein: {this.state.userMacros.protein}</p>
+            <p>Carbs: {this.state.userMacros.carbs}</p>
+            <p>Fats: {this.state.userMacros.fats}</p>
+          </div>
         </form>
       </>
     );

@@ -3,6 +3,7 @@ import MealContext from '../../context/MealContext';
 import { Redirect } from 'react-router-dom';
 import uuid from 'uuid';
 import config from '../../config';
+import MacrosService from '../../Services/macros-services';
 
 export default class AddFoodLogItem extends Component {
   state = {
@@ -20,6 +21,7 @@ export default class AddFoodLogItem extends Component {
   };
 
   addFood = food => {
+    MacrosService.totalFoodMacros(food);
     this.context.addFood(food);
     this.setState({ added: true });
   };

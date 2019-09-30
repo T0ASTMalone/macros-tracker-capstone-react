@@ -34,8 +34,10 @@ export default class Overview extends React.Component {
 
   render() {
     const { radius, stroke, progress } = this.props;
+
     const strokeDashoffset =
       this.circumference - (progress / 100) * this.circumference;
+
     return (
       <div className="overview-macro">
         <svg height={radius * 2} width={radius * 2}>

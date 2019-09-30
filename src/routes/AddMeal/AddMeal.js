@@ -11,7 +11,11 @@ export default class AddMeal extends React.Component {
     super(props);
     this.state = {
       error: null,
-      mealId: ''
+      mealId: '',
+      mealName: {
+        value: '',
+        touched: false
+      }
     };
   }
 
@@ -37,6 +41,10 @@ export default class AddMeal extends React.Component {
     return MacrosService.totalMealMacros(this.context.meal.foods);
   }
 
+  updateName = name => {
+    this.setState({ mealName: { value: name, touched: true } });
+  };
+
   render() {
     return (
       <MealListContext.Consumer>
@@ -44,7 +52,7 @@ export default class AddMeal extends React.Component {
           const { protein, carbs, fats } = this.calculateTotalMacros();
           const meal = {
             meal_id: this.state.mealId,
-            meal_name: 'temp',
+            meal_name: this.state.mealName,
             ...this.context.meal,
             protein,
             carbs,
@@ -57,7 +65,9 @@ export default class AddMeal extends React.Component {
               this.props.history.push('/user/:id/dashboard');
               this.context.clearFoods();
             } else if (meal.foods.length < 1)
-              console.log('There needs to be at least one food item');
+              this.setState({
+                error: 'There needs to be at least one food item'
+              });
           };
 
           return (
@@ -66,6 +76,22 @@ export default class AddMeal extends React.Component {
                 <header>
                   <h1>Add Meal</h1>
                 </header>
+                <label htmlFor="meal-name" className="meal-name">
+                  Meal Name
+                </label>
+                <input
+                  type="text"
+                  id="meal-name"
+                  className="meal-name"
+                  onChange={e => this.updateName(e.target.value)}
+                  placeholder="Chicken and waffles"
+                />
+                {this.state.error !== null ? (
+                  <div className="error">{this.state.error}</div>
+                ) : (
+                  <></>
+                )}
+
                 <div className="foods" id="foods">
                   {this.context.meal.foods === undefined ||
                   this.context.meal.foods < 1 ? (

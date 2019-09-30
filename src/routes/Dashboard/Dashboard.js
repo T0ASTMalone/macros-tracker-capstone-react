@@ -29,40 +29,39 @@ export default class Dashboard extends React.Component {
   }
 
   getProgress() {
-    console.log(this.context.mealList);
     const macros = MacrosService.macrosSoFar(
       this.context.mealList,
       this.context.userMacros
     );
-    console.log(macros);
     return macros;
   }
 
   render() {
-    let macros = { proteinPercent: 0, carbsPercent: 0, fatsPercent: 0 };
+    let progress = {
+      macrosPercent: { proteinPercent: 0, carbsPercent: 0, fatsPercent: 0 }
+    };
     if (this.context.mealList.length >= 1) {
-      macros = this.getProgress();
+      progress = this.getProgress();
     }
-    console.log(this.context.mealList);
     return (
       <>
         <div className="overview">
           <Overview
             radius={60}
             stroke={8}
-            progress={macros.proteinPercent}
+            progress={progress.macrosPercent.proteinPercent}
             class="protein"
           />
           <Overview
             radius={60}
             stroke={8}
-            progress={macros.carbsPercent}
+            progress={progress.macrosPercent.carbsPercent}
             class="carbs"
           />
           <Overview
             radius={60}
             stroke={8}
-            progress={macros.fatsPercent}
+            progress={progress.macrosPercent.fatsPercent}
             class="fats"
           />
         </div>
@@ -70,7 +69,7 @@ export default class Dashboard extends React.Component {
           <TodaysMeals />
         </section>
         <section>
-          <Stats />
+          <Stats macros={this.context.userMacros} progress={progress.macros} />
         </section>
       </>
     );

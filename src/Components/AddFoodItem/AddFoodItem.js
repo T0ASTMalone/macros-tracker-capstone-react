@@ -4,6 +4,7 @@ import AddFoodItemError from './AddFoodItemError';
 import { Link, Redirect } from 'react-router-dom';
 import MealsContext from '../../context/MealContext';
 import SearchFoods from '../SearchFoods/SearchFoods';
+import MacrosService from '../../Services/macros-services';
 
 export default class AddFoodItem extends Component {
   constructor(props) {
@@ -36,7 +37,6 @@ export default class AddFoodItem extends Component {
   static contextType = MealsContext;
 
   handleAddExisting = () => {
-    //this.props.history.push('/user/:id/food-log');
     return (
       <Link addFoodItem={this.props.addFoodItem} to="/user/:id/food-log" />
     );
@@ -105,6 +105,9 @@ export default class AddFoodItem extends Component {
       fats: this.state.fats.value,
       servings: this.state.servings.value
     };
+    MacrosService.totalFoodMacros(newFood);
+
+    console.log(newFood);
     this.context.addFood(newFood);
     this.setState({ added: true });
   };
@@ -120,14 +123,6 @@ export default class AddFoodItem extends Component {
     return (
       <>
         <section>
-          {/* <form action="search">
-            <legend>
-              <h2>Search for foods</h2>
-            </legend>
-            <input type="text" placeholder="Food name" />
-            <button type="submit">Search</button>
-          </form>
-    <div className="search-results"></div>*/}
           <SearchFoods />
         </section>
 

@@ -16,6 +16,7 @@ export default class MealLog extends Component {
 
   componentDidMount() {
     const meals = STORE.mealLog;
+    console.log(meals);
     this.setState({ mealLog: [...meals] });
   }
 
@@ -39,7 +40,7 @@ export default class MealLog extends Component {
                   key={i}
                   id={i}
                   macros={macros}
-                  name={`Meal ${meal.meal_id}`}
+                  name={meal.meal_name}
                 />
                 <button
                   className="add-meal-log-item"
