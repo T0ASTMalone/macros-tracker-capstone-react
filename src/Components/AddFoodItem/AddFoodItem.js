@@ -191,7 +191,7 @@ export default class AddFoodItem extends Component {
               type="number"
               id="servings"
               placeholder="1"
-              min="0"
+              min="1"
               //required
               onChange={e => this.updateServings(e.target.value)}
             />

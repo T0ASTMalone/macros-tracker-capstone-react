@@ -21,13 +21,18 @@ export default class AddMeal extends React.Component {
     };
   }
 
+  static contextType = MealsContext;
+
   componentDidMount() {
+    console.log(this.context.mealName);
+    if (this.context.mealName) {
+      this.setState({ mealName: this.context.mealName });
+    }
     this.setState({ mealId: uuid() });
   }
 
-  static contextType = MealsContext;
-
   handleAddFood = () => {
+    this.context.setMealName(this.state.mealName.value);
     this.props.history.push('/user/:id/add-food');
   };
 
@@ -49,47 +54,52 @@ export default class AddMeal extends React.Component {
 
   validateName = () => {
     const name = this.state.mealName.value.trim();
-    if(name.length < 1 ){
+    if (name.length < 1) {
       return 'A meal name is required';
     }
-    if(name.length > 50 ){
+    if (name.length > 50) {
       return 'The meal name must be under 50 characters';
     }
-  }
+  };
 
   render() {
+    console.log(this.context.mealName);
     return (
       <MealListContext.Consumer>
         {ListContext => {
           const { protein, carbs, fats } = this.calculateTotalMacros();
           const meal = {
             meal_id: this.state.mealId,
-            meal_name: this.state.mealName,
+            meal_name: this.state.mealName.value,
             ...this.context.meal,
             protein,
             carbs,
             fats
           };
 
+          console.log(this.state.mealName);
+
           const handleAddMeal = () => {
-            if (meal.foods.length >= 1 && this.state.mealName.length > 1) {
+            const mealName = this.state.mealName.value;
+            if (meal.foods.length < 1 && mealName.length < 1) {
+              this.setState({
+                error: 'There needs to be at least one food item',
+                mealName: { value: '', touched: true }
+              });
+            } else if (mealName.length < 1) {
+              this.setState({
+                mealName: { value: '', touched: true }
+              });
+            } else if (meal.foods.length < 1) {
+              this.setState({
+                error: 'There needs to be at least one food item'
+              });
+            } else {
               ListContext.addMeal(meal);
               this.props.history.push('/user/:id/dashboard');
               this.context.clearFoods();
-            } else if (meal.foods.length < 1 || this.state.mealName.length < 1)
-              this.setState({
-                error: 'There needs to be at least one food item',
-                mealName: {value: '', touched: true}
-              });
-              
+            }
           };
-
-          //Questions for mentor
-          //The user has to leave this view to add food items to their meal 
-          //So if they input the meal name before they add an item
-          //When they go to do so the meal name will be deleted
-          //Would it be a good idea to store it in local storage so that it persists
-          //Then clear local storage when they click the Add meal item
 
           return (
             <div className="add-meal">
@@ -107,7 +117,10 @@ export default class AddMeal extends React.Component {
                   onChange={e => this.updateName(e.target.value)}
                   placeholder="Chicken and waffles"
                 />
-                <AddMealError hasError={this.validateName()} touched={this.state.mealName.touched}/>
+                <AddMealError
+                  hasError={this.validateName()}
+                  touched={this.state.mealName.touched}
+                />
                 <div className="foods" id="foods">
                   {this.context.meal.foods === undefined ||
                   this.context.meal.foods < 1 ? (
@@ -135,12 +148,12 @@ export default class AddMeal extends React.Component {
                       );
                     })
                   )}
-                  
                 </div>
-                {this.state.error !== null 
-                  ? (<div className="error">{this.state.error}</div>)
-                  : (<></>)
-                }
+                {this.state.error !== null ? (
+                  <div className="error">{this.state.error}</div>
+                ) : (
+                  <></>
+                )}
                 <div className="button-container">
                   <button
                     className="button-add-food"
