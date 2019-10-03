@@ -16,7 +16,6 @@ export default class MealLog extends Component {
 
   componentDidMount() {
     const meals = STORE.mealLog;
-    console.log(meals);
     this.setState({ mealLog: [...meals] });
   }
 
@@ -29,7 +28,7 @@ export default class MealLog extends Component {
 
   render() {
     return (
-      <>
+      <div className="container">
         <section id="meal-log-container">
           {this.state.mealLog.map((meal, i) => {
             const { protein, carbs, fats } = meal;
@@ -52,7 +51,7 @@ export default class MealLog extends Component {
             );
           })}
         </section>
-      </>
+      </div>
     );
   }
 }

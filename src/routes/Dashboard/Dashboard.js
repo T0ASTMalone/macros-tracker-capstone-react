@@ -1,17 +1,24 @@
 import React from 'react';
 import './Dashboard.css';
 import Overview from '../../Components/Overview/Overview';
-import TodaysMeals from '../../Components/TodaysMeals/TodaysMeals';
+//import TodaysMeals from '../../Components/TodaysMeals/TodaysMeals';
 import Stats from '../../Components/Stats/Stats';
 import STORE from '../../store';
 import MealListContext from '../../context/MealLIstContext';
 import MacrosService from '../../Services/macros-services';
+import AddMeal from '../AddMeal/AddMeal';
+import FoodLog from '../../Components/FoodLog/FoodLog';
+import MealLog from '../../Components/MealLog/MealLog';
+import AddFoodItem from '../../Components/AddFoodItem/AddFoodItem';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
+      showAddFoodItem: false,
+      showFoodLog: false,
+      showMealLog: false,
       userMacros: []
     };
   }
@@ -36,7 +43,38 @@ export default class Dashboard extends React.Component {
     return macros;
   }
 
+  showAddFoodItem = () => {
+    this.setState({
+      showAddFoodItem: true,
+      showFoodLog: false,
+      showMealLog: false
+    });
+  };
+
+  showFoodLog = () => {
+    this.setState({
+      showFoodLog: true,
+      showMealLog: false,
+      showAddFoodItem: false
+    });
+  };
+  showMealLog = () => {
+    this.setState({
+      showMealLog: true,
+      showFoodLog: false,
+      showAddFoodItem: false
+    });
+  };
+
+  hideContent = name => {
+    this.setState({ [name]: false });
+  };
+
   render() {
+    const show = {
+      showAddFood: this.showAddFoodItem,
+      showMealLog: this.showMealLog
+    };
     let progress = {
       macrosPercent: { proteinPercent: 0, carbsPercent: 0, fatsPercent: 0 }
     };
@@ -66,7 +104,16 @@ export default class Dashboard extends React.Component {
           />
         </div>
         <section className="todays meals">
-          <TodaysMeals />
+          <AddMeal show={show} />
+          {this.state.showAddFoodItem && (
+            <AddFoodItem
+              showFoodLog={this.showFoodLog}
+              hide={this.hideContent}
+            />
+          )}
+          {/*<TodaysMeals />*/}
+          {this.state.showFoodLog && <FoodLog hide={this.hideContent} />}
+          {this.state.showMealLog && <MealLog />}
         </section>
         <section>
           <Stats macros={this.context.userMacros} progress={progress.macros} />

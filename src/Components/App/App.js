@@ -7,10 +7,10 @@ import Register from '../../routes/Register/Register';
 import Dashboard from '../../routes/Dashboard/Dashboard';
 import Header from '../Header/Header';
 import LandingPage from '../../routes/LandingPage/LandingPage';
-import AddMeal from '../../routes/AddMeal/AddMeal';
-import FoodLog from '../FoodLog/FoodLog';
-import MealLog from '../MealLog/MealLog';
-import AddFoodItem from '../AddFoodItem/AddFoodItem';
+//import AddMeal from '../../routes/AddMeal/AddMeal';
+//import FoodLog from '../FoodLog/FoodLog';
+//import MealLog from '../MealLog/MealLog';
+//import AddFoodItem from '../AddFoodItem/AddFoodItem';
 
 export default class App extends React.Component {
   render() {
@@ -21,10 +21,10 @@ export default class App extends React.Component {
         </header>
         <main className="App_main">
           <Switch>
-            <Route path={'/user/:id/add-food'} component={AddFoodItem} />
+            {/*<Route path={'/user/:id/add-food'} component={AddFoodItem} />
             <Route path={'/user/:id/meal-log'} component={MealLog} />
             <Route path={'/user/:id/food-log'} component={FoodLog} />
-            <Route path={'/user/:id/add-meal'} component={AddMeal} />
+    <Route path={'/user/:id/add-meal'} component={AddMeal} />*/}
             <Route exact path={'/'} component={LandingPage} />
             <Route path={'/user/:id'} component={Dashboard} />
             <Route exact path={'/sign-in'} component={SignIn} />

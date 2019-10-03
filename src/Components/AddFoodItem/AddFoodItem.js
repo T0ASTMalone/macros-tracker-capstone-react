@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './AddFoodItem.css';
 import AddFoodItemError from './AddFoodItemError';
-import { Link, Redirect } from 'react-router-dom';
 import MealsContext from '../../context/MealContext';
 import SearchFoods from '../SearchFoods/SearchFoods';
 import MacrosService from '../../Services/macros-services';
@@ -10,7 +9,6 @@ export default class AddFoodItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      added: false,
       food_name: {
         value: '',
         touched: false
@@ -35,12 +33,6 @@ export default class AddFoodItem extends Component {
   }
 
   static contextType = MealsContext;
-
-  handleAddExisting = () => {
-    return (
-      <Link addFoodItem={this.props.addFoodItem} to="/user/:id/food-log" />
-    );
-  };
 
   updateFoodName = name => {
     this.setState({ food_name: { value: name, touched: true } });
@@ -107,23 +99,19 @@ export default class AddFoodItem extends Component {
     };
     MacrosService.totalFoodMacros(newFood);
 
-    console.log(newFood);
     this.context.addFood(newFood);
-    this.setState({ added: true });
+    this.props.hide('showAddFoodItem');
   };
 
   handleRedirect = () => {
-    this.props.history.push('/user/:id/food-log');
+    this.props.showFoodLog();
   };
 
   render() {
-    if (this.state.added) {
-      return <Redirect to="/user/:id/add-meal" />;
-    }
     return (
-      <>
+      <div className="container">
         <section>
-          <SearchFoods />
+          <SearchFoods hide={this.props.hide} />
         </section>
 
         <section>
@@ -221,7 +209,7 @@ export default class AddFoodItem extends Component {
             Add existing food
           </button>
         </section>
-      </>
+      </div>
     );
   }
 }

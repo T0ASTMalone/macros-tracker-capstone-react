@@ -35,7 +35,6 @@ export default class SearchBar extends Component {
 
   render() {
     const results = this.state.searchResults;
-
     return (
       <>
         <form action="search" onSubmit={this.handleSearch}>
@@ -55,8 +54,7 @@ export default class SearchBar extends Component {
               return (
                 <div key={food.id} className="food-item-container">
                   <FoodItem name={food.title} image={food.image} />
-
-                  <AddFoodLogItem foodId={food.id} />
+                  <AddFoodLogItem hide={this.props.hide} foodId={food.id} />
                 </div>
               );
             })}

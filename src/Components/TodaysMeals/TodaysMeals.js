@@ -21,7 +21,6 @@ export default class TodaysMeals extends React.Component {
 
   render() {
     const todaysMeals = this.context.mealList || [];
-    console.log(todaysMeals);
     if (this.state.addMeal === true) {
       return <Redirect to="/user/:id/add-meal" push />;
     }

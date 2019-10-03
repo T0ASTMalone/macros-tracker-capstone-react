@@ -1,3 +1,5 @@
+//move into component folder
+
 import React from 'react';
 import './AddMeal.css';
 import FoodItem from '../../Components/FoodItem/FoodItem';
@@ -24,7 +26,6 @@ export default class AddMeal extends React.Component {
   static contextType = MealsContext;
 
   componentDidMount() {
-    console.log(this.context.mealName);
     if (this.context.mealName) {
       this.setState({ mealName: this.context.mealName });
     }
@@ -33,7 +34,8 @@ export default class AddMeal extends React.Component {
 
   handleAddFood = () => {
     this.context.setMealName(this.state.mealName.value);
-    this.props.history.push('/user/:id/add-food');
+    this.props.show.showAddFood();
+    //this.props.history.push('/user/:id/add-food');
   };
 
   handleDeleteFoodItem = id => {
@@ -41,7 +43,8 @@ export default class AddMeal extends React.Component {
   };
 
   handleAddExisting = () => {
-    this.props.history.push('/user/:id/meal-log');
+    this.props.show.showMealLog();
+    //this.props.history.push('/user/:id/meal-log');
   };
 
   calculateTotalMacros() {
@@ -63,7 +66,6 @@ export default class AddMeal extends React.Component {
   };
 
   render() {
-    console.log(this.context.mealName);
     return (
       <MealListContext.Consumer>
         {ListContext => {
@@ -76,8 +78,6 @@ export default class AddMeal extends React.Component {
             carbs,
             fats
           };
-
-          console.log(this.state.mealName);
 
           const handleAddMeal = () => {
             const mealName = this.state.mealName.value;
@@ -96,7 +96,7 @@ export default class AddMeal extends React.Component {
               });
             } else {
               ListContext.addMeal(meal);
-              this.props.history.push('/user/:id/dashboard');
+              //this.props.history.push('/user/:id/dashboard');
               this.context.clearFoods();
             }
           };
@@ -105,7 +105,7 @@ export default class AddMeal extends React.Component {
             <div className="add-meal">
               <div className="food-items">
                 <header>
-                  <h1>Add Meal</h1>
+                  <h1>Create Meal</h1>
                 </header>
                 <label htmlFor="meal-name" className="meal-name">
                   Meal Name

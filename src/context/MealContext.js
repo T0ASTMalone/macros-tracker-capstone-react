@@ -28,7 +28,6 @@ export class MealProvider extends Component {
   }
 
   setMealName = name => {
-    console.log(name);
     this.setState({ mealName: name });
   };
 

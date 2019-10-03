@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MealContext from '../../context/MealContext';
-import { Redirect } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
 import uuid from 'uuid';
 import config from '../../config';
 import MacrosService from '../../Services/macros-services';
@@ -23,7 +23,6 @@ export default class AddFoodLogItem extends Component {
   addFood = food => {
     MacrosService.totalFoodMacros(food);
     this.context.addFood(food);
-    this.setState({ added: true });
   };
 
   handleExisting = () => {
@@ -69,12 +68,11 @@ export default class AddFoodLogItem extends Component {
     this.props.food === undefined
       ? this.handleSearched()
       : this.handleExisting();
+    this.props.hide('showAddFoodItem');
   };
 
   render() {
-    if (this.state.added) {
-      return <Redirect to="/user/:id/add-meal" />;
-    }
+    console.log(this.props);
     return (
       <form action="add-food" className="add-food" onSubmit={this.handleSubmit}>
         <label htmlFor="servings">Servings</label>
