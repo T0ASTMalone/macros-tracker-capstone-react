@@ -83,6 +83,17 @@ const STORE = {
   ],
 
   foods: [
+
+    {
+      meal_id: '1',
+      food_id: '9',
+      food_name: 'Shake',
+      servings: '1',
+      protein: '12',
+      carbs: '56',
+      fats: '9',
+      date: new Date()
+    },
     {
       meal_id: '5',
       food_id: '1',
@@ -168,8 +179,8 @@ const STORE = {
       meal_id: '1',
       meal_name: 'Shake',
       protein: '12',
-      carbs: '87',
-      fats: '22',
+      carbs: '56',
+      fats: '9',
       date: new Date()
     },
     {

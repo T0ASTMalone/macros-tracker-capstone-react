@@ -1,7 +1,6 @@
 import React from 'react';
 import './Dashboard.css';
 import Overview from '../../Components/Overview/Overview';
-//import TodaysMeals from '../../Components/TodaysMeals/TodaysMeals';
 import Stats from '../../Components/Stats/Stats';
 import STORE from '../../store';
 import MealListContext from '../../context/MealLIstContext';
@@ -111,9 +110,8 @@ export default class Dashboard extends React.Component {
               hide={this.hideContent}
             />
           )}
-          {/*<TodaysMeals />*/}
           {this.state.showFoodLog && <FoodLog hide={this.hideContent} />}
-          {this.state.showMealLog && <MealLog />}
+          {this.state.showMealLog && <MealLog hide={this.hideContent} />}
         </section>
         <section>
           <Stats macros={this.context.userMacros} progress={progress.macros} />

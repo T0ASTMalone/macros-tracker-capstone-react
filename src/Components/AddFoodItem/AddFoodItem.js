@@ -98,8 +98,8 @@ export default class AddFoodItem extends Component {
       servings: this.state.servings.value
     };
     MacrosService.totalFoodMacros(newFood);
-
-    this.context.addFood(newFood);
+    const foodArr = [newFood]
+    this.context.addFood(foodArr);
     this.props.hide('showAddFoodItem');
   };
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './MealLog.css';
 import STORE from '../../store';
 import MealItem from '../Mealitem/MealItem';
-import MealListContext from '../../context/MealLIstContext';
+import MealsContext from '../../context/MealContext';
 
 export default class MealLog extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class MealLog extends Component {
     };
   }
 
-  static contextType = MealListContext;
+  static contextType = MealsContext;
 
   componentDidMount() {
     const meals = STORE.mealLog;
@@ -20,10 +20,18 @@ export default class MealLog extends Component {
   }
 
   handleAddMeal = meal => {
-    const { meal_id, protein, carbs, fats } = meal;
-    const newMeal = { meal_name: 'temp', meal_id, protein, carbs, fats };
-    this.context.addMeal(newMeal);
-    this.props.history.push('/user/:id/dashboard');
+    const { meal_id} = meal;
+   // const newMeal = { meal_name: 'temp', meal_id, protein, carbs, fats };
+    
+    const mealFoods = STORE.foods.filter(food => {
+      
+      return food.meal_id === meal_id});
+    console.log(typeof mealFoods)
+    
+    this.context.addFood(mealFoods);
+    //this.context.addMeal(newMeal);
+    //this.props.history.push('/user/:id/dashboard');
+    this.props.hide('showMealLog');
   };
 
   render() {

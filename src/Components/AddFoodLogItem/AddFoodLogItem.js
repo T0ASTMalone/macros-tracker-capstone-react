@@ -10,8 +10,7 @@ export default class AddFoodLogItem extends Component {
     servings: {
       value: '',
       touched: false
-    },
-    added: false
+    }
   };
 
   static contextType = MealContext;
@@ -22,7 +21,8 @@ export default class AddFoodLogItem extends Component {
 
   addFood = food => {
     MacrosService.totalFoodMacros(food);
-    this.context.addFood(food);
+    const foodArr = [food]
+    this.context.addFood(foodArr);
   };
 
   handleExisting = () => {
@@ -30,7 +30,8 @@ export default class AddFoodLogItem extends Component {
     const { food_name, protein, carbs, fats } = this.props.food;
     const servings = this.state.servings.value;
     const newFood = { food_id, food_name, protein, carbs, fats, servings };
-    this.addFood(newFood);
+    const foodArr = [newFood]
+    this.addFood(foodArr);
   };
 
   makeSearchFood = food => {
@@ -72,7 +73,6 @@ export default class AddFoodLogItem extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <form action="add-food" className="add-food" onSubmit={this.handleSubmit}>
         <label htmlFor="servings">Servings</label>
