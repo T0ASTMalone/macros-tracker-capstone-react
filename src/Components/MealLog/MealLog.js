@@ -21,15 +21,11 @@ export default class MealLog extends Component {
 
   handleAddMeal = meal => {
     const { meal_id } = meal;
-    // const newMeal = { meal_name: 'temp', meal_id, protein, carbs, fats };
     const foods = JSON.parse(JSON.stringify(STORE.foods));
     const mealFoods = foods.filter(food => {
       return food.meal_id === meal_id;
     });
-
     this.context.addFood(mealFoods);
-    //this.context.addMeal(newMeal);
-    //this.props.history.push('/user/:id/dashboard');
     this.props.hide('showMealLog');
   };
 

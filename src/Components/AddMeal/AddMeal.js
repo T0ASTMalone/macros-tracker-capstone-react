@@ -29,7 +29,6 @@ export default class AddMeal extends React.Component {
     if (this.context.mealName) {
       this.setState({ mealName: this.context.mealName });
     }
-    this.setState({ mealId: uuid() });
   }
 
   handleAddFood = () => {
@@ -70,7 +69,6 @@ export default class AddMeal extends React.Component {
         {ListContext => {
           const { protein, carbs, fats } = this.calculateTotalMacros();
           const meal = {
-            meal_id: this.state.mealId,
             meal_name: this.state.mealName.value,
             ...this.context.meal,
             protein,
@@ -95,6 +93,7 @@ export default class AddMeal extends React.Component {
                 error: 'There needs to be at least one food item'
               });
             } else {
+              meal.meal_id = uuid();
               ListContext.addMeal(meal);
               const { meal_id, meal_name, protein, carbs, fats } = meal;
               const mealLogMeal = { meal_id, meal_name, protein, carbs, fats };
@@ -178,18 +177,18 @@ export default class AddMeal extends React.Component {
                   )}
                   <div className="button-container">
                     <button
-                      className="button-add-food"
+                      className="button add-food-item"
                       onClick={this.handleAddFood}
                       type="button"
                     >
-                      Add Food Item
+                      Add Food
                     </button>
                     <button
                       type="button"
-                      className="add-existing"
+                      className="button add-existing"
                       onClick={this.handleAddExisting}
                     >
-                      Add Meal From Your Log
+                      Add from Meal Log
                     </button>
                   </div>
                   <button className="button create-meal" type="submit">

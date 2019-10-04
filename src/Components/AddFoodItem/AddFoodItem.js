@@ -221,7 +221,7 @@ export default class AddFoodItem extends Component {
             <h2>Add existing food</h2>
           </header>
           <button className="button" onClick={this.handleRedirect}>
-            Add existing food
+            Add from food Log
           </button>
         </section>
       </div>
