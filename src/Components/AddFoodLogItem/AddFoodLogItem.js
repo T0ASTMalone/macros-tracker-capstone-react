@@ -21,7 +21,7 @@ export default class AddFoodLogItem extends Component {
 
   addFood = food => {
     MacrosService.totalFoodMacros(food);
-    const foodArr = [food]
+    const foodArr = [food];
     this.context.addFood(foodArr);
   };
 
@@ -30,8 +30,8 @@ export default class AddFoodLogItem extends Component {
     const { food_name, protein, carbs, fats } = this.props.food;
     const servings = this.state.servings.value;
     const newFood = { food_id, food_name, protein, carbs, fats, servings };
-    const foodArr = [newFood]
-    this.addFood(foodArr);
+    this.addFood(newFood);
+    this.props.hide('showFoodLog');
   };
 
   makeSearchFood = food => {
@@ -52,6 +52,7 @@ export default class AddFoodLogItem extends Component {
       servings: this.state.servings.value
     };
     this.addFood(newFood);
+    this.props.hide('showAddFoodItem');
   };
 
   handleSearched = () => {
@@ -69,7 +70,6 @@ export default class AddFoodLogItem extends Component {
     this.props.food === undefined
       ? this.handleSearched()
       : this.handleExisting();
-    this.props.hide('showAddFoodItem');
   };
 
   render() {

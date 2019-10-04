@@ -6,6 +6,7 @@ import AddFoodLogItem from '../AddFoodLogItem/AddFoodLogItem';
 
 export default class SearchBar extends Component {
   state = {
+    error: null,
     searchResults: [],
     searchTerm: {
       value: '',
@@ -25,8 +26,12 @@ export default class SearchBar extends Component {
       .then(res =>
         !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
       )
-      .then(resJson => this.setState({ searchResults: resJson.products }))
-      .catch(error => console.error(error));
+      .then(resJson => {
+        resJson.products.length >= 1
+          ? this.setState({ searchResults: resJson.products })
+          : this.setState({ error: 'A food item by that name was not found' });
+      })
+      .catch(error => console.log(error));
   };
 
   updateSearchTerm = term => {
@@ -60,7 +65,9 @@ export default class SearchBar extends Component {
             })}
           </div>
         ) : (
-          <></>
+          <>
+            <p className="error">{this.state.error}</p>
+          </>
         )}
       </>
     );

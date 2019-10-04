@@ -98,7 +98,7 @@ export default class AddFoodItem extends Component {
       servings: this.state.servings.value
     };
     MacrosService.totalFoodMacros(newFood);
-    const foodArr = [newFood]
+    const foodArr = [newFood];
     this.context.addFood(foodArr);
     this.props.hide('showAddFoodItem');
   };
@@ -107,9 +107,16 @@ export default class AddFoodItem extends Component {
     this.props.showFoodLog();
   };
 
+  closeWindow = () => {
+    this.props.hide('showAddFoodItem');
+  };
+
   render() {
     return (
       <div className="container">
+        <button className="close-window" onClick={this.closeWindow}>
+          X
+        </button>
         <section>
           <SearchFoods hide={this.props.hide} />
         </section>
@@ -122,9 +129,13 @@ export default class AddFoodItem extends Component {
           >
             <legend>
               <h2>Create Food Item</h2>
+              <p className="required">
+                <i>* indicates required field</i>
+              </p>
             </legend>
-            <label htmlFor="food-name">Food Name</label>
+            <label htmlFor="food-name">Food Name *</label>
             <input
+              className="new-food-input"
               type="text"
               name="food-name"
               id="food-name"
@@ -135,8 +146,9 @@ export default class AddFoodItem extends Component {
               hasError={this.validateFoodName()}
               touched={this.state.food_name.touched}
             />
-            <label htmlFor="protein">Protein</label>
+            <label htmlFor="protein">Protein *</label>
             <input
+              className="new-food-input"
               type="number"
               id="protein"
               min="1"
@@ -148,8 +160,9 @@ export default class AddFoodItem extends Component {
               hasError={this.validateProtein()}
               touched={this.state.protein.touched}
             />
-            <label htmlFor="carbs">Carbs</label>
+            <label htmlFor="carbs">Carbs *</label>
             <input
+              className="new-food-input"
               type="number"
               id="carbs"
               min="0"
@@ -161,8 +174,9 @@ export default class AddFoodItem extends Component {
               hasError={this.validateCarbs()}
               touched={this.state.carbs.touched}
             />
-            <label htmlFor="fats">Fats</label>
+            <label htmlFor="fats">Fats *</label>
             <input
+              className="new-food-input"
               type="number"
               id="fats"
               min="0"
@@ -174,8 +188,9 @@ export default class AddFoodItem extends Component {
               hasError={this.validateFats()}
               touched={this.state.fats.touched}
             />
-            <label htmlFor="servings">Servings</label>
+            <label htmlFor="servings">Servings *</label>
             <input
+              className="new-food-input"
               type="number"
               id="servings"
               placeholder="1"

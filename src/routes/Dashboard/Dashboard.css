@@ -1,3 +1,11 @@
 .overview {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.overview-container {
+  display: flex;
+  width: 95%;
+  justify-content: space-around;
 }

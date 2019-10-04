@@ -5,7 +5,7 @@ import Stats from '../../Components/Stats/Stats';
 import STORE from '../../store';
 import MealListContext from '../../context/MealLIstContext';
 import MacrosService from '../../Services/macros-services';
-import AddMeal from '../AddMeal/AddMeal';
+import AddMeal from '../../Components/AddMeal/AddMeal';
 import FoodLog from '../../Components/FoodLog/FoodLog';
 import MealLog from '../../Components/MealLog/MealLog';
 import AddFoodItem from '../../Components/AddFoodItem/AddFoodItem';
@@ -83,24 +83,30 @@ export default class Dashboard extends React.Component {
     return (
       <>
         <div className="overview">
-          <Overview
-            radius={60}
-            stroke={8}
-            progress={progress.macrosPercent.proteinPercent}
-            class="protein"
-          />
-          <Overview
-            radius={60}
-            stroke={8}
-            progress={progress.macrosPercent.carbsPercent}
-            class="carbs"
-          />
-          <Overview
-            radius={60}
-            stroke={8}
-            progress={progress.macrosPercent.fatsPercent}
-            class="fats"
-          />
+          <h2>Progress</h2>
+          <div className="overview-container">
+            <Overview
+              radius={60}
+              stroke={8}
+              name="P"
+              progress={progress.macrosPercent.proteinPercent}
+              class="protein"
+            />
+            <Overview
+              radius={60}
+              stroke={8}
+              progress={progress.macrosPercent.carbsPercent}
+              class="carbs"
+              name="C"
+            />
+            <Overview
+              radius={60}
+              stroke={8}
+              progress={progress.macrosPercent.fatsPercent}
+              class="fats"
+              name="F"
+            />
+          </div>
         </div>
         <section className="todays meals">
           <AddMeal show={show} />

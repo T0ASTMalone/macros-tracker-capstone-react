@@ -19,9 +19,16 @@ export default class FoodLog extends React.Component {
     this.setState({ foods: [...userFood] });
   }
 
+  closeWindow = () => {
+    this.props.hide('showFoodLog');
+  };
+
   render() {
     return (
       <div className="container">
+        <button className="close-window" onClick={this.closeWindow}>
+          X
+        </button>
         <section className="food-log-container">
           {this.state.foods.map((food, i) => {
             const { protein, carbs, fats } = food;

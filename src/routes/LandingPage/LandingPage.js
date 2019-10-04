@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
 export default function LandingPage() {
@@ -34,7 +35,7 @@ export default function LandingPage() {
       </section>
       <section>
         <h2 className="section-title">Start meeting your goals</h2>
-        <button>Register</button>
+        <Link to={'/register'}>Register</Link>
       </section>
     </>
   );

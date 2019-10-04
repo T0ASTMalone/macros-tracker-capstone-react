@@ -1,0 +1,12 @@
+main {
+  max-width: 1000px;
+  margin: 100px auto 0 auto;
+}
+
+.app-header {
+  background: white;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}

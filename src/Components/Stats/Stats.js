@@ -13,7 +13,7 @@ export default class Stats extends React.Component {
   render() {
     return (
       <div className="stats">
-        <h2 className="header">Todays Stats</h2>
+        <h2 className="stats-title">Todays Stats</h2>
         <p className="macros">
           Protein: {this.props.progress.protein} / {this.props.macros.protein} g
         </p>

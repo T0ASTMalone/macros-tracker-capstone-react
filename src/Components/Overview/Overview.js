@@ -33,7 +33,7 @@ export default class Overview extends React.Component {
   }*/
 
   render() {
-    const { radius, stroke, progress } = this.props;
+    const { radius, stroke, progress, name } = this.props;
 
     const strokeDashoffset =
       this.circumference - (progress / 100) * this.circumference;
@@ -51,6 +51,16 @@ export default class Overview extends React.Component {
             cx={radius}
             cy={radius}
           />
+          <text
+            alignmentBaseline="middle"
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            stroke="white"
+            strokeWidth="1px"
+          >
+            {name}
+          </text>
         </svg>
         <p>{progress}%</p>
       </div>

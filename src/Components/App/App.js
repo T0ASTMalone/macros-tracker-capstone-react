@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import './App.css';
 //import PrivateRoute from '../../utils/PrivateRoute';
 //import PublicOnlyRoute from '../../utils/PublicOnlyRoute';
 import SignIn from '../../routes/SignIn/SignIn';
@@ -12,7 +13,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <header>
+        <header className="app-header">
           <Header />
         </header>
         <main className="App_main">
