@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import STORE from '../../store';
 import './FoodLog.css';
 import FoodItem from '../FoodItem/FoodItem';
@@ -24,6 +25,7 @@ export default class FoodLog extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="container">
         <button className="close-window" onClick={this.closeWindow}>
@@ -52,4 +54,8 @@ export default class FoodLog extends React.Component {
       </div>
     );
   }
+}
+
+FoodLog.propTypes = {
+  hide: PropTypes.func.isRequired
 }

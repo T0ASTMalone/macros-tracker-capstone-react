@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Register.css';
 import RegisterError from './RegisterError';
 import MacrosService from '../../Services/macros-services';
@@ -176,6 +177,7 @@ export default class Register extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <>
         <form
@@ -337,4 +339,10 @@ export default class Register extends React.Component {
       </>
     );
   }
+}
+
+Register.propTypes = {
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object,
 }

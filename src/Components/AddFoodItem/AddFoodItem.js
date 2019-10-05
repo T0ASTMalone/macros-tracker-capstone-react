@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import './AddFoodItem.css';
 import AddFoodItemError from './AddFoodItemError';
 import MealsContext from '../../context/MealContext';
@@ -112,6 +113,7 @@ export default class AddFoodItem extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="container">
         <button className="close-window" onClick={this.closeWindow}>
@@ -227,4 +229,10 @@ export default class AddFoodItem extends Component {
       </div>
     );
   }
+}
+
+
+AddFoodItem.propTypes = {
+  hide: PropTypes.func.isRequired,
+  showFoodLog: PropTypes.func.isRequired
 }

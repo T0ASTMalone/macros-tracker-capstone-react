@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import './FoodItem.css';
 
 export default function FoodItem(props) {
+  console.log(props);
   return (
     <div className="food-info">
       {props.image !== undefined ? (
@@ -21,4 +23,13 @@ export default function FoodItem(props) {
       )}
     </div>
   );
+}
+
+FoodItem.propTypes = {
+  macros: PropTypes.shape({
+    protein: PropTypes.string,
+    carbs: PropTypes.string,
+    fats: PropTypes.string
+  }),
+  name: PropTypes.string
 }

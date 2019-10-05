@@ -1,5 +1,5 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class RegisterError extends React.Component {
   render() {
@@ -9,9 +9,9 @@ class RegisterError extends React.Component {
   }
 }
 
-/*AddNoteError.propTypes = {
+RegisterError.propTypes = {
   hasError: PropTypes.string,
   touched: PropTypes.bool
-};*/
+};
 
 export default RegisterError;

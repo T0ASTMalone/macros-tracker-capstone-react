@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './MealLog.css';
 import STORE from '../../store';
 import MealItem from '../Mealitem/MealItem';
@@ -34,6 +35,7 @@ export default class MealLog extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="container">
         <button className="close-window" onClick={this.closeWindow}>
@@ -64,4 +66,9 @@ export default class MealLog extends Component {
       </div>
     );
   }
+}
+
+
+MealLog.propTypes = {
+  hide: PropTypes.func.isRequired
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Overview.css';
+import PropTypes from 'prop-types';
 
 export default class Overview extends React.Component {
   constructor(props) {
@@ -7,6 +8,13 @@ export default class Overview extends React.Component {
     const { radius, stroke } = this.props;
     this.normalizedRadius = radius - stroke * 2;
     this.circumference = this.normalizedRadius * 2 * Math.PI;
+  }
+
+  static defaultProps = {
+    progress: 0,
+    name: '',
+    stroke: 8,
+    radius: 60,
   }
 
   /*circleProgress() {
@@ -33,6 +41,7 @@ export default class Overview extends React.Component {
   }*/
 
   render() {
+    console.log(this.props);
     const { radius, stroke, progress, name } = this.props;
 
     const strokeDashoffset =
@@ -66,4 +75,12 @@ export default class Overview extends React.Component {
       </div>
     );
   }
+}
+
+Overview.propTypes = {
+  class: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  progress: PropTypes.number.isRequired,
+  radius: PropTypes.number.isRequired,
+  stroke: PropTypes.number.isRequired
 }

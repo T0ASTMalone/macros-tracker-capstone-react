@@ -1,17 +1,18 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class AddFoodItemError extends React.Component {
   render() {
+    console.log(this.props);
     if (!this.props.hasError || this.props.touched === false) {
       return <></>;
     } else return <div className="error">{this.props.hasError}</div>;
   }
 }
 
-/*AddNoteError.propTypes = {
+AddFoodItemError.propTypes = {
   hasError: PropTypes.string,
   touched: PropTypes.bool
-};*/
+};
 
 export default AddFoodItemError;

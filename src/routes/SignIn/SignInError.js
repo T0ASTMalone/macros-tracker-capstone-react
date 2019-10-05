@@ -1,5 +1,5 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class SignInError extends React.Component {
   render() {
@@ -9,9 +9,9 @@ class SignInError extends React.Component {
   }
 }
 
-/*AddNoteError.propTypes = {
+SignInError.propTypes = {
   hasError: PropTypes.string,
   touched: PropTypes.bool
-};*/
+};
 
 export default SignInError;

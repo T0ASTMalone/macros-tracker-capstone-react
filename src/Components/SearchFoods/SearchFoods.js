@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import config from '../../config';
 import './SearchFoods.css';
 import FoodItem from '../FoodItem/FoodItem';
@@ -39,6 +40,7 @@ export default class SearchBar extends Component {
   };
 
   render() {
+    console.log(this.props);
     const results = this.state.searchResults;
     return (
       <>
@@ -72,4 +74,9 @@ export default class SearchBar extends Component {
       </>
     );
   }
+}
+
+
+SearchBar.propTypes = {
+  hide: PropTypes.func.isRequired
 }

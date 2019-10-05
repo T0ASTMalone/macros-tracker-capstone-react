@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './SignIn.css';
 import SignInError from './SignInError';
 
@@ -92,4 +93,11 @@ export default class SignIn extends React.Component {
       </div>
     );
   }
+}
+
+
+SignIn.propTypes = {
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object,
 }

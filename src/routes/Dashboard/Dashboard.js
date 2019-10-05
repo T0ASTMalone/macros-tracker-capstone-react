@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Dashboard.css';
 import Overview from '../../Components/Overview/Overview';
 import Stats from '../../Components/Stats/Stats';
@@ -70,6 +71,8 @@ export default class Dashboard extends React.Component {
   };
 
   render() {
+
+    console.log(this.props);
     const show = {
       showAddFood: this.showAddFoodItem,
       showMealLog: this.showMealLog
@@ -125,4 +128,11 @@ export default class Dashboard extends React.Component {
       </>
     );
   }
+}
+
+
+Dashboard.propTypes = {
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object,
 }

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import './AddMeal.css';
+import PropTypes from 'prop-types'
 import FoodItem from '../FoodItem/FoodItem';
 import MealsContext from '../../context/MealContext';
 import MealListContext from '../../context/MealLIstContext';
@@ -64,6 +65,7 @@ export default class AddMeal extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <MealListContext.Consumer>
         {ListContext => {
@@ -202,4 +204,11 @@ export default class AddMeal extends React.Component {
       </MealListContext.Consumer>
     );
   }
+}
+
+AddMeal.propTypes = {
+  show: PropTypes.shape({
+    showAddFood: PropTypes.func.isRequired,
+    showMealLog: PropTypes.func.isRequired
+  })
 }

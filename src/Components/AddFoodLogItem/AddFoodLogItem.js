@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import MealContext from '../../context/MealContext';
-//import { Redirect } from 'react-router-dom';
 import uuid from 'uuid';
 import config from '../../config';
 import MacrosService from '../../Services/macros-services';
@@ -73,6 +73,7 @@ export default class AddFoodLogItem extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <form action="add-food" className="add-food" onSubmit={this.handleSubmit}>
         <label htmlFor="servings">Servings</label>
@@ -88,4 +89,18 @@ export default class AddFoodLogItem extends Component {
       </form>
     );
   }
+}
+
+
+AddFoodLogItem.propTypes = {
+  food: PropTypes.shape({
+    carbs: PropTypes.string,
+    date: PropTypes.instanceOf(Date),
+    fats: PropTypes.string,
+    food_id: PropTypes.string,
+    food_name: PropTypes.string,
+    meal_id: PropTypes.string,
+    protein: PropTypes.string,
+    servings: PropTypes.string
+  })
 }
