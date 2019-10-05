@@ -17,6 +17,7 @@ export default class MealLog extends Component {
 
   componentDidMount() {
     const meals = STORE.mealLog;
+    console.log(meals);
     this.setState({ mealLog: [...meals] });
   }
 
@@ -35,39 +36,39 @@ export default class MealLog extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className="container">
         <button className="close-window" onClick={this.closeWindow}>
           X
         </button>
         <section id="meal-log-container">
-          {this.state.mealLog.map((meal, i) => {
-            const { protein, carbs, fats } = meal;
-            const macros = { protein, carbs, fats };
-            return (
-              <div key={i} className="meal-log-item">
-                <MealItem
-                  key={i}
-                  id={i}
-                  macros={macros}
-                  name={meal.meal_name}
-                />
-                <button
-                  className="add-meal-log-item"
-                  onClick={() => this.handleAddMeal(meal)}
-                >
-                  Add
-                </button>
-              </div>
-            );
-          })}
+          {this.state.mealLog.length > 0 ? (
+            this.state.mealLog.map((meal, i) => {
+              console.log(meal);
+              const { protein, carbs, fats, meal_name } = meal;
+              const macros = { protein, carbs, fats };
+              return (
+                <div key={i} className="meal-log-item">
+                  <MealItem key={i} id={i} macros={macros} name={meal_name} />
+                  <button
+                    className="add-meal-log-item"
+                    onClick={() => this.handleAddMeal(meal)}
+                  >
+                    Add
+                  </button>
+                </div>
+              );
+            })
+          ) : (
+            <></>
+          )}
         </section>
       </div>
     );
   }
 }
 
-
 MealLog.propTypes = {
   hide: PropTypes.func.isRequired
-}
+};

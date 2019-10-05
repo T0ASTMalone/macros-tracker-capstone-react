@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import './FoodItem.css';
 
 export default function FoodItem(props) {
@@ -26,9 +26,9 @@ export default function FoodItem(props) {
 
 FoodItem.propTypes = {
   macros: PropTypes.shape({
-    protein: PropTypes.string,
-    carbs: PropTypes.string,
-    fats: PropTypes.string
+    protein: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    carbs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    fats: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   }),
   name: PropTypes.string
-}
+};

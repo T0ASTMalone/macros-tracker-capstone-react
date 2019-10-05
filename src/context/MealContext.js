@@ -40,7 +40,6 @@ export class MealProvider extends Component {
   };
 
   addFood = food => {
-    console.log(food);
     this.state.meal.foods === undefined
       ? this.setFoods([...food])
       : this.setFoods([...this.state.meal.foods, ...food]);

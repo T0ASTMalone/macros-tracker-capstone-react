@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import MealContext from '../../context/MealContext';
 import uuid from 'uuid';
 import config from '../../config';
@@ -90,16 +90,15 @@ export default class AddFoodLogItem extends Component {
   }
 }
 
-
 AddFoodLogItem.propTypes = {
   food: PropTypes.shape({
-    carbs: PropTypes.string,
-    date: PropTypes.instanceOf(Date),
-    fats: PropTypes.string,
+    date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
     food_id: PropTypes.string,
     food_name: PropTypes.string,
     meal_id: PropTypes.string,
-    protein: PropTypes.string,
-    servings: PropTypes.string
+    servings: PropTypes.string,
+    protein: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    carbs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    fats: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   })
-}
+};

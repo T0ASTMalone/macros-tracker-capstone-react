@@ -33,10 +33,7 @@ export class MealListProvider extends Component {
     this.setState({ mealList });
   };
 
-  setMacros = macros => {
-    console.log(macros);
-    console.log(this.state);
-  };
+  setMacros = macros => {};
 
   setUserMacros = macros => {
     this.setState({ userMacros: macros });

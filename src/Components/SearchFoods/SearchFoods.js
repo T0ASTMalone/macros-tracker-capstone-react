@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import config from '../../config';
 import './SearchFoods.css';
 import FoodItem from '../FoodItem/FoodItem';
@@ -16,12 +16,10 @@ export default class SearchBar extends Component {
   };
 
   handleSearch = ev => {
-    console.log(config)
     ev.preventDefault();
     const url =
       config.API_ENDPOINT +
       `search?query=${this.state.searchTerm.value}&apiKey=${config.API_KEY}`;
-    console.log(url)
     fetch(url, {
       method: 'GET'
     })
@@ -33,7 +31,7 @@ export default class SearchBar extends Component {
           ? this.setState({ searchResults: resJson.products })
           : this.setState({ error: 'A food item by that name was not found' });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   updateSearchTerm = term => {
@@ -76,7 +74,6 @@ export default class SearchBar extends Component {
   }
 }
 
-
 SearchBar.propTypes = {
   hide: PropTypes.func.isRequired
-}
+};
