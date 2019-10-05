@@ -28,7 +28,6 @@ export default class SignIn extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
     this.props.history.push('/user/:id');
   };
 

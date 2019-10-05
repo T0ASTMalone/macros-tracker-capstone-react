@@ -11,6 +11,7 @@ import LandingPage from '../../routes/LandingPage/LandingPage';
 
 export default class App extends React.Component {
   render() {
+    console.log(process.env)
     return (
       <div className="app">
         <header className="app-header">

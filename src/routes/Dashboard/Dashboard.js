@@ -71,8 +71,6 @@ export default class Dashboard extends React.Component {
   };
 
   render() {
-
-    console.log(this.props);
     const show = {
       showAddFood: this.showAddFoodItem,
       showMealLog: this.showMealLog

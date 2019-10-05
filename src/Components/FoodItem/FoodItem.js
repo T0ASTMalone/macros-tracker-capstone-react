@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import './FoodItem.css';
 
 export default function FoodItem(props) {
-  console.log(props);
   return (
     <div className="food-info">
       {props.image !== undefined ? (

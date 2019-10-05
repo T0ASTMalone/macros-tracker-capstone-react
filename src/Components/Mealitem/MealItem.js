@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import './MealItem.css';
 
-export default class MealItem extends React.Component {
-  render() {
-    console.log(this.props);
+export default function MealItem() {
     return (
       <div className="mealInfo">
         <p className="meal-name">{this.props.name}</p>
@@ -16,7 +14,6 @@ export default class MealItem extends React.Component {
         <p>{new Date().toLocaleTimeString()}</p>
       </div>
     );
-  }
 }
 
 MealItem.propTypes = {

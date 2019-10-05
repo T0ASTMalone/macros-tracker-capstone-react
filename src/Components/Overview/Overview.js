@@ -41,7 +41,6 @@ export default class Overview extends React.Component {
   }*/
 
   render() {
-    console.log(this.props);
     const { radius, stroke, progress, name } = this.props;
 
     const strokeDashoffset =

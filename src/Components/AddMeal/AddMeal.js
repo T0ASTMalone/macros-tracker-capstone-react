@@ -65,7 +65,6 @@ export default class AddMeal extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <MealListContext.Consumer>
         {ListContext => {

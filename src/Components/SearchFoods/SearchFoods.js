@@ -16,11 +16,12 @@ export default class SearchBar extends Component {
   };
 
   handleSearch = ev => {
+    console.log(config)
     ev.preventDefault();
     const url =
       config.API_ENDPOINT +
       `search?query=${this.state.searchTerm.value}&apiKey=${config.API_KEY}`;
-
+    console.log(url)
     fetch(url, {
       method: 'GET'
     })
@@ -40,7 +41,6 @@ export default class SearchBar extends Component {
   };
 
   render() {
-    console.log(this.props);
     const results = this.state.searchResults;
     return (
       <>

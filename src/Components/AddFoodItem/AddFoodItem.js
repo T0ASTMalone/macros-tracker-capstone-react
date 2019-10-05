@@ -113,7 +113,6 @@ export default class AddFoodItem extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="container">
         <button className="close-window" onClick={this.closeWindow}>

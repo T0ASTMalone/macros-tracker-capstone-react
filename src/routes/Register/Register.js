@@ -59,7 +59,6 @@ export default class Register extends React.Component {
         .from('lb')
         .to('kg');
     } else weight = this.state.weight.value;
-    console.log(weight);
     return weight;
   };
 
@@ -177,7 +176,6 @@ export default class Register extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <>
         <form
