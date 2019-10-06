@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "alias": "miguels-macro-tracker",
+    "name": "macros-tracker",
+    "routes": [
+        {
+          "src": "^/static/(.*)",
+          "dest": "/static/$1"
+        },
+        {
+          "src": ".*",
+          "dest": "/index.html"
+        }
+    ]
+  }
