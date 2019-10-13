@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Register.css';
 import RegisterError from './RegisterError';
-import MacrosService from '../../Services/macros-services';
+//import MacrosService from '../../Services/macros-services';
 import convert from 'convert-units';
+import AuthApiService from '../../Services/auth-api-services';
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -20,8 +21,8 @@ export default class Register extends React.Component {
       weight: { value: '', touched: false },
       goals: { value: '', touched: false },
       activityLvl: { value: '', touched: false },
-      unit: { value: 'imperial', touched: false },
-      userMacros: {}
+      unit: { value: 'imperial', touched: false }
+      //userMacros: {}
     };
   }
 
@@ -62,6 +63,23 @@ export default class Register extends React.Component {
     return weight;
   };
 
+  clearValues = () => {
+    this.setState({
+      email: { value: '', touched: false },
+      password: { value: '', touched: false },
+      confirmPassword: { value: '', touched: false },
+      age: { value: '', touched: false },
+      gender: { value: '', touched: false },
+      feet: { value: '', touched: false },
+      cm: { value: '', touched: false },
+      inches: { value: '', touched: true },
+      weight: { value: '', touched: false },
+      goals: { value: '', touched: false },
+      activityLvl: { value: '', touched: false },
+      unit: { value: 'imperial', touched: false }
+    });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     const info = this.state;
@@ -73,11 +91,18 @@ export default class Register extends React.Component {
       height: this.convertHeight(),
       weight: this.convertWeight(),
       goals: info.goals.value,
-      activityLvl: info.activityLvl.value
+      activity_lvl: info.activityLvl.value
     };
-
-    const userMacros = MacrosService.calculateUserMacros(user);
-    this.setState({ userMacros });
+    console.log(user);
+    AuthApiService.postUser(user)
+      .then(user => {
+        this.clearValues();
+      })
+      .catch(res => {
+        console.log(res);
+      });
+    //const userMacros = MacrosService.calculateUserMacros(user);
+    //this.setState({ userMacros });
   };
 
   updateEmail = email => {
@@ -327,12 +352,12 @@ export default class Register extends React.Component {
             Register
           </button>
 
-          <div className="display-results">
+          {/*<div className="display-results">
             <h2>Recommended Macronutrients</h2>
             <p>Protein: {this.state.userMacros.protein}</p>
             <p>Carbs: {this.state.userMacros.carbs}</p>
             <p>Fats: {this.state.userMacros.fats}</p>
-          </div>
+            </div>*/}
         </form>
       </>
     );
@@ -342,5 +367,5 @@ export default class Register extends React.Component {
 Register.propTypes = {
   history: PropTypes.object,
   location: PropTypes.object,
-  match: PropTypes.object,
-}
+  match: PropTypes.object
+};

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MealContext from '../../context/MealContext';
-import uuid from 'uuid';
+//import uuid from 'uuid';
 import config from '../../config';
 import MacrosService from '../../Services/macros-services';
 
@@ -22,20 +22,25 @@ export default class AddFoodLogItem extends Component {
   addFood = food => {
     MacrosService.totalFoodMacros(food);
     const foodArr = [food];
+    console.log(foodArr);
     this.context.addFood(foodArr);
   };
 
   handleExisting = () => {
-    let food_id = uuid();
     const { food_name, protein, carbs, fats } = this.props.food;
     const servings = this.state.servings.value;
-    const newFood = { food_id, food_name, protein, carbs, fats, servings };
+    const newFood = {
+      food_name,
+      protein,
+      carbs,
+      fats,
+      servings
+    };
     this.addFood(newFood);
     this.props.hide('showFoodLog');
   };
 
   makeSearchFood = food => {
-    const food_id = uuid();
     let { protein, carbs, fat } = food.nutrition;
     let macros = { protein, carbs, fat };
 
@@ -44,7 +49,6 @@ export default class AddFoodLogItem extends Component {
     });
 
     const newFood = {
-      food_id,
       food_name: food.title,
       protein: macros.protein,
       carbs: macros.carbs,
@@ -57,7 +61,8 @@ export default class AddFoodLogItem extends Component {
 
   handleSearched = () => {
     const url =
-      config.API_ENDPOINT + `${this.props.foodId}?apiKey=${config.API_KEY}`;
+      config.FOOD_API_ENDPOINT +
+      `${this.props.foodId}?apiKey=${config.API_KEY}`;
     fetch(url)
       .then(res =>
         !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
@@ -93,7 +98,7 @@ export default class AddFoodLogItem extends Component {
 AddFoodLogItem.propTypes = {
   food: PropTypes.shape({
     date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-    food_id: PropTypes.string,
+    id: PropTypes.string,
     food_name: PropTypes.string,
     meal_id: PropTypes.string,
     servings: PropTypes.string,

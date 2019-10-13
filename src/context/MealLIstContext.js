@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 const MealListContext = React.createContext({
   mealList: [],
   totalMacros: {},
+  userId: null,
   userMacros: {},
   error: null,
   setError: () => {},
@@ -17,7 +18,8 @@ export class MealListProvider extends Component {
     mealList: [],
     totalMacros: {},
     userMacros: {},
-    error: null
+    error: null,
+    userId: null
   };
 
   setError = error => {
@@ -35,8 +37,8 @@ export class MealListProvider extends Component {
 
   setMacros = macros => {};
 
-  setUserMacros = macros => {
-    this.setState({ userMacros: macros });
+  setUserInfo = (macros, id) => {
+    this.setState({ userMacros: macros, userId: id });
   };
 
   addMeal = newMeal => {
@@ -57,6 +59,7 @@ export class MealListProvider extends Component {
       totalMacros: this.state.totalMacros,
       mealList: this.state.mealList,
       userMacros: this.state.userMacros,
+      userId: this.state.userId,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
@@ -64,7 +67,7 @@ export class MealListProvider extends Component {
       deleteMeal: this.deleteMeal,
       addMeal: this.addMeal,
       setMacros: this.setMacros,
-      setUserMacros: this.setUserMacros
+      setUserInfo: this.setUserInfo
     };
 
     return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-//import PrivateRoute from '../../utils/PrivateRoute';
-//import PublicOnlyRoute from '../../utils/PublicOnlyRoute';
-import SignIn from '../../routes/SignIn/SignIn';
+import PrivateRoute from '../../Components/utils/PrivateRoute';
+import PublicOnlyRoute from '../../Components/utils/PublicOnlyRoute';
+import SignInPage from '../../routes/SignIn/SignInPage';
 import Register from '../../routes/Register/Register';
 import Dashboard from '../../routes/Dashboard/Dashboard';
 import Header from '../Header/Header';
@@ -19,9 +19,9 @@ export default class App extends React.Component {
         <main className="App_main">
           <Switch>
             <Route exact path={'/'} component={LandingPage} />
-            <Route path={'/user/:id'} component={Dashboard} />
-            <Route exact path={'/sign-in'} component={SignIn} />
-            <Route exact path={'/register'} component={Register} />
+            <PrivateRoute path={'/user/:id'} component={Dashboard} />
+            <PublicOnlyRoute exact path={'/sign-in'} component={SignInPage} />
+            <PublicOnlyRoute exact path={'/register'} component={Register} />
           </Switch>
         </main>
       </div>

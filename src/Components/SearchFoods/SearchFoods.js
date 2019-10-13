@@ -18,7 +18,7 @@ export default class SearchBar extends Component {
   handleSearch = ev => {
     ev.preventDefault();
     const url =
-      config.API_ENDPOINT +
+      config.FOOD_API_ENDPOINT +
       `search?query=${this.state.searchTerm.value}&apiKey=${config.API_KEY}`;
     fetch(url, {
       method: 'GET'

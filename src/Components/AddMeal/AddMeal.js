@@ -2,14 +2,15 @@
 
 import React from 'react';
 import './AddMeal.css';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import FoodItem from '../FoodItem/FoodItem';
 import MealsContext from '../../context/MealContext';
 import MealListContext from '../../context/MealLIstContext';
 import MacrosService from '../../Services/macros-services';
-import uuid from 'uuid';
+//import uuid from 'uuid';
 import AddMealError from './AddMealError';
-import STORE from '../../store';
+//import STORE from '../../store';
+import MacroFyServices from '../../Services/macrofy-api-service';
 
 export default class AddMeal extends React.Component {
   constructor(props) {
@@ -64,12 +65,29 @@ export default class AddMeal extends React.Component {
     }
   };
 
+  async postMeal(meal, foods) {
+    console.log(meal, foods);
+    try {
+      const response = await MacroFyServices.postMeal(meal);
+      console.log(response);
+      foods.forEach(food => {
+        food.user_id = response.user_id;
+        food.meal_id = response.meal_id;
+      });
+      await MacroFyServices.postFoods(foods);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   render() {
     return (
       <MealListContext.Consumer>
         {ListContext => {
           const { protein, carbs, fats } = this.calculateTotalMacros();
+          const user_id = ListContext.userId;
           const meal = {
+            user_id,
             meal_name: this.state.mealName.value,
             ...this.context.meal,
             protein,
@@ -94,19 +112,39 @@ export default class AddMeal extends React.Component {
                 error: 'There needs to be at least one food item'
               });
             } else {
-              meal.meal_id = uuid();
               ListContext.addMeal(meal);
-              const { meal_id, meal_name, protein, carbs, fats } = meal;
-              const mealLogMeal = { meal_id, meal_name, protein, carbs, fats };
-              const newMealList = [...STORE.mealLog, mealLogMeal];
-              STORE.mealLog = newMealList;
+              const {
+                user_id,
+                meal_id,
+                meal_name,
+                protein,
+                carbs,
+                fats
+              } = meal;
+              const mealLogMeal = {
+                user_id,
+                meal_id,
+                meal_name,
+                protein,
+                carbs,
+                fats
+              };
+              //const newMealList = [...STORE.mealLog, mealLogMeal];
+              //STORE.mealLog = newMealList;
               let foods = meal.foods;
-              foods.forEach(food => {
-                food.food_id = uuid();
-                food.meal_id = meal.meal_id;
-              });
-              const newFoodList = [...STORE.foods, ...foods];
-              STORE.foods = newFoodList;
+              this.postMeal(mealLogMeal, foods);
+
+              /*MacroFyServices.postMeal(meal).then(res =>
+                !res.ok
+                  ? console.log('nope')
+                  : MacroFyServices.postFoods(foods).then(res =>
+                      console.log(res)
+                    )
+              );*/
+
+              //const newFoodList = [...STORE.foods, ...foods];
+              //STORE.foods = newFoodList;
+
               this.context.clearFoods();
               this.setState({ mealName: { value: '', touched: false } });
             }
@@ -160,9 +198,7 @@ export default class AddMeal extends React.Component {
                             <button
                               type="button"
                               className="delete"
-                              onClick={() =>
-                                this.handleDeleteFoodItem(food.food_id)
-                              }
+                              onClick={() => this.handleDeleteFoodItem(food.id)}
                             >
                               Delete
                             </button>
@@ -210,4 +246,4 @@ AddMeal.propTypes = {
     showAddFood: PropTypes.func.isRequired,
     showMealLog: PropTypes.func.isRequired
   })
-}
+};

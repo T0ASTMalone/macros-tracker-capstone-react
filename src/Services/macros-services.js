@@ -1,13 +1,14 @@
 const MacrosService = {
   macrosSoFar(meals, usrMacros) {
+    console.log(meals, usrMacros);
     let protein = 0;
     let carbs = 0;
     let fats = 0;
 
     meals.forEach(meal => {
-      protein += parseInt(meal.protein);
-      carbs += parseInt(meal.carbs);
-      fats += parseInt(meal.fats);
+      protein += parseInt(meal.protein) || 0;
+      carbs += parseInt(meal.carbs) || 0;
+      fats += parseInt(meal.fats) || 0;
     });
 
     const macros = { protein, carbs, fats };

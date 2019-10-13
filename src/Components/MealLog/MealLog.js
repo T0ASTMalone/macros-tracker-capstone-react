@@ -4,6 +4,7 @@ import './MealLog.css';
 import STORE from '../../store';
 import MealItem from '../Mealitem/MealItem';
 import MealsContext from '../../context/MealContext';
+import MacroFyServices from '../../Services/macrofy-api-service';
 
 export default class MealLog extends Component {
   constructor(props) {
@@ -16,9 +17,10 @@ export default class MealLog extends Component {
   static contextType = MealsContext;
 
   componentDidMount() {
-    const meals = STORE.mealLog;
-    console.log(meals);
-    this.setState({ mealLog: [...meals] });
+    const id = this.context.userId;
+    MacroFyServices.getAllMeals(id).then(meals =>
+      this.setState({ mealLog: [...meals] })
+    );
   }
 
   handleAddMeal = meal => {

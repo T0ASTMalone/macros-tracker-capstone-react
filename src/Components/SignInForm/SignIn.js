@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './SignIn.css';
 import SignInError from './SignInError';
+import AuthApiService from '../../Services/auth-api-services';
+import TokenService from '../../Services/token-service';
 
 export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      error: null,
       email: {
         value: '',
         touched: false
@@ -18,6 +21,10 @@ export default class SignIn extends React.Component {
     };
   }
 
+  static defaultProps = {
+    onLoginSuccess: () => {}
+  };
+
   handleUpdatePassword(ev) {
     this.setState({ password: { value: ev, touched: true } });
   }
@@ -26,9 +33,26 @@ export default class SignIn extends React.Component {
     this.setState({ email: { value: ev, touched: true } });
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.history.push('/user/:id');
+  handleSubmitJwtAuth = ev => {
+    ev.preventDefault();
+    this.setState({ error: null });
+    const { email, password } = this.state;
+    AuthApiService.postLogin({
+      email: email.value,
+      password: password.value
+    })
+      .then(res => {
+        console.log(res);
+        this.setState({
+          email: { value: '', touched: false },
+          password: { value: '', touched: false }
+        });
+        TokenService.saveAuthToken(res.authToken);
+        this.props.onLoginSuccess(res.payload.user_id);
+      })
+      .catch(res => {
+        this.setState({ error: res.error });
+      });
   };
 
   updateEmail = email => {
@@ -59,9 +83,15 @@ export default class SignIn extends React.Component {
   }
 
   render() {
+    const { error } = this.state;
     return (
       <div className="sign-in-form">
-        <form action="sign-in" className="sign-in" onSubmit={this.handleSubmit}>
+        <form
+          action="sign-in"
+          className="sign-in"
+          onSubmit={this.handleSubmitJwtAuth}
+        >
+          <div role="alert">{error && <p className="red">{error}</p>}</div>
           <legend>Sign In</legend>
           <label htmlFor="user">Email</label>
           <input
@@ -94,9 +124,9 @@ export default class SignIn extends React.Component {
   }
 }
 
-
 SignIn.propTypes = {
+  onLoginSuccess: PropTypes.func,
   history: PropTypes.object,
   location: PropTypes.object,
-  match: PropTypes.object,
-}
+  match: PropTypes.object
+};
