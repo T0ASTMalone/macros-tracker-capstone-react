@@ -1,9 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import STORE from '../../store';
+import PropTypes from 'prop-types';
+//import STORE from '../../store';
 import './FoodLog.css';
 import FoodItem from '../FoodItem/FoodItem';
 import AddFoodLogItem from '../AddFoodLogItem/AddFoodLogItem';
+import MealListContext from '../../context/MealLIstContext';
+import MacroFyServices from '../../Services/macrofy-api-service';
 //move this component to AddFoodLogItem.js
 //import AddFoodItemError from '../AddFoodItem/AddFoodItemError';
 
@@ -15,9 +17,18 @@ export default class FoodLog extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const userFood = STORE.foods;
-    this.setState({ foods: [...userFood] });
+  static contextType = MealListContext;
+
+  async componentDidMount() {
+    //const userFood = STORE.foods;
+    const id = this.context.userId;
+    console.log(id);
+    try {
+      const userFoods = await MacroFyServices.getAllFoods(id);
+      this.setState({ foods: [...userFoods] });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   closeWindow = () => {
@@ -57,4 +68,4 @@ export default class FoodLog extends React.Component {
 
 FoodLog.propTypes = {
   hide: PropTypes.func.isRequired
-}
+};
