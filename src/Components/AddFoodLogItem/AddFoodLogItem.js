@@ -27,7 +27,12 @@ export default class AddFoodLogItem extends Component {
   };
 
   handleExisting = () => {
-    const { food_name, protein, carbs, fats } = this.props.food;
+    const {
+      food_name,
+      protein = '0',
+      carbs = '0',
+      fats = '0'
+    } = this.props.food;
     const servings = this.state.servings.value;
     const newFood = {
       food_name,

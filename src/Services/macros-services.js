@@ -1,6 +1,5 @@
 const MacrosService = {
   macrosSoFar(meals, usrMacros) {
-    console.log(meals, usrMacros);
     let protein = 0;
     let carbs = 0;
     let fats = 0;

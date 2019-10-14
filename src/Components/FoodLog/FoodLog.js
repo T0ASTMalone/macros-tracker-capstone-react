@@ -20,11 +20,20 @@ export default class FoodLog extends React.Component {
   static contextType = MealListContext;
 
   async componentDidMount() {
-    //const userFood = STORE.foods;
     const id = this.context.userId;
     console.log(id);
     try {
       const userFoods = await MacroFyServices.getAllFoods(id);
+      userFoods.map(food => {
+        const { protein, carbs, fats } = food;
+        const macros = { protein, fats, carbs };
+        Object.keys(macros).map((macro, i) => {
+          return macros[macro] ? macros[macro] : (food[macro] = 0);
+        });
+      });
+
+      console.log(userFoods);
+
       this.setState({ foods: [...userFoods] });
     } catch (error) {
       console.log(error);
