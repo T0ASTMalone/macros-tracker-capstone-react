@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './MealLog.css';
-import STORE from '../../store';
+//import STORE from '../../store';
 import MealItem from '../Mealitem/MealItem';
 import MealsContext from '../../context/MealContext';
 import MacroFyServices from '../../Services/macrofy-api-service';
@@ -22,7 +22,7 @@ export default class MealLog extends Component {
     meals.map(meal => {
       const { protein, carbs, fats } = meal;
       const macros = { protein, fats, carbs };
-      Object.keys(macros).map((macro, i) => {
+      return Object.keys(macros).map(macro => {
         return macros[macro] ? macros[macro] : (meal[macro] = 0);
       });
     });
@@ -36,21 +36,19 @@ export default class MealLog extends Component {
     /*const mealFoods = foods.filter(food => {
       return food.meal_id === meal_id;
     });*/
-    this.cleanMeals(mealFoods);
+    this.cleanFoods(mealFoods);
     console.log(mealFoods);
     this.context.addFood(mealFoods);
     this.props.hide('showMealLog');
   }
 
-  cleanMeals(meals) {
-    return meals.map(meal => {
-      const { protein, carbs, fats } = meal;
+  cleanFoods(foods) {
+    return foods.map(food => {
+      console.log(food);
+      const { protein, carbs, fats } = food;
       const macros = { protein, fats, carbs };
-      Object.keys(macros).map((macro, i) => {
-        return macros[macro] ? macros[macro] : (meal[macro] = 0);
-      });
-      Object.keys(meal).map(food => {
-        return delete meal[food].id;
+      return Object.keys(macros).map((macro, i) => {
+        return macros[macro] ? macros[macro] : (food[macro] = 0);
       });
     });
   }

@@ -26,11 +26,14 @@ export default class FoodLog extends React.Component {
       userFoods.map(food => {
         const { protein, carbs, fats } = food;
         const macros = { protein, fats, carbs };
-        Object.keys(macros).map((macro, i) => {
-          return macros[macro] ? macros[macro] : (food[macro] = 0);
+        return Object.keys(macros).map(macro => {
+          console.log(food.servings);
+          return macros[macro]
+            ? (food[macro] /= food.servings)
+            : (food[macro] = 0);
         });
       });
-
+      console.log(userFoods);
       this.setState({ foods: [...userFoods] });
     } catch (error) {
       console.log(error);
@@ -51,18 +54,11 @@ export default class FoodLog extends React.Component {
           {this.state.foods.map((food, i) => {
             const { protein, carbs, fats } = food;
             const macros = { protein, carbs, fats };
+            console.log(food.id);
             return (
-              <div key={food.food_id} className="food-item-container">
-                <FoodItem
-                  key={food.food_id}
-                  macros={macros}
-                  name={food.food_name}
-                />
-                <AddFoodLogItem
-                  key={food.fod_id}
-                  food={food}
-                  hide={this.props.hide}
-                />
+              <div key={food.id} className="food-item-container">
+                <FoodItem macros={macros} name={food.food_name} />
+                <AddFoodLogItem food={food} hide={this.props.hide} />
               </div>
             );
           })}

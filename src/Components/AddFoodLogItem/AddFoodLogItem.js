@@ -28,6 +28,7 @@ export default class AddFoodLogItem extends Component {
 
   handleExisting = () => {
     const {
+      id,
       food_name,
       protein = '0',
       carbs = '0',
@@ -35,6 +36,7 @@ export default class AddFoodLogItem extends Component {
     } = this.props.food;
     const servings = this.state.servings.value;
     const newFood = {
+      id,
       food_name,
       protein,
       carbs,
@@ -46,9 +48,9 @@ export default class AddFoodLogItem extends Component {
   };
 
   makeSearchFood = food => {
-    let { protein, carbs, fat } = food.nutrition;
+    let { protein = '0g', carbs = '0g', fat = '0g' } = food.nutrition;
+    console.log(food);
     let macros = { protein, carbs, fat };
-
     Object.keys(macros).map(key => {
       return (macros[key] = macros[key].substr(0, macros[key].indexOf('g')));
     });
