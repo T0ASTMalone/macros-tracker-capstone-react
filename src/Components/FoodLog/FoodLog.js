@@ -21,7 +21,6 @@ export default class FoodLog extends React.Component {
 
   async componentDidMount() {
     const id = this.context.userId;
-    console.log(id);
     try {
       const userFoods = await MacroFyServices.getAllFoods(id);
       userFoods.map(food => {
@@ -31,8 +30,6 @@ export default class FoodLog extends React.Component {
           return macros[macro] ? macros[macro] : (food[macro] = 0);
         });
       });
-
-      console.log(userFoods);
 
       this.setState({ foods: [...userFoods] });
     } catch (error) {

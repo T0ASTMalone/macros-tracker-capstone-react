@@ -16,11 +16,17 @@ export default class MealLog extends Component {
 
   static contextType = MealsContext;
 
-  componentDidMount() {
+  async componentDidMount() {
     const id = this.context.userId;
-    MacroFyServices.getAllMeals(id).then(meals =>
-      this.setState({ mealLog: [...meals] })
-    );
+    const meals = await MacroFyServices.getAllMeals(id);
+    meals.map(meal => {
+      const { protein, carbs, fats } = meal;
+      const macros = { protein, fats, carbs };
+      Object.keys(macros).map((macro, i) => {
+        return macros[macro] ? macros[macro] : (meal[macro] = 0);
+      });
+    });
+    this.setState({ mealLog: [...meals] });
   }
 
   handleAddMeal = meal => {
