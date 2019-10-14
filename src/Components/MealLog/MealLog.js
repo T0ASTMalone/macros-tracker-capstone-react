@@ -29,15 +29,31 @@ export default class MealLog extends Component {
     this.setState({ mealLog: [...meals] });
   }
 
-  handleAddMeal = meal => {
+  async handleAddMeal(meal) {
     const { meal_id } = meal;
-    const foods = JSON.parse(JSON.stringify(STORE.foods));
-    const mealFoods = foods.filter(food => {
+    //const foods = JSON.parse(JSON.stringify(STORE.foods));
+    const mealFoods = await MacroFyServices.getMealFoods(meal_id);
+    /*const mealFoods = foods.filter(food => {
       return food.meal_id === meal_id;
-    });
+    });*/
+    this.cleanMeals(mealFoods);
+    console.log(mealFoods);
     this.context.addFood(mealFoods);
     this.props.hide('showMealLog');
-  };
+  }
+
+  cleanMeals(meals) {
+    return meals.map(meal => {
+      const { protein, carbs, fats } = meal;
+      const macros = { protein, fats, carbs };
+      Object.keys(macros).map((macro, i) => {
+        return macros[macro] ? macros[macro] : (meal[macro] = 0);
+      });
+      Object.keys(meal).map(food => {
+        return delete meal[food].id;
+      });
+    });
+  }
 
   closeWindow = () => {
     this.props.hide('showMealLog');

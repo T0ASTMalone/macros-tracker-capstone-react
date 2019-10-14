@@ -40,7 +40,17 @@ const MacroFyServices = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
-  getMealFoods() {},
+  getMealFoods(meal_id) {
+    return fetch(`${config.API_ENDPOINT}/meals/${meal_id}/foods`, {
+      headers: {
+        method: 'GET',
+        'Content-Type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
   getUserInfo(id) {
     return fetch(`${config.API_ENDPOINT}/users/${id}`, {
       method: 'GET',
