@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './Dashboard.css';
 import Overview from '../../Components/Overview/Overview';
 import Stats from '../../Components/Stats/Stats';
-
 import MealListContext from '../../context/MealLIstContext';
 import MacrosService from '../../Services/macros-services';
 import AddMeal from '../../Components/AddMeal/AddMeal';

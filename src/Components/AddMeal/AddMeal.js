@@ -7,9 +7,7 @@ import FoodItem from '../FoodItem/FoodItem';
 import MealsContext from '../../context/MealContext';
 import MealListContext from '../../context/MealLIstContext';
 import MacrosService from '../../Services/macros-services';
-//import uuid from 'uuid';
 import AddMealError from './AddMealError';
-//import STORE from '../../store';
 import MacroFyServices from '../../Services/macrofy-api-service';
 
 export default class AddMeal extends React.Component {
@@ -66,7 +64,6 @@ export default class AddMeal extends React.Component {
   };
 
   async postMeal(meal, foods) {
-    console.log(meal, foods);
     try {
       const response = await MacroFyServices.postMeal(meal);
       console.log(response);
@@ -130,22 +127,8 @@ export default class AddMeal extends React.Component {
                 carbs,
                 fats
               };
-              //const newMealList = [...STORE.mealLog, mealLogMeal];
-              //STORE.mealLog = newMealList;
               let foods = meal.foods;
               this.postMeal(mealLogMeal, foods);
-
-              /*MacroFyServices.postMeal(meal).then(res =>
-                !res.ok
-                  ? console.log('nope')
-                  : MacroFyServices.postFoods(foods).then(res =>
-                      console.log(res)
-                    )
-              );*/
-
-              //const newFoodList = [...STORE.foods, ...foods];
-              //STORE.foods = newFoodList;
-
               this.context.clearFoods();
               this.setState({ mealName: { value: '', touched: false } });
             }

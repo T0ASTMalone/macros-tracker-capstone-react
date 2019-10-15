@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import STORE from '../../store';
 import './FoodLog.css';
 import FoodItem from '../FoodItem/FoodItem';
 import AddFoodLogItem from '../AddFoodLogItem/AddFoodLogItem';
@@ -23,17 +22,6 @@ export default class FoodLog extends React.Component {
     const id = this.context.userId;
     try {
       const userFoods = await MacroFyServices.getAllFoods(id);
-      userFoods.map(food => {
-        const { protein, carbs, fats } = food;
-        const macros = { protein, fats, carbs };
-        return Object.keys(macros).map(macro => {
-          console.log(food.servings);
-          return macros[macro]
-            ? (food[macro] /= food.servings)
-            : (food[macro] = 0);
-        });
-      });
-      console.log(userFoods);
       this.setState({ foods: [...userFoods] });
     } catch (error) {
       console.log(error);
@@ -54,7 +42,6 @@ export default class FoodLog extends React.Component {
           {this.state.foods.map((food, i) => {
             const { protein, carbs, fats } = food;
             const macros = { protein, carbs, fats };
-            console.log(food.id);
             return (
               <div key={food.id} className="food-item-container">
                 <FoodItem macros={macros} name={food.food_name} />

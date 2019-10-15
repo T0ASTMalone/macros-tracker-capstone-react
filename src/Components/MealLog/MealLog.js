@@ -19,38 +19,14 @@ export default class MealLog extends Component {
   async componentDidMount() {
     const id = this.context.userId;
     const meals = await MacroFyServices.getAllMeals(id);
-    meals.map(meal => {
-      const { protein, carbs, fats } = meal;
-      const macros = { protein, fats, carbs };
-      return Object.keys(macros).map(macro => {
-        return macros[macro] ? macros[macro] : (meal[macro] = 0);
-      });
-    });
     this.setState({ mealLog: [...meals] });
   }
 
   async handleAddMeal(meal) {
     const { meal_id } = meal;
-    //const foods = JSON.parse(JSON.stringify(STORE.foods));
     const mealFoods = await MacroFyServices.getMealFoods(meal_id);
-    /*const mealFoods = foods.filter(food => {
-      return food.meal_id === meal_id;
-    });*/
-    this.cleanFoods(mealFoods);
-    console.log(mealFoods);
     this.context.addFood(mealFoods);
     this.props.hide('showMealLog');
-  }
-
-  cleanFoods(foods) {
-    return foods.map(food => {
-      console.log(food);
-      const { protein, carbs, fats } = food;
-      const macros = { protein, fats, carbs };
-      return Object.keys(macros).map((macro, i) => {
-        return macros[macro] ? macros[macro] : (food[macro] = 0);
-      });
-    });
   }
 
   closeWindow = () => {
@@ -58,7 +34,6 @@ export default class MealLog extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="container">
         <button className="close-window" onClick={this.closeWindow}>
