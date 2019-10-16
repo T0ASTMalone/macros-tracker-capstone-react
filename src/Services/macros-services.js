@@ -52,46 +52,6 @@ const MacrosService = {
       }
       return key;
     });
-  },
-
-  calculateUserMacros(user) {
-    const { gender, goals, height, age, activityLvl } = user;
-    const weight = parseFloat(user.weight);
-
-    let pCoef = 1;
-    let fCoef = 0.4;
-    let tdee;
-
-    if (gender === 'male') {
-      tdee = 10 * weight + 6.25 * height - 5 * parseInt(age) + 5;
-    }
-
-    if (gender === 'female') {
-      fCoef = 0.3;
-      tdee = 10 * weight + 6.25 * height - 5 * parseInt(age) - 161;
-    }
-
-    tdee *= parseFloat(activityLvl);
-
-    if (goals === 'gain') {
-      tdee += 500;
-    } else if (goals === 'lose') {
-      tdee -= 500;
-    }
-
-    const protein = Math.round(weight * 2.2 * pCoef);
-
-    tdee -= protein * 4;
-
-    const fats = Math.round(weight * 2.2 * fCoef);
-
-    tdee -= fats * 9;
-
-    const carbs = Math.round(tdee / 4);
-
-    const userMacros = { protein, carbs, fats };
-
-    return userMacros;
   }
 };
 

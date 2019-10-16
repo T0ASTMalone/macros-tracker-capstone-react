@@ -29,6 +29,7 @@ export default class Header extends Component {
   }
 
   render() {
+    console.log(TokenService.hasAuthToken());
     return (
       <>
         <nav className="header">

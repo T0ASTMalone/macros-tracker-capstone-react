@@ -16,7 +16,7 @@ const MacroFyServices = {
   },
   getTodaysMeals(id) {
     const user = { user_id: id };
-    return fetch(`${config.API_ENDPOINT}/meals?query=true`, {
+    return fetch(`${config.API_ENDPOINT}/meals?today=true`, {
       headers: {
         method: 'GET',
         user,

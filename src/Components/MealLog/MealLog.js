@@ -42,7 +42,6 @@ export default class MealLog extends Component {
         <section id="meal-log-container">
           {this.state.mealLog.length > 0 ? (
             this.state.mealLog.map((meal, i) => {
-              console.log(meal);
               const { protein, carbs, fats, meal_name } = meal;
               const macros = { protein, carbs, fats };
               return (

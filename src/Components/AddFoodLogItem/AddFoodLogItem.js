@@ -22,7 +22,6 @@ export default class AddFoodLogItem extends Component {
   addFood = food => {
     MacrosService.totalFoodMacros(food);
     const foodArr = [food];
-    console.log(foodArr);
     this.context.addFood(foodArr);
   };
 
@@ -49,7 +48,6 @@ export default class AddFoodLogItem extends Component {
 
   makeSearchFood = food => {
     let { protein = '0g', carbs = '0g', fat = '0g' } = food.nutrition;
-    console.log(food);
     let macros = { protein, carbs, fat };
     Object.keys(macros).map(key => {
       return (macros[key] = macros[key].substr(0, macros[key].indexOf('g')));

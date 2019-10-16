@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Register.css';
 import RegisterError from './RegisterError';
-//import MacrosService from '../../Services/macros-services';
 import convert from 'convert-units';
 import AuthApiService from '../../Services/auth-api-services';
 
@@ -14,15 +13,14 @@ export default class Register extends React.Component {
       password: { value: '', touched: false },
       confirmPassword: { value: '', touched: false },
       age: { value: '', touched: false },
-      gender: { value: '', touched: false },
+      gender: { value: 'male', touched: false },
       feet: { value: '', touched: false },
       cm: { value: '', touched: false },
       inches: { value: '', touched: true },
       weight: { value: '', touched: false },
       goals: { value: '', touched: false },
-      activityLvl: { value: '', touched: false },
+      activityLvl: { value: '1.55', touched: false },
       unit: { value: 'imperial', touched: false }
-      //userMacros: {}
     };
   }
 
@@ -69,7 +67,7 @@ export default class Register extends React.Component {
       password: { value: '', touched: false },
       confirmPassword: { value: '', touched: false },
       age: { value: '', touched: false },
-      gender: { value: '', touched: false },
+      gender: { value: 'male', touched: false },
       feet: { value: '', touched: false },
       cm: { value: '', touched: false },
       inches: { value: '', touched: true },
@@ -93,16 +91,13 @@ export default class Register extends React.Component {
       goals: info.goals.value,
       activity_lvl: info.activityLvl.value
     };
-    console.log(user);
     AuthApiService.postUser(user)
-      .then(user => {
+      .then(() => {
         this.clearValues();
       })
       .catch(res => {
         console.log(res);
       });
-    //const userMacros = MacrosService.calculateUserMacros(user);
-    //this.setState({ userMacros });
   };
 
   updateEmail = email => {

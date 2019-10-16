@@ -42,7 +42,6 @@ export default class SignIn extends React.Component {
       password: password.value
     })
       .then(res => {
-        console.log(res);
         this.setState({
           email: { value: '', touched: false },
           password: { value: '', touched: false }

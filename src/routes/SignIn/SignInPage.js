@@ -10,7 +10,6 @@ export default class SignInPage extends Component {
   };
 
   handleLoginSuccess = id => {
-    console.log('props: ', this.props);
     const { location, history } = this.props;
     const destination = (location.state || {}).from || `/user/${id}`;
     history.push(destination);
