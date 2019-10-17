@@ -360,13 +360,6 @@ export default class Register extends Component {
           <button type="submit" className="button register">
             Register
           </button>
-
-          {/*<div className="display-results">
-            <h2>Recommended Macronutrients</h2>
-            <p>Protein: {this.state.userMacros.protein}</p>
-            <p>Carbs: {this.state.userMacros.carbs}</p>
-            <p>Fats: {this.state.userMacros.fats}</p>
-            </div>*/}
         </form>
       </>
     );

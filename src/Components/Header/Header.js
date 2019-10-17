@@ -7,6 +7,7 @@ import MealsContext from '../../context/MealContext';
 
 export default class Header extends Component {
   static contextType = MealListContext;
+
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
     this.context.clearMeals();
