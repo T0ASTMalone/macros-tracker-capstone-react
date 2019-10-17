@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Register.css';
 import RegisterError from './RegisterError';
 import convert from 'convert-units';
 import AuthApiService from '../../Services/auth-api-services';
 
-export default class Register extends React.Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +23,12 @@ export default class Register extends React.Component {
       unit: { value: 'imperial', touched: false }
     };
   }
+
+  static defaultProps = {
+    history: {
+      push: () => {}
+    }
+  };
 
   handleUnitSelect = e => {
     this.setState({ unit: { value: e, touched: true } });
@@ -92,12 +98,18 @@ export default class Register extends React.Component {
       activity_lvl: info.activityLvl.value
     };
     AuthApiService.postUser(user)
-      .then(() => {
+      .then(res => {
         this.clearValues();
+        this.handleRegistrationSuccess();
       })
       .catch(res => {
         console.log(res);
       });
+  };
+
+  handleRegistrationSuccess = () => {
+    const { history } = this.props;
+    history.push('/sign-in');
   };
 
   updateEmail = email => {
@@ -196,6 +208,7 @@ export default class Register extends React.Component {
   }
 
   render() {
+    console.log('Register rendered');
     return (
       <>
         <form

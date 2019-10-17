@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import TokenService from '../../Services/token-service';
+import MealListContext from '../../context/MealLIstContext';
 
 export default class Header extends Component {
+  static contextType = MealListContext;
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
+    this.context.clearMeals();
   };
 
   renderLogoutLink() {
@@ -22,14 +25,12 @@ export default class Header extends Component {
     return (
       <div className="Header__not-logged-in">
         <Link to="/register">Register</Link>
-
         <Link to="/sign-in">Log in</Link>
       </div>
     );
   }
 
   render() {
-    console.log(TokenService.hasAuthToken());
     return (
       <>
         <nav className="header">

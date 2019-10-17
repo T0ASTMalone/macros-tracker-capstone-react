@@ -78,6 +78,7 @@ export default class AddMeal extends React.Component {
   }
 
   render() {
+    console.log('AddMeal rendered');
     return (
       <MealListContext.Consumer>
         {ListContext => {

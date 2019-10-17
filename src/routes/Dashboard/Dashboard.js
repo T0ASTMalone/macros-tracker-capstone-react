@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Dashboard.css';
 import Overview from '../../Components/Overview/Overview';
@@ -11,7 +11,7 @@ import MealLog from '../../Components/MealLog/MealLog';
 import AddFoodItem from '../../Components/AddFoodItem/AddFoodItem';
 import MacroFyServices from '../../Services/macrofy-api-service';
 
-export default class Dashboard extends React.Component {
+export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,9 +26,11 @@ export default class Dashboard extends React.Component {
   static contextType = MealListContext;
 
   async componentDidMount() {
+    console.log('did mount');
     const id = this.props.match.params.id;
     if (this.context.mealList.length < 1) {
       const meals = await MacroFyServices.getTodaysMeals(id);
+      console.log(meals);
       await this.getUserInfo(id);
       this.context.setMealList(meals);
     }
@@ -79,6 +81,7 @@ export default class Dashboard extends React.Component {
   };
 
   render() {
+    console.log('Dashboard rendered');
     const show = {
       showAddFood: this.showAddFoodItem,
       showMealLog: this.showMealLog
