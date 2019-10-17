@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MealContext from '../../context/MealContext';
-//import uuid from 'uuid';
+import uuid from 'uuid';
 import config from '../../config';
 import MacrosService from '../../Services/macros-services';
 
@@ -54,6 +54,7 @@ export default class AddFoodLogItem extends Component {
     });
 
     const newFood = {
+      id: uuid(),
       food_name: food.title,
       protein: macros.protein,
       carbs: macros.carbs,

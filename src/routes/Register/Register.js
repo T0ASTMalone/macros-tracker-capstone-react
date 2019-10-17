@@ -148,7 +148,7 @@ export default class Register extends Component {
     this.setState({ unit: { value: unit, touched: true } });
   };
   updateCm = cm => {
-    this.setState({ cm: { value: '', touched: true } });
+    this.setState({ cm: { value: cm, touched: true } });
   };
 
   validateEmail() {
@@ -208,7 +208,6 @@ export default class Register extends Component {
   }
 
   render() {
-    console.log('Register rendered');
     return (
       <>
         <form
@@ -286,6 +285,7 @@ export default class Register extends Component {
                 <label htmlFor="cm">cm</label>
                 <input
                   type="number"
+                  step="0.01"
                   id="cm"
                   className="height"
                   min="0"
@@ -317,6 +317,7 @@ export default class Register extends Component {
             <label htmlFor="weight">Weight</label>
             <input
               type="number"
+              step="0.01"
               id="weight"
               min="0"
               onChange={e => this.updateWeight(e.target.value)}

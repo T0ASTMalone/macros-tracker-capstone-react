@@ -16,7 +16,6 @@ export default class SignInPage extends Component {
   };
 
   render() {
-    console.log('SignInPage rendered');
     return (
       <>
         <h2>Login</h2>

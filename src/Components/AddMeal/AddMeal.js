@@ -73,12 +73,11 @@ export default class AddMeal extends React.Component {
       });
       await MacroFyServices.postFoods(foods);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   render() {
-    console.log('AddMeal rendered');
     return (
       <MealListContext.Consumer>
         {ListContext => {

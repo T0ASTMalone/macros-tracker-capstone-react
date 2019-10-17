@@ -26,11 +26,9 @@ export default class Dashboard extends Component {
   static contextType = MealListContext;
 
   async componentDidMount() {
-    console.log('did mount');
     const id = this.props.match.params.id;
     if (this.context.mealList.length < 1) {
       const meals = await MacroFyServices.getTodaysMeals(id);
-      console.log(meals);
       await this.getUserInfo(id);
       this.context.setMealList(meals);
     }
@@ -81,7 +79,6 @@ export default class Dashboard extends Component {
   };
 
   render() {
-    console.log('Dashboard rendered');
     const show = {
       showAddFood: this.showAddFoodItem,
       showMealLog: this.showMealLog

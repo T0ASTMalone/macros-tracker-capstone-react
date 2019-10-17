@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './Stats.css';
 
 export default function Stats(props) {
-  console.log('Stats rendered');
   return (
     <div className="stats">
       <h2 className="stats-title">Todays Stats</h2>
