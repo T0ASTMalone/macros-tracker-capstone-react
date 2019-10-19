@@ -69,6 +69,7 @@ export default class AddMeal extends React.Component {
     try {
       const response = await MacroFyServices.postMeal(meal);
       foods.forEach(food => {
+        delete food.date_added;
         delete food.id;
         food.user_id = response.user_id;
         food.meal_id = response.meal_id;
