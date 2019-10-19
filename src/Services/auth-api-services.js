@@ -38,7 +38,7 @@ const AuthApiService = {
   },
 
   postRefreshToken() {
-    return fetch(`${config.API_ENDPOINT}/refresh`, {
+    return fetch(`${config.API_ENDPOINT}/auth/refresh`, {
       method: 'POST',
       headers: {
         authorization: `Bearer ${TokenService.getAuthToken()}`
@@ -48,7 +48,7 @@ const AuthApiService = {
         !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
       )
       .then(res => {
-        TokenService.saveAuthToken(res.saveAuthToken);
+        TokenService.saveAuthToken(res.authToken);
         IdleService.registerIdleTimerResets();
         TokenService.queueCallBackBeforeExpiry(() =>
           AuthApiService.postRefreshToken()

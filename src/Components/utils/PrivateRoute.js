@@ -4,6 +4,7 @@ import TokenService from '../../Services/token-service';
 
 export default function PrivateRoute({ component, ...props }) {
   const Component = component;
+  console.log(TokenService.hasAuthToken());
   return (
     <Route
       {...props}

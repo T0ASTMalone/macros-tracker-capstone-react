@@ -14,7 +14,6 @@ const TokenService = {
   },
 
   clearAuthToken() {
-    console.info('clearing the auth token');
     window.sessionStorage.removeItem(config.TOKEN_KEY);
   },
 

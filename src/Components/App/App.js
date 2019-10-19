@@ -36,7 +36,7 @@ export default class App extends Component {
     TokenService.clearCallbackBeforeExpiry();
   }
 
-  logoutFormIdle = () => {
+  logoutFromIdle = () => {
     TokenService.clearAuthToken();
     TokenService.clearCallbackBeforeExpiry();
     IdleService.unRegisterIdleResets();
