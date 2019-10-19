@@ -34,6 +34,10 @@ export default class MealLog extends Component {
     this.setState({ [id]: foods });
   }
 
+  hideMealFoods(id) {
+    this.setState({ [id]: null });
+  }
+
   render() {
     return (
       <div className="container">
@@ -44,17 +48,30 @@ export default class MealLog extends Component {
               const macros = { protein, carbs, fats };
               return (
                 <div key={i} className="meal-log-item">
-                  <div className="meal-log-meal">
-                    <MealItem key={i} id={i} macros={macros} name={meal_name} />
-                    <button
-                      className="add-meal-log-item"
-                      onClick={() => this.handleAddMeal(meal)}
-                    >
-                      Add
-                    </button>
-                    <button onClick={() => this.showMealFoods(meal.meal_id)}>
-                      Show Meal Foods
-                    </button>
+                  <div className="meal">
+                    <div className="meal-info">
+                      <MealItem
+                        key={i}
+                        id={i}
+                        macros={macros}
+                        name={meal_name}
+                      />
+                      <button
+                        className="add-meal-log-item"
+                        onClick={() => this.handleAddMeal(meal)}
+                      >
+                        Add
+                      </button>
+                    </div>
+                    {this.state[meal.meal_id] ? (
+                      <button onClick={() => this.hideMealFoods(meal.meal_id)}>
+                        Hide Meal Foods
+                      </button>
+                    ) : (
+                      <button onClick={() => this.showMealFoods(meal.meal_id)}>
+                        Show Meal Foods
+                      </button>
+                    )}
                   </div>
 
                   <div className="meal-foods">
