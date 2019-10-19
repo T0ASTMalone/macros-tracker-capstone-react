@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './MealLog.css';
-//import STORE from '../../store';
 import MealItem from '../Mealitem/MealItem';
 import MealsContext from '../../context/MealContext';
 import MacroFyServices from '../../Services/macrofy-api-service';
+import FoodLog from '../FoodLog/FoodLog';
 
 export default class MealLog extends Component {
   constructor(props) {
@@ -26,19 +26,17 @@ export default class MealLog extends Component {
     const { meal_id } = meal;
     const mealFoods = await MacroFyServices.getMealFoods(meal_id);
     this.context.addFood(mealFoods);
-    this.props.hide('showMealLog');
+    this.props.hide();
   }
 
-  closeWindow = () => {
-    this.props.hide('showMealLog');
-  };
+  async showMealFoods(id) {
+    const foods = await MacroFyServices.getMealFoods(id);
+    this.setState({ [id]: foods });
+  }
 
   render() {
     return (
       <div className="container">
-        <button className="close-window" onClick={this.closeWindow}>
-          X
-        </button>
         <section id="meal-log-container">
           {this.state.mealLog.length > 0 ? (
             this.state.mealLog.map((meal, i) => {
@@ -46,13 +44,32 @@ export default class MealLog extends Component {
               const macros = { protein, carbs, fats };
               return (
                 <div key={i} className="meal-log-item">
-                  <MealItem key={i} id={i} macros={macros} name={meal_name} />
-                  <button
-                    className="add-meal-log-item"
-                    onClick={() => this.handleAddMeal(meal)}
-                  >
-                    Add
-                  </button>
+                  <div className="meal-log-meal">
+                    <MealItem key={i} id={i} macros={macros} name={meal_name} />
+                    <button
+                      className="add-meal-log-item"
+                      onClick={() => this.handleAddMeal(meal)}
+                    >
+                      Add
+                    </button>
+                    <button onClick={() => this.showMealFoods(meal.meal_id)}>
+                      Show Meal Foods
+                    </button>
+                  </div>
+
+                  <div className="meal-foods">
+                    {this.state[meal.meal_id] ? (
+                      <FoodLog
+                        className={
+                          this.state[meal.meal_id].hide ? 'hidden' : 'none'
+                        }
+                        foods={this.state[meal.meal_id]}
+                        hide={this.props.hide}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                 </div>
               );
             })

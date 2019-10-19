@@ -10,6 +10,10 @@
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 .add-food {
   flex-direction: column;
   width: 15%;
@@ -20,18 +24,4 @@
 .add-food {
   display: flex;
   justify-content: space-between;
-}
-
-.container {
-  border: 1px solid black;
-  position: fixed;
-  width: 75%;
-  height: 600px;
-  background: white;
-  right: 0;
-  left: 0;
-  top: 25%;
-  margin-right: auto;
-  margin-left: auto;
-  overflow: auto;
 }

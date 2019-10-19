@@ -4,7 +4,8 @@
   align-items: center;
 }
 
-.meal-log-item {
+.meal-log-item,
+.meal-log-meal {
   border: 1px solid black;
   margin: 20px;
   width: 90%;
@@ -14,21 +15,15 @@
   align-items: center;
 }
 
+.meal-log-item {
+  flex-direction: column;
+}
+
 .add-meal-log-item {
   height: 40px;
   width: 10%;
 }
 
-.container {
-  border: 1px solid black;
-  position: fixed;
-  width: 75%;
-  height: 600px;
-  background: white;
-  right: 0;
-  left: 0;
-  top: 25%;
-  margin-right: auto;
-  margin-left: auto;
-  overflow: auto;
+.meal-foods {
+  width: 90%;
 }

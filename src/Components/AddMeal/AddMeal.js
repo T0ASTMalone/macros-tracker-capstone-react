@@ -32,7 +32,8 @@ export default class AddMeal extends React.Component {
   }
 
   handleAddFood = () => {
-    this.props.show.showAddFood();
+    //this.props.show.showAddFood();
+    this.props.show.showPopUp('Add');
     this.setState({ error: null });
   };
 
@@ -41,7 +42,8 @@ export default class AddMeal extends React.Component {
   };
 
   handleAddExisting = () => {
-    this.props.show.showMealLog();
+    //this.props.show.showMealLog();
+    this.props.show.showPopUp('MealLog');
     this.setState({ error: null });
   };
 
