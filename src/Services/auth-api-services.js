@@ -1,17 +1,8 @@
 import config from '../config';
+import TokenService from './token-service';
+import IdleService from './idle-service';
 
 const AuthApiService = {
-  postLogin(credentials) {
-    return fetch(`${config.API_ENDPOINT}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    }).then(res => {
-      return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
-    });
-  },
   postUser(user) {
     return fetch(`${config.API_ENDPOINT}/users`, {
       method: 'POST',
@@ -22,6 +13,51 @@ const AuthApiService = {
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
+  },
+
+  postLogin(credentials) {
+    return fetch(`${config.API_ENDPOINT}/auth/login`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(res => {
+        return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
+      })
+      .then(res => {
+        console.log(res);
+        TokenService.saveAuthToken(res.authToken);
+        IdleService.registerIdleTimerResets();
+        TokenService.queueCallBackBeforeExpiry(() =>
+          AuthApiService.postRefreshToken()
+        );
+        return res;
+      });
+  },
+
+  postRefreshToken() {
+    return fetch(`${config.API_ENDPOINT}/refresh`, {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res =>
+        !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+      )
+      .then(res => {
+        TokenService.saveAuthToken(res.saveAuthToken);
+        IdleService.registerIdleTimerResets();
+        TokenService.queueCallBackBeforeExpiry(() =>
+          AuthApiService.postRefreshToken()
+        );
+      })
+      .catch(err => {
+        console.log('refresh token request error');
+        console.error(err);
+      });
   }
 };
 

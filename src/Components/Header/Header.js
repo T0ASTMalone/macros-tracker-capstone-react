@@ -4,6 +4,7 @@ import './Header.css';
 import TokenService from '../../Services/token-service';
 import MealListContext from '../../context/MealLIstContext';
 import MealsContext from '../../context/MealContext';
+import IdleService from '../../Services/idle-service';
 
 export default class Header extends Component {
   static contextType = MealListContext;
@@ -11,6 +12,8 @@ export default class Header extends Component {
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
     this.context.clearMeals();
+    TokenService.clearCallbackBeforeExpiry();
+    IdleService.unRegisterIdleResets();
   };
 
   renderLogoutLink(logout) {

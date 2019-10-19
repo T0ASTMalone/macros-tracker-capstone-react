@@ -17,6 +17,7 @@
 
 .meal-log-item {
   flex-direction: column;
+  margin: 20px 0 20px 0;
 }
 
 .add-meal-log-item {
