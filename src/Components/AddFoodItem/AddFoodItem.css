@@ -3,15 +3,6 @@
   flex-direction: column;
 }
 
-.close-window {
-  position: fixed;
-  background: red;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-}
-
 .new-food-input {
   margin-bottom: 10px;
 }

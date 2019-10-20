@@ -166,8 +166,12 @@ export default class Register extends Component {
   }
   validateConfirmPassword() {
     const confirmPassword = this.state.confirmPassword.value;
+    const password = this.state.password.value;
     if (confirmPassword < 1) {
       return 'You must confirm the password';
+    }
+    if (confirmPassword !== password) {
+      return 'Password does not match';
     }
   }
   validateGoal() {
@@ -177,7 +181,7 @@ export default class Register extends Component {
     }
   }
   validateHeight() {
-    const height = this.state.feet.value;
+    const height = this.state.feet.value || this.state.cm.value;
     if (height < 1) {
       return 'An height is required';
     }
@@ -217,50 +221,83 @@ export default class Register extends Component {
         >
           <label htmlFor="email">Email</label>
           <input
+            id="email"
+            className="login"
             type="email"
             required
             onChange={e => this.updateEmail(e.target.value)}
           />
-          <RegisterError hasError={this.validateEmail()} />
+          <div className="login-error">
+            <RegisterError hasError={this.validateEmail()} />
+          </div>
           <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"
+            className="login"
             required
             onChange={e => this.updatePassword(e.target.value)}
           />
-          <RegisterError hasError={this.validatePassword()} />
+          <div className="login-error">
+            <RegisterError hasError={this.validatePassword()} />
+          </div>
           <label htmlFor="confirm-password">Confirm Password</label>
           <input
             type="password"
             id="confirm-password"
+            className="login"
             required
             onChange={e => this.updateConfirmPassword(e.target.value)}
           />
-          <RegisterError hasError={this.validateConfirmPassword()} />
+          <div className="login-error">
+            <RegisterError hasError={this.validateConfirmPassword()} />
+          </div>
           <div className="user-info">
-            <label htmlFor="age">Age</label>
-            <input
-              type="number"
-              min="16"
-              id="age"
-              onChange={e => this.updateAge(e.target.value)}
-            />
-            <RegisterError hasError={this.validateAge()} />
-            <label htmlFor="gender">Gender</label>
-            <select
-              id="gender"
-              onChange={e => this.updateGender(e.target.value)}
-              defaultValue="male"
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-            <RegisterError hasError={this.validateGender()} />
+            <div className="age-gen">
+              <div className="inputs">
+                <div>
+                  <label htmlFor="age">Age</label>
+                  <br />
+                  <input
+                    type="number"
+                    min="16"
+                    id="age"
+                    className="info"
+                    onChange={e => this.updateAge(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="gender">Gender</label>
+                  <br />
+                  <select
+                    id="gender"
+                    className="info"
+                    onChange={e => this.updateGender(e.target.value)}
+                    defaultValue="male"
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div className="error-messages">
+                <div className="error">
+                  <RegisterError hasError={this.validateAge()} />
+                </div>
+                <div className="error">
+                  <RegisterError hasError={this.validateGender()} />
+                </div>
+              </div>
+            </div>
+
             <div className="button-container">
               <button
                 type="button"
-                className="button metric"
+                className={
+                  this.state.unit.value === 'metric'
+                    ? 'active button unit metric'
+                    : 'button unit metric'
+                }
                 value="metric"
                 name="unit"
                 select="true"
@@ -270,7 +307,11 @@ export default class Register extends Component {
               </button>
               <button
                 type="button"
-                className="button imperial"
+                className={
+                  this.state.unit.value === 'imperial'
+                    ? 'active button unit imperial'
+                    : 'button unit imperial'
+                }
                 value="imperial"
                 name="unit"
                 onClick={e => this.handleUnitSelect(e.target.value)}
@@ -278,53 +319,98 @@ export default class Register extends Component {
                 Imperial
               </button>
             </div>
+            <div className="physical">
+              <div className="inputs">
+                {this.state.unit.value === 'metric' ? (
+                  <>
+                    <div className="">
+                      <label htmlFor="cm">Height (cm)</label>
+                      <br />
+                      <input
+                        type="number"
+                        step="0.01"
+                        id="cm"
+                        className="height info"
+                        min="0"
+                        onChange={e => this.updateCm(e.target.value)}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="">
+                      <label htmlFor="ft">Height (ft)</label>
+                      <br />
+                      <input
+                        type="number"
+                        id="ft"
+                        className="height info"
+                        min="0"
+                        onChange={e => this.updateFeet(e.target.value)}
+                      />
+                    </div>
 
-            <label htmlFor="height">Height</label>
-            {this.state.unit.value === 'metric' ? (
-              <>
-                <label htmlFor="cm">cm</label>
-                <input
-                  type="number"
-                  step="0.01"
-                  id="cm"
-                  className="height"
-                  min="0"
-                  onChange={e => this.updateCm(e.target.value)}
-                />
-              </>
-            ) : (
-              <>
-                <label htmlFor="ft">ft</label>
-                <input
-                  type="number"
-                  id="ft"
-                  className="height"
-                  min="0"
-                  onChange={e => this.updateFeet(e.target.value)}
-                />
-                <label htmlFor="in">in</label>
-                <input
-                  type="number"
-                  id="in"
-                  className="height"
-                  min="0"
-                  onChange={e => this.updateInches(e.target.value)}
-                />
-                <RegisterError hasError={this.validateHeight()} />
-              </>
-            )}
+                    <div className="">
+                      <label htmlFor="in">in</label>
+                      <br />
+                      <input
+                        type="number"
+                        id="in"
+                        className="height info"
+                        min="0"
+                        onChange={e => this.updateInches(e.target.value)}
+                      />
+                    </div>
+                  </>
+                )}
+                <div className="">
+                  <label htmlFor="weight">Weight</label>
+                  <br />
+                  <input
+                    type="number"
+                    step="0.01"
+                    id="weight"
+                    className="info"
+                    min="0"
+                    onChange={e => this.updateWeight(e.target.value)}
+                  />
+                </div>
+              </div>
 
-            <label htmlFor="weight">Weight</label>
-            <input
-              type="number"
-              step="0.01"
-              id="weight"
-              min="0"
-              onChange={e => this.updateWeight(e.target.value)}
-            />
-            <RegisterError hasError={this.validateWeight()} />
-            <div className="slidecontainer">
+              <div className="error-messages">
+                <div className="error">
+                  <RegisterError hasError={this.validateHeight()} />
+                </div>
+                <div className="weight">
+                  <RegisterError hasError={this.validateWeight()} />
+                </div>
+              </div>
+            </div>
+
+            <div className="">
+              <label htmlFor="fitness-goals">Fitness Goals</label>
+              <br />
+              <select
+                name="fitness-goals"
+                id="fitness-goals"
+                className="goals"
+                onChange={e => this.updateGoals(e.target.value)}
+              >
+                <option value="">-- Select Goal --</option>
+                <option value="maintain">Maintain weight</option>
+                <option value="gain">Gain weight</option>
+                <option value="lose">Lose weight</option>
+              </select>
+            </div>
+            <div className="error-messages goals-error">
+              <div id="goals-error" className="error-goals">
+                <RegisterError hasError={this.validateGoal()} />
+              </div>
+            </div>
+
+            <div className="slide-container">
               <label htmlFor="level-of-activity">Level of activity</label>
+
               <input
                 id="level-of-activity"
                 type="range"
@@ -334,28 +420,34 @@ export default class Register extends Component {
                 step=".175"
                 defaultValue="1.55"
                 onChange={e => this.updateActivityLvl(e.target.value)}
-                list="volsettings"
+                list="defs"
               />
-              <datalist id="volsettings">
-                <option value="1.2">0</option>
-                <option value="1.375">1</option>
-                <option value="1.55">2</option>
-                <option value="1.725">3</option>
-                <option value="1.9">4</option>
+              <datalist id="defs">
+                <option value="1.2"></option>
+                <option value="1.375"></option>
+                <option value="1.55"></option>
+                <option value="1.725"></option>
+                <option value="1.9"></option>
               </datalist>
               <RegisterError hasError={this.validateActivityLvl()} />
             </div>
-            <label htmlFor="fitness-goals">Fitness Goals</label>
-            <select
-              name="fitness-goals"
-              id="fitness-goals"
-              onChange={e => this.updateGoals(e.target.value)}
-            >
-              <option value="maintain">Maintain weight</option>
-              <option value="gain">Gain weight</option>
-              <option value="lose">Lose weight</option>
-            </select>
-            <RegisterError hasError={this.validateGoal()} />
+            <div className="lvls">
+              <div className="description">
+                <p>Sedentary</p>
+              </div>
+              <div className="description">
+                <p>Lightly Active</p>
+              </div>
+              <div className="description">
+                <p>Moderately Active</p>
+              </div>
+              <div className="description">
+                <p>Very Active</p>
+              </div>
+              <div className="description">
+                <p>Extra Active</p>
+              </div>
+            </div>
           </div>
           <button type="submit" className="button register">
             Register

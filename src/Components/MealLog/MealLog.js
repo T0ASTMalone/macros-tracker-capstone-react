@@ -42,7 +42,7 @@ export default class MealLog extends Component {
     return (
       <div className="container">
         <section id="meal-log-container">
-          {this.state.mealLog.length > 0 ? (
+          {this.state.mealLog ? (
             this.state.mealLog.map((meal, i) => {
               const { protein, carbs, fats, meal_name } = meal;
               const macros = { protein, carbs, fats };
@@ -91,7 +91,12 @@ export default class MealLog extends Component {
               );
             })
           ) : (
-            <></>
+            <div className="empty-log">
+              <p>
+                Nothing to see here. Start adding meals by searching for foods
+                or creating new ones. Then clicking the create meal button.
+              </p>
+            </div>
           )}
         </section>
       </div>
