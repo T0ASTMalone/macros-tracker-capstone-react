@@ -3,10 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-#meal-log-container:first-child {
-  margin-top: 20px;
+  transition: 1s ease-in-out;
 }
 
 .meal-info,
@@ -23,10 +20,12 @@
 }
 
 .meal-log-item {
-  border: 1px solid black;
   flex-direction: column;
   margin: 0 0 20px 0;
   width: 100%;
+  background-color: #17224d;
+  border-radius: 10px;
+  transition: 1s ease-in-out;
 }
 
 .add-meal-log-item {
