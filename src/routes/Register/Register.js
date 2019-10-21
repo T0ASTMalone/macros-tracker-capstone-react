@@ -431,7 +431,8 @@ export default class Register extends Component {
               </datalist>
               <RegisterError hasError={this.validateActivityLvl()} />
             </div>
-            <div className="lvls">
+
+            {/*<div className="lvls">
               <div className="description">
                 <p>Sedentary</p>
               </div>
@@ -447,7 +448,7 @@ export default class Register extends Component {
               <div className="description">
                 <p>Extra Active</p>
               </div>
-            </div>
+                </div>*/}
           </div>
           <button type="submit" className="button register">
             Register

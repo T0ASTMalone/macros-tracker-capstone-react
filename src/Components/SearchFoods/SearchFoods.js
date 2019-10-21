@@ -46,15 +46,17 @@ export default class SearchBar extends Component {
           <legend>
             <h2>Search for foods</h2>
           </legend>
-          <input
-            type="text"
-            className="search-bar"
-            onChange={e => this.updateSearchTerm(e.target.value)}
-            placeholder="Food name"
-          />
-          <button className="search-button" type="submit">
-            Search
-          </button>
+          <div className="food-search">
+            <input
+              type="text"
+              className="search-bar input"
+              onChange={e => this.updateSearchTerm(e.target.value)}
+              placeholder="Food name"
+            />
+            <button className="search-button button" type="submit">
+              Search
+            </button>
+          </div>
         </form>
         {results.length >= 1 ? (
           <div className="search-results">

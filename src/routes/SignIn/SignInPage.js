@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SignInPage.css';
 import SignIn from '../../Components/SignInForm/SignIn';
 
 export default class SignInPage extends Component {
@@ -17,10 +18,10 @@ export default class SignInPage extends Component {
 
   render() {
     return (
-      <>
-        <h2>Login</h2>
+      <div className="sign-in-page">
+        <h2>Sign In</h2>
         <SignIn onLoginSuccess={this.handleLoginSuccess} />
-      </>
+      </div>
     );
   }
 }

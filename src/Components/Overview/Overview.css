@@ -35,3 +35,7 @@
 circle {
   transition: 1s ease-in-out;
 }
+
+.progress-macro {
+  font-size: 28px;
+}

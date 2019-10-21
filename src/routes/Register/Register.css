@@ -8,14 +8,14 @@ label {
 
 .login,
 .login-error {
-  width: 400px;
+  width: 200px;
 }
 
 .register-user {
-  margin: 20px;
   padding: 10px;
   min-width: 320px;
   align-items: center;
+  background-color: #f5fafa;
 }
 
 .register-user,
@@ -53,12 +53,12 @@ label {
 
 .unit {
   border: 1px solid rgb(179, 178, 178);
-  background-color: white;
+  background-color: #007fff;
 }
 
 .active {
-  border: 1px solid cornflowerblue;
-  background-color: cornflowerblue;
+  border: 1px solid #17224d;
+  background-color: #17224d;
 }
 
 .button-container {
@@ -92,8 +92,8 @@ label {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: cornflowerblue;
-  box-shadow: 0 0 0 0 rgba(100, 148, 237, 0.397);
+  background-color: #007fff;
+  box-shadow: 0 0 0 0 #007fff;
   cursor: pointer;
   transition: 0.3s ease-in-out;
 
@@ -105,7 +105,7 @@ label {
 }
 
 .slider::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 0 8px rgba(100, 148, 237, 0.39);
+  box-shadow: 0 0 0 8px #0080ff63;
 }
 
 .lvls {
@@ -113,11 +113,9 @@ label {
 }
 
 .description {
-  margin: 5px;
-  width: 20%;
-  height: 50px;
-  border: 1px solid black;
+  height: 80px;
   text-align: center;
+  background-color: #007fff;
 }
 
 .error-messages {

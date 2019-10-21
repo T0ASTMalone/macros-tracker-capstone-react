@@ -1,6 +1,6 @@
 main {
   max-width: 1000px;
-  margin: 100px auto 0 auto;
+  margin: 50px auto 0 auto;
 }
 
 .app-header {
@@ -11,7 +11,8 @@ main {
   width: 100%;
 }
 
-input {
+input,
+select {
   height: 27px;
   padding-left: 5px;
   border: none;

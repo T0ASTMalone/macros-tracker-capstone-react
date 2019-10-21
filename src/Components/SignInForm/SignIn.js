@@ -89,12 +89,11 @@ export default class SignIn extends Component {
           onSubmit={this.handleSubmitJwtAuth}
         >
           <div role="alert">{error && <p className="red">{error}</p>}</div>
-          <legend>Sign In</legend>
           <label htmlFor="user">Email</label>
           <input
             id="user"
             type="email"
-            className="email"
+            className="input email"
             onChange={e => this.handleUpdateEmail(e.target.value)}
             //required
           />
@@ -114,7 +113,7 @@ export default class SignIn extends Component {
             hasError={this.validatePassword()}
             touched={this.state.password.touched}
           />
-          <button>Sign In</button>
+          <button className="button">Sign In</button>
         </form>
       </div>
     );
