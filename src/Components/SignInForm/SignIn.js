@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./SignIn.css";
 import SignInError from "./SignInError";
 import AuthApiService from "../../Services/auth-api-services";
 import TokenService from "../../Services/token-service";
 
-export default class SignIn extends React.Component {
+export default class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {

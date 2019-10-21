@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./Register.css";
 import RegisterError from "./RegisterError";
 import convert from "convert-units";
 import AuthApiService from "../../Services/auth-api-services";
 
-export default class Register extends React.Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +23,12 @@ export default class Register extends React.Component {
       unit: { value: "imperial", touched: false }
     };
   }
+
+  static defaultProps = {
+    history: {
+      push: () => {}
+    }
+  };
 
   handleUnitSelect = e => {
     this.setState({ unit: { value: e, touched: true } });
@@ -92,13 +98,18 @@ export default class Register extends React.Component {
       activity_lvl: info.activityLvl.value
     };
     AuthApiService.postUser(user)
-      .then(() => {
+      .then(res => {
         this.clearValues();
-        this.props.refresh();
+        this.handleRegistrationSuccess();
       })
       .catch(res => {
         console.log(res);
       });
+  };
+
+  handleRegistrationSuccess = () => {
+    const { history } = this.props;
+    history.push("/sign-in");
   };
 
   updateEmail = email => {
@@ -137,7 +148,7 @@ export default class Register extends React.Component {
     this.setState({ unit: { value: unit, touched: true } });
   };
   updateCm = cm => {
-    this.setState({ cm: { value: "", touched: true } });
+    this.setState({ cm: { value: cm, touched: true } });
   };
 
   validateEmail() {
@@ -274,6 +285,7 @@ export default class Register extends React.Component {
                 <label htmlFor='cm'>cm</label>
                 <input
                   type='number'
+                  step='0.01'
                   id='cm'
                   className='height'
                   min='0'
@@ -305,6 +317,7 @@ export default class Register extends React.Component {
             <label htmlFor='weight'>Weight</label>
             <input
               type='number'
+              step='0.01'
               id='weight'
               min='0'
               onChange={e => this.updateWeight(e.target.value)}

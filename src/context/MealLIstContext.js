@@ -31,6 +31,10 @@ export class MealListProvider extends Component {
     this.setState({ error: null });
   };
 
+  clearMeals = () => {
+    this.setState({ mealList: [] });
+  };
+
   setMealList = mealList => {
     this.setState({ mealList });
   };
@@ -67,7 +71,8 @@ export class MealListProvider extends Component {
       deleteMeal: this.deleteMeal,
       addMeal: this.addMeal,
       setMacros: this.setMacros,
-      setUserInfo: this.setUserInfo
+      setUserInfo: this.setUserInfo,
+      clearMeals: this.clearMeals
     };
 
     return (

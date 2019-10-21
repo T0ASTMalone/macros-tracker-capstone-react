@@ -15,11 +15,9 @@ const MacroFyServices = {
     );
   },
   getTodaysMeals(id) {
-    const user = { user_id: id };
-    return fetch(`${config.API_ENDPOINT}/meals?today=true`, {
+    return fetch(`${config.API_ENDPOINT}/meals/${id}/today`, {
       headers: {
         method: 'GET',
-        user,
         'Content-Type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
       }

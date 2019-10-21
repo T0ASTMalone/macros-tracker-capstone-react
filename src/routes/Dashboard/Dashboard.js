@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Dashboard.css';
 import Overview from '../../Components/Overview/Overview';
@@ -11,7 +11,7 @@ import MealLog from '../../Components/MealLog/MealLog';
 import AddFoodItem from '../../Components/AddFoodItem/AddFoodItem';
 import MacroFyServices from '../../Services/macrofy-api-service';
 
-export default class Dashboard extends React.Component {
+export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
