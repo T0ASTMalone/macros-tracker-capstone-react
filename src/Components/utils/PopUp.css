@@ -1,9 +1,9 @@
 .pop-up {
-  border: 1px solid black;
+  border-radius: 30px;
   position: fixed;
   width: 75%;
   height: 600px;
-  background: white;
+  background: #17224d;
   right: 0;
   left: 0;
   top: 25%;
@@ -19,12 +19,12 @@
 
 .component::-webkit-scrollbar {
   position: absolute;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   width: 5px;
 }
 
 .component::-webkit-scrollbar-thumb {
-  background-color: grey;
+  background-color: white;
   width: 2px;
 }
 

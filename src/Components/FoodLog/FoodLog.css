@@ -3,10 +3,25 @@
 }
 
 .food-item-container {
-  border: 1px solid black;
   margin: 20px 0;
   padding: 10px;
   flex-direction: row;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  background-color: #f5fafa;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
+}
+
+.food-item {
+  height: 80px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  background-color: #f5fafa;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
 }
 
 .food-macros {

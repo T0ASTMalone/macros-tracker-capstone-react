@@ -5,7 +5,7 @@ import './Stats.css';
 export default function Stats(props) {
   return (
     <div className="stats">
-      <h2 className="stats-title">Todays Stats</h2>
+      <h2 className="section-title stats-title">Todays Stats</h2>
       <p className="macros">
         Protein: {props.progress.protein} / {props.macros.protein} g
       </p>

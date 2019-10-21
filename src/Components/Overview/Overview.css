@@ -1,5 +1,5 @@
 .overview {
-  background-color: #d81e5b;
+  background-color: #077fff;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -30,4 +30,8 @@
 .progress-bar {
   display: flex;
   flex-direction: column;
+}
+
+circle {
+  transition: 1s ease-in-out;
 }

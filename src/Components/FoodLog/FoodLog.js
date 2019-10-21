@@ -41,7 +41,7 @@ export default class FoodLog extends React.Component {
               const { protein, carbs, fats } = food;
               const macros = { protein, carbs, fats };
               return (
-                <div key={food.id} className="food-item-container">
+                <div key={food.id} className="food-item-container food-item">
                   <FoodItem macros={macros} name={food.food_name} />
                   <AddFoodLogItem
                     food={food}

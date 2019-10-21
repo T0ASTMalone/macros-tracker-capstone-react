@@ -5,3 +5,14 @@
   padding: 0 10px;
   z-index: 99;
 }
+
+.header-title {
+  font-size: 45px;
+}
+
+a:active,
+a:visited,
+a {
+  color: #17224d;
+  text-decoration: none;
+}

@@ -1,6 +1,4 @@
 .stats {
-  margin: 20px;
-  border: 1px solid black;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -8,4 +6,8 @@
 
 .header {
   align-self: center;
+}
+
+.stats-title {
+  color: white;
 }

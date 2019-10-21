@@ -10,3 +10,11 @@ main {
   z-index: 100;
   width: 100%;
 }
+
+input {
+  height: 27px;
+  padding-left: 5px;
+  border: none;
+  box-shadow: 3px 3px 5px rgba(117, 117, 117, 0.425);
+  border-radius: 5px;
+}
