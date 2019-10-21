@@ -83,27 +83,27 @@ export default class Dashboard extends Component {
       progress = this.getProgress();
     }
     return (
-      <>
+      <div id="dashboard">
         <div id="overview-background" className="back-background">
           <div id="overview" className="overview dash-section">
             <h2 className="section-title">Progress</h2>
             <div className="overview-container">
               <Overview
-                radius={60}
+                radius={50}
                 stroke={8}
                 name="P"
                 progress={progress.macrosPercent.proteinPercent}
                 class="protein"
               />
               <Overview
-                radius={60}
+                radius={50}
                 stroke={8}
                 progress={progress.macrosPercent.carbsPercent}
                 class="carbs"
                 name="C"
               />
               <Overview
-                radius={60}
+                radius={50}
                 stroke={8}
                 progress={progress.macrosPercent.fatsPercent}
                 class="fats"
@@ -134,7 +134,7 @@ export default class Dashboard extends Component {
           </section>
         </div>
         <footer></footer>
-      </>
+      </div>
     );
   }
 }

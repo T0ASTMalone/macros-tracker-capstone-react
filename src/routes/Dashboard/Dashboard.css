@@ -1,3 +1,7 @@
+#dashboard {
+  padding: 0 10px;
+}
+
 .section-title {
   text-align: center;
   font-size: 25px;
@@ -15,10 +19,6 @@
 .overview,
 .overview-container {
   display: flex;
-}
-
-.back-background {
-  margin: 0 20px;
 }
 
 .dash-section,
@@ -71,7 +71,6 @@ footer {
 }
 
 #builder-background {
-  margin: 0 20px;
   background-color: #077fff;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 0;

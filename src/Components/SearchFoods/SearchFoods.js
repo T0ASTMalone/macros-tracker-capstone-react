@@ -48,16 +48,28 @@ export default class SearchBar extends Component {
           </legend>
           <input
             type="text"
+            className="search-bar"
             onChange={e => this.updateSearchTerm(e.target.value)}
             placeholder="Food name"
           />
-          <button type="submit">Search</button>
+          <button className="search-button" type="submit">
+            Search
+          </button>
         </form>
         {results.length >= 1 ? (
           <div className="search-results">
             {results.map((food, i) => {
               return (
                 <div key={food.id} className="food-item-container">
+                  {food.image !== undefined ? (
+                    <img
+                      className="food-img"
+                      src={food.image}
+                      alt={food.name}
+                    />
+                  ) : (
+                    <></>
+                  )}
                   <FoodItem name={food.title} image={food.image} />
                   <AddFoodLogItem hide={this.props.hide} foodId={food.id} />
                 </div>

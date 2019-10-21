@@ -3,6 +3,35 @@
   flex-direction: column;
 }
 
+.foods-search {
+  background-color: #f5fafa;
+  border-radius: 10px;
+  padding: 10px 10px 30px 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.create-food-container {
+  border-radius: 10px;
+  padding: 10px 10px 30px 10px;
+  background-color: #f5fafa;
+  margin-bottom: 10px;
+}
+
+.access-food-log {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f5fafa;
+  padding: 10px 10px 30px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 .new-food-input {
   margin-bottom: 10px;
+}
+
+.food-log {
+  align-self: center;
 }

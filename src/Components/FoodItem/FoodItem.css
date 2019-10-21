@@ -1,3 +1,8 @@
 .food-macros {
   width: 300px;
 }
+
+.food-img {
+  width: 60px;
+  height: 60px;
+}

@@ -2,6 +2,7 @@
   border-radius: 30px;
   position: fixed;
   width: 75%;
+  max-width: 700px;
   height: 600px;
   background: #17224d;
   right: 0;
@@ -9,7 +10,13 @@
   top: 25%;
   margin-right: auto;
   margin-left: auto;
-  padding: 10px;
+  padding: 20px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation-name: bounceIn;
+  animation-duration: 450ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
 .component {
@@ -25,7 +32,7 @@
 
 .component::-webkit-scrollbar-thumb {
   background-color: white;
-  width: 2px;
+  width: 5px;
   border-radius: 5px;
 }
 
@@ -38,4 +45,23 @@
   border-radius: 50%;
   right: -20px;
   top: -20px;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
 }

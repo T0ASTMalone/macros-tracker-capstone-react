@@ -116,11 +116,11 @@ export default class AddFoodItem extends Component {
   render() {
     return (
       <div className="container">
-        <section>
+        <section className="foods-search">
           <SearchFoods hide={this.props.hide} />
         </section>
 
-        <section>
+        <section className="create-food-container">
           <form
             action="create-food-item"
             className="create-food-item"
@@ -215,11 +215,11 @@ export default class AddFoodItem extends Component {
             </button>
           </form>
         </section>
-        <section>
+        <section className="access-food-log">
           <header>
             <h2>Add existing food</h2>
           </header>
-          <button className="button" onClick={this.handleRedirect}>
+          <button className="button food-log" onClick={this.handleRedirect}>
             Add from food Log
           </button>
         </section>

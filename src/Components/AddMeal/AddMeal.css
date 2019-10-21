@@ -1,5 +1,4 @@
 .food-items {
-  margin: 20px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -69,12 +68,12 @@
 .button-container {
   align-self: center;
   display: flex;
-  width: 300px;
+  min-width: 280px;
   justify-content: space-between;
 }
 
 .button {
-  width: 200px;
+  width: 100px;
   transition: 0.5s ease-in-out;
   box-shadow: 3px 3px 5px rgba(117, 117, 117, 0.774);
 }
@@ -90,7 +89,7 @@
 }
 
 .add-item {
-  width: 140px;
+  width: 100px;
 }
 
 .create-meal {
