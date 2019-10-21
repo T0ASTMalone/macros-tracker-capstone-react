@@ -98,8 +98,11 @@ export default class AddFoodLogItem extends Component {
           min="1"
           required
           name="servings"
+          className="input"
         />
-        <button type="submit">Add</button>
+        <button className="add-food-button button" type="submit">
+          Add
+        </button>
       </form>
     );
   }

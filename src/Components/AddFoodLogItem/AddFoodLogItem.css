@@ -1,3 +1,11 @@
 #servings {
   margin-bottom: 10px;
 }
+
+.input {
+  width: 100%;
+}
+
+.add-food-button {
+  width: 100%;
+}

@@ -44,7 +44,7 @@ export default class SearchBar extends Component {
       <>
         <form action="search" onSubmit={this.handleSearch}>
           <legend>
-            <h2>Search for foods</h2>
+            <h2 className="section-title">Search for foods</h2>
           </legend>
           <div className="food-search">
             <input

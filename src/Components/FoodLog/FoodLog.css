@@ -14,8 +14,17 @@
   transition: 0.5s ease-in-out;
 }
 
+.food-item-container:first-child {
+  margin-top: 0;
+}
+
+.food-item-container:last-child {
+  margin-bottom: 0;
+}
+
 .food-macros {
   margin: 0;
+  justify-content: space-between;
 }
 
 .hidden {
@@ -24,12 +33,11 @@
 
 .add-food {
   flex-direction: column;
-  width: 15%;
+  width: 30%;
 }
 
 .food-macros,
 .food-item-container,
 .add-food {
   display: flex;
-  justify-content: space-between;
 }
