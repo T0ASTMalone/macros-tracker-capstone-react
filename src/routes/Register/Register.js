@@ -69,6 +69,7 @@ export default class Register extends Component {
 
   clearValues = () => {
     this.setState({
+      error: null,
       email: { value: '', touched: false },
       password: { value: '', touched: false },
       confirmPassword: { value: '', touched: false },
@@ -102,8 +103,8 @@ export default class Register extends Component {
         this.clearValues();
         this.handleRegistrationSuccess();
       })
-      .catch(res => {
-        console.log(res);
+      .catch(err => {
+        this.setState({ error: err.error });
       });
   };
 
@@ -449,6 +450,9 @@ export default class Register extends Component {
                 <p>Extra Active</p>
               </div>
                 </div>*/}
+          </div>
+          <div className="error">
+            <p>{this.state.error}</p>
           </div>
           <button type="submit" className="button register">
             Register
