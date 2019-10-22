@@ -89,6 +89,10 @@
   transform: translateY(-2px);
 }
 
+.delete {
+  height: 40px;
+  width: 70px;
+}
 .add-item {
   width: 100px;
 }

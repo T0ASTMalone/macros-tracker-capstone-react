@@ -1,15 +1,15 @@
 .pop-up {
   border-radius: 30px;
   position: fixed;
-  width: 275px;
+  min-width: 275px;
   max-width: 700px;
   height: 500px;
   background: #17224d;
   right: 0;
   left: 0;
   top: 11%;
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 20px;
+  margin-left: 20px;
   padding: 15px;
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
   opacity: 0;

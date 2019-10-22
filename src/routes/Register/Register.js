@@ -162,7 +162,7 @@ export default class Register extends Component {
   validatePassword() {
     const password = this.state.password.value;
     if (password < 1) {
-      return 'An password is required';
+      return 'A password is required';
     }
   }
   validateConfirmPassword() {
@@ -178,25 +178,25 @@ export default class Register extends Component {
   validateGoal() {
     const goal = this.state.goals.value;
     if (goal < 1) {
-      return 'An goal is required';
+      return 'A goal is required';
     }
   }
   validateHeight() {
     const height = this.state.feet.value || this.state.cm.value;
     if (height < 1) {
-      return 'An height is required';
+      return 'A height is required';
     }
   }
   validateWeight() {
     const weight = this.state.weight.value;
     if (weight < 1) {
-      return 'An weight is required';
+      return 'A weight is required';
     }
   }
   validateGender() {
     const gender = this.state.gender.value;
     if (gender < 1) {
-      return 'An gender is required';
+      return 'A gender is required';
     }
   }
   validateActivityLvl() {
@@ -213,6 +213,7 @@ export default class Register extends Component {
   }
 
   render() {
+    const unit = this.state.unit.value;
     return (
       <>
         <form
@@ -226,6 +227,7 @@ export default class Register extends Component {
             className="login"
             type="email"
             required
+            placeHolder="email"
             onChange={e => this.updateEmail(e.target.value)}
           />
           <div className="login-error">
@@ -237,6 +239,7 @@ export default class Register extends Component {
             type="password"
             className="login"
             required
+            placeHolder="password"
             onChange={e => this.updatePassword(e.target.value)}
           />
           <div className="login-error">
@@ -248,6 +251,7 @@ export default class Register extends Component {
             id="confirm-password"
             className="login"
             required
+            placeHolder="confirm-password"
             onChange={e => this.updateConfirmPassword(e.target.value)}
           />
           <div className="login-error">
@@ -264,6 +268,7 @@ export default class Register extends Component {
                     min="16"
                     id="age"
                     className="info"
+                    placeHolder="yrs"
                     onChange={e => this.updateAge(e.target.value)}
                   />
                 </div>
@@ -295,7 +300,7 @@ export default class Register extends Component {
               <button
                 type="button"
                 className={
-                  this.state.unit.value === 'metric'
+                  unit === 'metric'
                     ? 'active button unit metric'
                     : 'button unit metric'
                 }
@@ -309,7 +314,7 @@ export default class Register extends Component {
               <button
                 type="button"
                 className={
-                  this.state.unit.value === 'imperial'
+                  unit === 'imperial'
                     ? 'active button unit imperial'
                     : 'button unit imperial'
                 }
@@ -325,7 +330,7 @@ export default class Register extends Component {
                 {this.state.unit.value === 'metric' ? (
                   <>
                     <div className="">
-                      <label htmlFor="cm">Height (cm)</label>
+                      <label htmlFor="cm">Height</label>
                       <br />
                       <input
                         type="number"
@@ -333,6 +338,7 @@ export default class Register extends Component {
                         id="cm"
                         className="height info"
                         min="0"
+                        placeHolder="cm"
                         onChange={e => this.updateCm(e.target.value)}
                       />
                     </div>
@@ -340,13 +346,14 @@ export default class Register extends Component {
                 ) : (
                   <>
                     <div className="">
-                      <label htmlFor="ft">Height (ft)</label>
+                      <label htmlFor="ft">Height</label>
                       <br />
                       <input
                         type="number"
                         id="ft"
                         className="height info"
                         min="0"
+                        placeHolder="ft"
                         onChange={e => this.updateFeet(e.target.value)}
                       />
                     </div>
@@ -359,6 +366,7 @@ export default class Register extends Component {
                         id="in"
                         className="height info"
                         min="0"
+                        placeHolder="in"
                         onChange={e => this.updateInches(e.target.value)}
                       />
                     </div>
@@ -373,6 +381,7 @@ export default class Register extends Component {
                     id="weight"
                     className="info"
                     min="0"
+                    placeHolder={unit === 'imperial' ? 'lbs' : 'kg'}
                     onChange={e => this.updateWeight(e.target.value)}
                   />
                 </div>

@@ -8,14 +8,13 @@ label {
 
 .login,
 .login-error {
-  width: 200px;
+  min-width: 290px;
 }
 
 .register-user {
   padding: 10px;
   min-width: 320px;
   align-items: center;
-  background-color: #f5fafa;
 }
 
 .register-user,
