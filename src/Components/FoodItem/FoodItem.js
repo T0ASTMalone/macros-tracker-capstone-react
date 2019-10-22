@@ -13,9 +13,9 @@ export default function FoodItem(props) {
       <p>{props.name}</p>
       {props.macros !== undefined ? (
         <div className="food-macros">
-          <p>Protein: {props.macros.protein}</p>
-          <p>Carbs: {props.macros.carbs}</p>
-          <p>Fats: {props.macros.fats}</p>
+          <p className="macro">P: {props.macros.protein}</p>
+          <p className="macro">C: {props.macros.carbs}</p>
+          <p className="macro">F: {props.macros.fats}</p>
         </div>
       ) : (
         <></>

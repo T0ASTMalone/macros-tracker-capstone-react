@@ -140,16 +140,14 @@ export default class AddMeal extends React.Component {
             <div className="add-meal">
               <div className="food-items">
                 <header>
-                  <h1>Create Meal</h1>
+                  <h1 className="section-title">Create Meal</h1>
                 </header>
                 <form
                   action="create-meal"
                   className="add-meal"
                   onSubmit={e => handleAddMeal(e)}
                 >
-                  <label htmlFor="meal-name" className="meal-name">
-                    Meal Name
-                  </label>
+                  <label htmlFor="meal-name">Meal Name</label>
                   <input
                     type="text"
                     id="meal-name"
@@ -211,7 +209,7 @@ export default class AddMeal extends React.Component {
                       className="button add-existing"
                       onClick={this.handleAddExisting}
                     >
-                      Add from Meal Log
+                      Meal Log
                     </button>
                   </div>
                   <button className="button create-meal" type="submit">

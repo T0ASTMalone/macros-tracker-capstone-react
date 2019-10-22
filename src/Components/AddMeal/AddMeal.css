@@ -13,7 +13,7 @@
 }
 
 .food-item {
-  height: 75px;
+  height: 80px;
   border: 1px solid black;
   margin: 10px;
   display: flex;
@@ -47,7 +47,7 @@
 .create-meal {
   width: 100px;
   height: 50px;
-  margin: 0 auto;
+  margin: 10px auto 0 auto;
 }
 
 .add-meal {

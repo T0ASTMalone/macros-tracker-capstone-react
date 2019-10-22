@@ -9,6 +9,7 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      error: null,
       email: { value: "", touched: false },
       password: { value: "", touched: false },
       confirmPassword: { value: "", touched: false },
@@ -102,8 +103,8 @@ export default class Register extends Component {
         this.clearValues();
         this.handleRegistrationSuccess();
       })
-      .catch(res => {
-        console.log(res);
+      .catch(err => {
+        this.setState({ error: err.error });
       });
   };
 
@@ -161,7 +162,7 @@ export default class Register extends Component {
   validatePassword() {
     const password = this.state.password.value;
     if (password < 1) {
-      return "An password is required";
+      return "A password is required";
     }
   }
   validateConfirmPassword() {
@@ -173,25 +174,25 @@ export default class Register extends Component {
   validateGoal() {
     const goal = this.state.goals.value;
     if (goal < 1) {
-      return "An goal is required";
+      return "A goal is required";
     }
   }
   validateHeight() {
     const height = this.state.feet.value;
     if (height < 1) {
-      return "An height is required";
+      return "A height is required";
     }
   }
   validateWeight() {
     const weight = this.state.weight.value;
     if (weight < 1) {
-      return "An weight is required";
+      return "A weight is required";
     }
   }
   validateGender() {
     const gender = this.state.gender.value;
     if (gender < 1) {
-      return "An gender is required";
+      return "A gender is required";
     }
   }
   validateActivityLvl() {
@@ -356,6 +357,9 @@ export default class Register extends Component {
               <option value='lose'>Lose weight</option>
             </select>
             <RegisterError hasError={this.validateGoal()} />
+          </div>
+          <div className='error'>
+            <p>{this.state.error}</p>
           </div>
           <button type='submit' className='button register'>
             Register

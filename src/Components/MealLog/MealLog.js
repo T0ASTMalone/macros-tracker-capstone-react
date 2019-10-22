@@ -41,7 +41,7 @@ export default class MealLog extends Component {
   render() {
     return (
       <div className="container">
-        <section id="meal-log-container">
+        <section className="meal-log-container">
           {this.state.mealLog.length > 0 ? (
             this.state.mealLog.map((meal, i) => {
               const { date_added, protein, carbs, fats, meal_name } = meal;
