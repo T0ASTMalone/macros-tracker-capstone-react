@@ -2,13 +2,17 @@ label {
   margin-bottom: 10px;
 }
 
+.register-user {
+  background-color: #f5fafa;
+}
+
 .err {
   color: red;
 }
 
 .login,
 .login-error {
-  width: 400px;
+  width: 300px;
 }
 
 .register-user {
@@ -53,12 +57,12 @@ label {
 
 .unit {
   border: 1px solid rgb(179, 178, 178);
-  background-color: white;
+  background-color: #077fff;
 }
 
 .active {
-  border: 1px solid cornflowerblue;
-  background-color: cornflowerblue;
+  border: 1px solid #17224d;
+  background-color: #17224d;
 }
 
 .button-container {
