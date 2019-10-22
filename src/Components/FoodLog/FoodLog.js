@@ -34,7 +34,7 @@ export default class FoodLog extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div id="food-log" className="container">
         <section className="food-log-container">
           {this.state.foods.map((food, i) => {
             const { protein, carbs, fats } = food;

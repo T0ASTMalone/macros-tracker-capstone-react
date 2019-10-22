@@ -9,7 +9,10 @@ export default function PopUp({ component, ...props }) {
       <button className="close-window" onClick={props.hide}>
         X
       </button>
-      <Component {...props} />
+
+      <div className="component">
+        <Component {...props} />
+      </div>
     </div>
   );
 }

@@ -1,14 +1,30 @@
 .pop-up {
   border: 1px solid black;
   position: fixed;
-  width: 75%;
-  height: 600px;
-  background: white;
+  min-width: 275px;
+  max-width: 700px;
+  height: 500px;
   right: 0;
   left: 0;
-  top: 25%;
-  margin-right: auto;
-  margin-left: auto;
+  top: 11%;
+  background-color: white;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding: 15px;
+}
+
+.close-window {
+  position: absolute;
+  background: red;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  right: -20px;
+  top: -20px;
+}
+
+.component {
+  height: 100%;
   overflow: auto;
-  padding: 10px;
 }

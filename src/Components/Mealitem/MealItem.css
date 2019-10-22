@@ -6,8 +6,12 @@
   width: 90%;
 }
 
-.button {
-  height: 40px;
+.meal {
+  padding-bottom: 10px;
+}
+
+.show-foods {
+  width: 30px;
 }
 
 .meal-macros {

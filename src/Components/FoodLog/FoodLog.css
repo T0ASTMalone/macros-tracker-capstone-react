@@ -3,10 +3,22 @@
   margin: 20px 0;
   padding: 10px;
   flex-direction: row;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.food-item-container:first-child {
+  margin-top: 0;
+}
+
+.food-item-container:last-child {
+  margin-bottom: 0;
 }
 
 .food-macros {
   margin: 0;
+  justify-content: space-between;
 }
 
 .hidden {
@@ -15,7 +27,7 @@
 
 .add-food {
   flex-direction: column;
-  width: 15%;
+  width: 30%;
 }
 
 .food-macros,

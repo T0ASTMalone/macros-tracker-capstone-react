@@ -5,35 +5,47 @@
   align-items: center;
 }
 
-#meal-log-container:first-child {
-  margin-top: 20px;
-}
-
-.meal-info,
 .meal {
   width: 100%;
+}
+
+.meal-info {
+  flex-direction: column;
+  width: 200px;
+  padding: 10px;
 }
 
 .meal-log-item,
 .meal-info {
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
   align-items: center;
+}
+
+.meal-item-info {
+  flex-direction: column;
+  width: 100%;
 }
 
 .meal-log-item {
   border: 1px solid black;
   flex-direction: column;
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
   width: 100%;
 }
 
 .add-meal-log-item {
   height: 40px;
-  width: 10%;
 }
 
 .meal-foods {
   width: 100%;
+  padding: 20px 5px 0 5px;
+}
+
+.meal-log-item:first-child {
+  margin-top: 0;
+}
+
+.meal-log-item:last-child {
+  margin-bottom: 0;
 }

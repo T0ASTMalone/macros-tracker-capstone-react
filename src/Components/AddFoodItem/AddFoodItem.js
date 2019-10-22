@@ -116,18 +116,18 @@ export default class AddFoodItem extends Component {
   render() {
     return (
       <div className="container">
-        <section>
+        <section className="foods-search">
           <SearchFoods hide={this.props.hide} />
         </section>
 
-        <section>
+        <section className="create-food-container">
           <form
             action="create-food-item"
             className="create-food-item"
             onSubmit={this.handleCreateFoodSubmit}
           >
             <legend>
-              <h2>Create Food Item</h2>
+              <h2 className="section-title">Create Food Item</h2>
               <p className="required">
                 <i>* indicates required field</i>
               </p>
@@ -215,9 +215,9 @@ export default class AddFoodItem extends Component {
             </button>
           </form>
         </section>
-        <section>
+        <section className="access-food-log">
           <header>
-            <h2>Add existing food</h2>
+            <h2 className="section-title">Add existing food</h2>
           </header>
           <button className="button" onClick={this.handleRedirect}>
             Add from food Log

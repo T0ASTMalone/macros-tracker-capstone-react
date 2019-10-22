@@ -3,15 +3,34 @@
   flex-direction: column;
 }
 
-.close-window {
-  position: fixed;
-  background: red;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
+.foods-search {
+  border-radius: 10px;
+  padding: 10px 10px 30px 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.create-food-container {
+  border-radius: 10px;
+  padding: 10px 10px 30px 10px;
+
+  margin-bottom: 10px;
+}
+
+.access-food-log {
+  border-radius: 10px;
+  padding: 10px;
+  padding: 10px 10px 30px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
 }
 
 .new-food-input {
   margin-bottom: 10px;
+}
+
+.food-log {
+  align-self: center;
 }
