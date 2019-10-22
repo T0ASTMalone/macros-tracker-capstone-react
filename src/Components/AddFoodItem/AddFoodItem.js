@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import './AddFoodItem.css';
 import AddFoodItemError from './AddFoodItemError';
 import MealsContext from '../../context/MealContext';
@@ -105,7 +105,8 @@ export default class AddFoodItem extends Component {
   };
 
   handleRedirect = () => {
-    this.props.showFoodLog();
+    //this.props.showFoodLog();
+    this.props.showPopUp('FoodLog');
   };
 
   closeWindow = () => {
@@ -115,9 +116,6 @@ export default class AddFoodItem extends Component {
   render() {
     return (
       <div className="container">
-        <button className="close-window" onClick={this.closeWindow}>
-          X
-        </button>
         <section>
           <SearchFoods hide={this.props.hide} />
         </section>
@@ -230,8 +228,7 @@ export default class AddFoodItem extends Component {
   }
 }
 
-
 AddFoodItem.propTypes = {
   hide: PropTypes.func.isRequired,
   showFoodLog: PropTypes.func.isRequired
-}
+};

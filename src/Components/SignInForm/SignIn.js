@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "./SignIn.css";
 import SignInError from "./SignInError";
 import AuthApiService from "../../Services/auth-api-services";
-import TokenService from "../../Services/token-service";
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -46,7 +45,6 @@ export default class SignIn extends Component {
           email: { value: "", touched: false },
           password: { value: "", touched: false }
         });
-        TokenService.saveAuthToken(res.authToken);
         this.props.onLoginSuccess(res.payload.user_id);
       })
       .catch(res => {

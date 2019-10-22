@@ -1,17 +1,32 @@
-#meal-log-container {
+#meal-log-container,
+.meal {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.meal-log-item {
-  border: 1px solid black;
-  margin: 20px;
-  width: 90%;
+#meal-log-container:first-child {
+  margin-top: 20px;
+}
+
+.meal-info,
+.meal {
+  width: 100%;
+}
+
+.meal-log-item,
+.meal-info {
   display: flex;
   justify-content: space-between;
   padding: 10px;
   align-items: center;
+}
+
+.meal-log-item {
+  border: 1px solid black;
+  flex-direction: column;
+  margin: 0 0 20px 0;
+  width: 100%;
 }
 
 .add-meal-log-item {
@@ -19,16 +34,6 @@
   width: 10%;
 }
 
-.container {
-  border: 1px solid black;
-  position: fixed;
-  width: 75%;
-  height: 600px;
-  background: white;
-  right: 0;
-  left: 0;
-  top: 25%;
-  margin-right: auto;
-  margin-left: auto;
-  overflow: auto;
+.meal-foods {
+  width: 100%;
 }

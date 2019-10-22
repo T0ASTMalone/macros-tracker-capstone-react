@@ -5,8 +5,6 @@ import FoodItem from '../FoodItem/FoodItem';
 import AddFoodLogItem from '../AddFoodLogItem/AddFoodLogItem';
 import MealListContext from '../../context/MealLIstContext';
 import MacroFyServices from '../../Services/macrofy-api-service';
-//move this component to AddFoodLogItem.js
-//import AddFoodItemError from '../AddFoodItem/AddFoodItemError';
 
 export default class FoodLog extends React.Component {
   constructor(props) {
@@ -18,7 +16,13 @@ export default class FoodLog extends React.Component {
 
   static contextType = MealListContext;
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.props.foods
+      ? this.setState({ foods: [...this.props.foods] })
+      : this.getAllFoods();
+  }
+
+  async getAllFoods() {
     const id = this.context.userId;
     try {
       const userFoods = await MacroFyServices.getAllFoods(id);
@@ -28,16 +32,9 @@ export default class FoodLog extends React.Component {
     }
   }
 
-  closeWindow = () => {
-    this.props.hide('showFoodLog');
-  };
-
   render() {
     return (
       <div className="container">
-        <button className="close-window" onClick={this.closeWindow}>
-          X
-        </button>
         <section className="food-log-container">
           {this.state.foods.map((food, i) => {
             const { protein, carbs, fats } = food;
@@ -45,7 +42,10 @@ export default class FoodLog extends React.Component {
             return (
               <div key={food.id} className="food-item-container">
                 <FoodItem macros={macros} name={food.food_name} />
-                <AddFoodLogItem food={food} hide={this.props.hide} />
+                <AddFoodLogItem
+                  food={food}
+                  hide={this.props.hide || this.props.hideMeal}
+                />
               </div>
             );
           })}

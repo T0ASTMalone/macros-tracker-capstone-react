@@ -8,6 +8,9 @@ import Register from "../../routes/Register/Register";
 import Dashboard from "../../routes/Dashboard/Dashboard";
 import Header from "../Header/Header";
 import LandingPage from "../../routes/LandingPage/LandingPage";
+import TokenService from "../../Services/token-service";
+import AuthApiService from "../../Services/auth-api-services";
+import IdleService from "../../Services/idle-service";
 
 export default class App extends Component {
   state = { hasError: false };
@@ -16,6 +19,29 @@ export default class App extends Component {
     console.error(error);
     return { hasError: true };
   }
+
+  componentDidMount() {
+    IdleService.setIdleCallBack(this.logoutFromIdle);
+    if (TokenService.hasAuthToken()) {
+      IdleService.registerIdleTimerResets();
+
+      TokenService.queueCallBackBeforeExpiry(() =>
+        AuthApiService.postRefreshToken()
+      );
+    }
+  }
+
+  componentWillUnmount() {
+    IdleService.unRegisterIdleResets();
+    TokenService.clearCallbackBeforeExpiry();
+  }
+
+  logoutFromIdle = () => {
+    TokenService.clearAuthToken();
+    TokenService.clearCallbackBeforeExpiry();
+    IdleService.unRegisterIdleResets();
+    this.forceUpdate();
+  };
 
   render() {
     return (

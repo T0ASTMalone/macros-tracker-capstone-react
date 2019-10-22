@@ -10,15 +10,14 @@ import FoodLog from '../../Components/FoodLog/FoodLog';
 import MealLog from '../../Components/MealLog/MealLog';
 import AddFoodItem from '../../Components/AddFoodItem/AddFoodItem';
 import MacroFyServices from '../../Services/macrofy-api-service';
+import PopUp from '../../Components/utils/PopUp';
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
-      showAddFoodItem: false,
-      showFoodLog: false,
-      showMealLog: false,
+      showPopUp: false,
       userMacros: []
     };
   }
@@ -51,37 +50,31 @@ export default class Dashboard extends Component {
     return macros;
   }
 
-  showAddFoodItem = () => {
-    this.setState({
-      showAddFoodItem: true,
-      showFoodLog: false,
-      showMealLog: false
-    });
+  showPopUp = component => {
+    console.log('ran');
+    switch (component) {
+      case 'Add':
+        console.log('ran');
+        this.setState({ component: AddFoodItem, showPopUp: true });
+        break;
+      case 'FoodLog':
+        this.setState({ component: FoodLog, showPopUp: true });
+        break;
+      case 'MealLog':
+        this.setState({ component: MealLog, showPopUp: true });
+        break;
+      default:
+        console.log('sorry something when wrong');
+    }
   };
 
-  showFoodLog = () => {
-    this.setState({
-      showFoodLog: true,
-      showMealLog: false,
-      showAddFoodItem: false
-    });
-  };
-  showMealLog = () => {
-    this.setState({
-      showMealLog: true,
-      showFoodLog: false,
-      showAddFoodItem: false
-    });
-  };
-
-  hideContent = name => {
-    this.setState({ [name]: false });
+  hidePopUp = () => {
+    this.setState({ component: '', showPopUp: false });
   };
 
   render() {
     const show = {
-      showAddFood: this.showAddFoodItem,
-      showMealLog: this.showMealLog
+      showPopUp: component => this.showPopUp(component)
     };
     let progress = {
       macrosPercent: { proteinPercent: 0, carbsPercent: 0, fatsPercent: 0 }
@@ -119,14 +112,13 @@ export default class Dashboard extends Component {
         </div>
         <section className="todays meals">
           <AddMeal show={show} />
-          {this.state.showAddFoodItem && (
-            <AddFoodItem
-              showFoodLog={this.showFoodLog}
-              hide={this.hideContent}
+          {this.state.showPopUp && (
+            <PopUp
+              hide={this.hidePopUp}
+              showPopUp={component => this.showPopUp(component)}
+              component={this.state.component}
             />
           )}
-          {this.state.showFoodLog && <FoodLog hide={this.hideContent} />}
-          {this.state.showMealLog && <MealLog hide={this.hideContent} />}
         </section>
         <section>
           <Stats macros={this.context.userMacros} progress={progress.macros} />

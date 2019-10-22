@@ -62,7 +62,9 @@ export default class AddFoodLogItem extends Component {
       servings: this.state.servings.value
     };
     this.addFood(newFood);
-    this.props.hide('showAddFoodItem');
+    this.props.hide
+      ? this.props.hide()
+      : this.props.hideMeal(this.props.food.meal_id);
   };
 
   handleSearched = () => {
@@ -84,6 +86,7 @@ export default class AddFoodLogItem extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <form action="add-food" className="add-food" onSubmit={this.handleSubmit}>
         <label htmlFor="servings">Servings</label>
