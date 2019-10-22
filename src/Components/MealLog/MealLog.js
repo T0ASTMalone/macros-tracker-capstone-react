@@ -44,7 +44,7 @@ export default class MealLog extends Component {
         <section id="meal-log-container">
           {this.state.mealLog.length > 0 ? (
             this.state.mealLog.map((meal, i) => {
-              const { protein, carbs, fats, meal_name } = meal;
+              const { date_added, protein, carbs, fats, meal_name } = meal;
               const macros = { protein, carbs, fats };
               return (
                 <div key={i} className="meal-log-item">
@@ -55,6 +55,7 @@ export default class MealLog extends Component {
                         id={i}
                         macros={macros}
                         name={meal_name}
+                        dateAdded={date_added}
                       />
                       <button
                         className="add-meal-log-item"

@@ -11,7 +11,7 @@ export default function MealItem(props) {
         <p className="protein">Carbs: {props.macros.carbs}</p>
         <p className="protein">Fats: {props.macros.fats}</p>
       </div>
-      <p>{new Date().toLocaleTimeString()}</p>
+      <p>{new Date(props.dateAdded).toLocaleDateString()}</p>
     </div>
   );
 }
