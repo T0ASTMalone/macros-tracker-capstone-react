@@ -89,7 +89,6 @@ export default class SignIn extends Component {
           onSubmit={this.handleSubmitJwtAuth}
         >
           <div role='alert'>{error && <p className='red'>{error}</p>}</div>
-          <legend>Sign In</legend>
           <label htmlFor='user'>Email</label>
           <input
             id='user'

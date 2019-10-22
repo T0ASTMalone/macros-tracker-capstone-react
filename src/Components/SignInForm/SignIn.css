@@ -1,9 +1,6 @@
 .sign-in-form {
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  padding: 10px;
-  background-color: #f5fafa;
 }
 
 .sign-in {
@@ -11,10 +8,14 @@
   flex-direction: column;
 }
 
-.input {
-  margin-bottom: 20px;
-}
-
 .button {
   align-self: center;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.red {
+  color: red;
 }

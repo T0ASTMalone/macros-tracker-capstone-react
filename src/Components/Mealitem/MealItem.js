@@ -4,14 +4,14 @@ import './MealItem.css';
 
 export default function MealItem(props) {
   return (
-    <div className="mealInfo">
+    <div className="meal-item-info">
       <p className="meal-name">{props.name}</p>
       <div className="meal-macros">
-        <p className="protein">Protein: {props.macros.protein}</p>
-        <p className="protein">Carbs: {props.macros.carbs}</p>
-        <p className="protein">Fats: {props.macros.fats}</p>
+        <p className="protein">P: {props.macros.protein}</p>
+        <p className="protein">C: {props.macros.carbs}</p>
+        <p className="protein">F: {props.macros.fats}</p>
       </div>
-      <p>{new Date().toLocaleTimeString()}</p>
+      <p>{new Date(props.dateAdded).toLocaleDateString()}</p>
     </div>
   );
 }

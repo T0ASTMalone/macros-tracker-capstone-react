@@ -41,10 +41,10 @@ export default class MealLog extends Component {
   render() {
     return (
       <div className="container">
-        <section id="meal-log-container">
+        <section id="meal-log-container" className="meal-log-container">
           {this.state.mealLog ? (
             this.state.mealLog.map((meal, i) => {
-              const { protein, carbs, fats, meal_name } = meal;
+              const { date_added, protein, carbs, fats, meal_name } = meal;
               const macros = { protein, carbs, fats };
               return (
                 <div key={i} className="meal-log-item">
@@ -55,21 +55,36 @@ export default class MealLog extends Component {
                         id={i}
                         macros={macros}
                         name={meal_name}
+                        dateAdded={date_added}
                       />
                       <button
-                        className="add-meal-log-item"
+                        className="add-meal-log-item button"
                         onClick={() => this.handleAddMeal(meal)}
                       >
                         Add
                       </button>
                     </div>
                     {this.state[meal.meal_id] ? (
-                      <button onClick={() => this.hideMealFoods(meal.meal_id)}>
-                        Hide Meal Foods
+                      <button
+                        className="show-foods"
+                        onClick={() => this.hideMealFoods(meal.meal_id)}
+                      >
+                        <img
+                          className="chevron"
+                          alt="chevron down"
+                          src="https://img.icons8.com/material-rounded/24/000000/chevron-up.png"
+                        />
                       </button>
                     ) : (
-                      <button onClick={() => this.showMealFoods(meal.meal_id)}>
-                        Show Meal Foods
+                      <button
+                        className="show-foods"
+                        onClick={() => this.showMealFoods(meal.meal_id)}
+                      >
+                        <img
+                          className="chevron"
+                          src="https://img.icons8.com/material-rounded/60/000000/chevron-down.png"
+                          alt="chevron down"
+                        />
                       </button>
                     )}
                   </div>

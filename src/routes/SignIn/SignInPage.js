@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SignIn from "../../Components/SignInForm/SignIn";
 import "./SignInPage.css";
+import SignIn from "../../Components/SignInForm/SignIn";
 
 export default class SignInPage extends Component {
   static defaultProps = {

@@ -14,8 +14,8 @@ export default class Overview extends React.Component {
     progress: 0,
     name: '',
     stroke: 8,
-    radius: 60,
-  }
+    radius: 60
+  };
 
   /*circleProgress() {
     var circle = document.querySelector('circle');
@@ -66,6 +66,8 @@ export default class Overview extends React.Component {
             textAnchor="middle"
             stroke="white"
             strokeWidth="1px"
+            className="progress-macro"
+            fill="white"
           >
             {name}
           </text>
@@ -82,4 +84,4 @@ Overview.propTypes = {
   progress: PropTypes.number.isRequired,
   radius: PropTypes.number.isRequired,
   stroke: PropTypes.number.isRequired
-}
+};
