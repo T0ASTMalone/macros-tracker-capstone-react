@@ -25,3 +25,9 @@
 .back-background {
   min-height: 350px;
 }
+
+@media only screen and (min-width: 500px) {
+  #dashboard {
+    margin: auto 0;
+  }
+}
