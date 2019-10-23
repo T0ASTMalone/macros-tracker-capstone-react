@@ -95,7 +95,7 @@ export default class SignIn extends Component {
           <input
             id='user'
             type='email'
-            className='email'
+            className='input email'
             onChange={e => this.handleUpdateEmail(e.target.value)}
             //required
           />
@@ -115,7 +115,7 @@ export default class SignIn extends Component {
             hasError={this.validatePassword()}
             touched={this.state.password.touched}
           />
-          <button>Sign In</button>
+          <button className='button'>Sign In</button>
         </form>
       </div>
     );

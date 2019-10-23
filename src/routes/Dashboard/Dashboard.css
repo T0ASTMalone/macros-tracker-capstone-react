@@ -1,11 +1,27 @@
+#dashboard {
+  padding: 0 10px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 25px;
+}
+
 .overview {
-  margin: 20px;
-  display: flex;
   flex-direction: column;
 }
 
 .overview-container {
-  display: flex;
   width: 95%;
   justify-content: space-around;
+}
+
+.overview,
+.overview-container {
+  display: flex;
+}
+
+.dash-section,
+.back-background {
+  min-height: 350px;
 }

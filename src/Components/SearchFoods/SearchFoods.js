@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import config from '../../config';
-import './SearchFoods.css';
-import FoodItem from '../FoodItem/FoodItem';
-import AddFoodLogItem from '../AddFoodLogItem/AddFoodLogItem';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import config from "../../config";
+import "./SearchFoods.css";
+import FoodItem from "../FoodItem/FoodItem";
+import AddFoodLogItem from "../AddFoodLogItem/AddFoodLogItem";
 
 export default class SearchBar extends Component {
   state = {
     error: null,
     searchResults: [],
     searchTerm: {
-      value: '',
+      value: "",
       touched: false
     }
   };
@@ -21,7 +21,7 @@ export default class SearchBar extends Component {
       config.FOOD_API_ENDPOINT +
       `search?query=${this.state.searchTerm.value}&apiKey=${config.API_KEY}`;
     fetch(url, {
-      method: 'GET'
+      method: "GET"
     })
       .then(res =>
         !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
@@ -29,7 +29,7 @@ export default class SearchBar extends Component {
       .then(resJson => {
         resJson.products.length >= 1
           ? this.setState({ searchResults: resJson.products })
-          : this.setState({ error: 'A food item by that name was not found' });
+          : this.setState({ error: "A food item by that name was not found" });
       })
       .catch(error => console.error(error));
   };
@@ -42,22 +42,27 @@ export default class SearchBar extends Component {
     const results = this.state.searchResults;
     return (
       <>
-        <form action="search" onSubmit={this.handleSearch}>
+        <form action='search' onSubmit={this.handleSearch}>
           <legend>
-            <h2>Search for foods</h2>
+            <h2 className='section-title'>Search for foods</h2>
           </legend>
-          <input
-            type="text"
-            onChange={e => this.updateSearchTerm(e.target.value)}
-            placeholder="Food name"
-          />
-          <button type="submit">Search</button>
+          <div className='food-search'>
+            <input
+              type='text'
+              className='search-bar input'
+              onChange={e => this.updateSearchTerm(e.target.value)}
+              placeholder='Food name'
+            />
+            <button className='search-button button' type='submit'>
+              Search
+            </button>
+          </div>
         </form>
         {results.length >= 1 ? (
-          <div className="search-results">
+          <div className='search-results'>
             {results.map((food, i) => {
               return (
-                <div key={food.id} className="food-item-container">
+                <div key={food.id} className='food-item-container'>
                   <FoodItem name={food.title} image={food.image} />
                   <AddFoodLogItem hide={this.props.hide} foodId={food.id} />
                 </div>
@@ -66,7 +71,7 @@ export default class SearchBar extends Component {
           </div>
         ) : (
           <>
-            <p className="error">{this.state.error}</p>
+            <p className='error'>{this.state.error}</p>
           </>
         )}
       </>

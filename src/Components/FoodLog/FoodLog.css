@@ -1,3 +1,7 @@
+#food-log {
+  height: 100%;
+}
+
 .food-item-container {
   border: 1px solid black;
   margin: 20px 0;

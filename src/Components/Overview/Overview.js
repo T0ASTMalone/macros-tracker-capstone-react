@@ -1,6 +1,6 @@
-import React from 'react';
-import './Overview.css';
-import PropTypes from 'prop-types';
+import React from "react";
+import "./Overview.css";
+import PropTypes from "prop-types";
 
 export default class Overview extends React.Component {
   constructor(props) {
@@ -12,10 +12,10 @@ export default class Overview extends React.Component {
 
   static defaultProps = {
     progress: 0,
-    name: '',
+    name: "",
     stroke: 8,
-    radius: 60,
-  }
+    radius: 60
+  };
 
   /*circleProgress() {
     var circle = document.querySelector('circle');
@@ -47,25 +47,27 @@ export default class Overview extends React.Component {
       this.circumference - (progress / 100) * this.circumference;
 
     return (
-      <div className="overview-macro">
+      <div className='overview-macro'>
         <svg height={radius * 2} width={radius * 2}>
           <circle
-            stroke="white"
-            fill="transparent"
+            stroke='white'
+            fill='transparent'
             strokeWidth={stroke}
-            strokeDasharray={this.circumference + ' ' + this.circumference}
+            strokeDasharray={this.circumference + " " + this.circumference}
             style={{ strokeDashoffset }}
             r={this.normalizedRadius}
             cx={radius}
             cy={radius}
           />
           <text
-            alignmentBaseline="middle"
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            stroke="white"
-            strokeWidth="1px"
+            alignmentBaseline='middle'
+            x='50%'
+            y='50%'
+            textAnchor='middle'
+            stroke='white'
+            strokeWidth='1px'
+            className='progress-macro'
+            fill='white'
           >
             {name}
           </text>
@@ -82,4 +84,4 @@ Overview.propTypes = {
   progress: PropTypes.number.isRequired,
   radius: PropTypes.number.isRequired,
   stroke: PropTypes.number.isRequired
-}
+};

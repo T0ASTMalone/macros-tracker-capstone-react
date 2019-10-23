@@ -1,21 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './FoodItem.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "./FoodItem.css";
 
 export default function FoodItem(props) {
   return (
-    <div className="food-info">
-      {props.image !== undefined ? (
-        <img src={props.image} alt={props.name} />
-      ) : (
-        <></>
-      )}
-      <p>{props.name}</p>
+    <div className='food-info'>
+      <div className='food-name-container'>
+        <p
+          className={
+            props.name.length > 23
+              ? "food-log-item-name scroll"
+              : "food-log-item-name"
+          }
+        >
+          {props.name}
+        </p>
+      </div>
       {props.macros !== undefined ? (
-        <div className="food-macros">
-          <p className="macro">P: {props.macros.protein}</p>
-          <p className="macro">C: {props.macros.carbs}</p>
-          <p className="macro">F: {props.macros.fats}</p>
+        <div className='food-macros'>
+          <p className='macro'>P: {props.macros.protein}</p>
+          <p className='macro'>C: {props.macros.carbs}</p>
+          <p className='macro'>F: {props.macros.fats}</p>
         </div>
       ) : (
         <></>
