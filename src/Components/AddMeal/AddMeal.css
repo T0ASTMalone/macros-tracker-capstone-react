@@ -81,7 +81,7 @@
 
 .food-item:hover,
 .empty:hover {
-  box-shadow: 5px 5px #f5fafa52;
+  box-shadow: 5px 5px #1e1f1f52;
   transform: translateY(-5px);
 }
 

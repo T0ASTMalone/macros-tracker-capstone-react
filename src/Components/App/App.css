@@ -19,3 +19,9 @@ select {
   box-shadow: 3px 3px 5px rgba(117, 117, 117, 0.425);
   border-radius: 5px;
 }
+
+@media only screen and (min-width: 600px) {
+  main {
+    padding: 0 50px;
+  }
+}

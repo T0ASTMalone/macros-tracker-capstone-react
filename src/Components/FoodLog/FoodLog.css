@@ -41,3 +41,9 @@
 .add-food {
   display: flex;
 }
+
+@media only screen and (min-width: 400px) {
+  .food-item-container {
+    justify-content: space-between;
+  }
+}
