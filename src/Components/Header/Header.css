@@ -1,11 +1,12 @@
 .header {
+  max-width: 1420px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0 10px;
   height: 50px;
+  flex-grow: 1;
   z-index: 99;
-  background-color: #f5fafa;
 }
 
 .header-title {
@@ -21,6 +22,6 @@ a {
 
 @media only screen and (min-width: 1440px) {
   .header {
-    padding: 0 100px;
+    padding: 0;
   }
 }

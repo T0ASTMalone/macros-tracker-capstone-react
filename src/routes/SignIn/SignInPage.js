@@ -19,8 +19,10 @@ export default class SignInPage extends Component {
   render() {
     return (
       <div className='sign-in-page'>
-        <h2>Sign In</h2>
-        <SignIn onLoginSuccess={this.handleLoginSuccess} />
+        <div className='sign-in-container'>
+          <h2 className='sign-in-form-name'>Sign In</h2>
+          <SignIn onLoginSuccess={this.handleLoginSuccess} />
+        </div>
       </div>
     );
   }

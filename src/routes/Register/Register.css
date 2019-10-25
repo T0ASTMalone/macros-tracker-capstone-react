@@ -1,25 +1,40 @@
 #register-container {
-  display: flex;
-  justify-content: center;
   background-color: #007fff;
   padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.background {
+  max-width: 1420px;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 label {
   margin-bottom: 10px;
 }
 
-.register-user {
-  background-color: #f5fafa;
+#activity-lvl-label {
+  margin-bottom: 0;
 }
 
 .err {
   color: red;
+  width: max-content;
 }
 
 .login,
-.login-error {
+.login-error,
+.form-name {
   min-width: 280px;
+  width: 80%;
+}
+
+.login-error {
+  margin-bottom: 15px;
 }
 
 .register-user {
@@ -50,7 +65,6 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-right: 0;
 }
 
 .info {
@@ -59,6 +73,7 @@ label {
 
 .goals {
   width: 130px;
+  margin-bottom: 10px;
 }
 
 .button {
@@ -67,16 +82,16 @@ label {
 
 .unit {
   border: 1px solid rgb(179, 178, 178);
-  background-color: #007fff;
-}
-
-.active {
-  border: 1px solid #17224d;
   background-color: #17224d;
 }
 
+.active {
+  border: 1px solid #007fff;
+  background-color: #007fff;
+}
+
 .button-container {
-  margin: 10px;
+  margin: 10px 10px 20px 10px;
 }
 
 .register {
@@ -88,6 +103,8 @@ label {
   display: flex;
   flex-direction: column;
   min-width: 280px;
+  width: 100%;
+  text-align: center;
 }
 
 .slider {
@@ -139,7 +156,7 @@ label {
 }
 
 .error {
-  width: 80%;
+  width: max-content;
 }
 
 #goals-error .error {
@@ -149,38 +166,40 @@ label {
 .goals-error {
   width: 100%;
   justify-content: center;
-  margin-right: 30px;
+  margin-bottom: 15px;
 }
 
 .weight {
   margin-left: 20px;
 }
 
-.inputs {
-  margin-bottom: 20px;
-}
-
 @media only screen and (min-width: 1200px) {
   #register-container {
+    height: calc(100vh - 50px);
+  }
+
+  .user-info {
+    width: 80%;
+  }
+
+  .background {
     justify-content: flex-end;
-    height: calc(100vh - 40px);
-    padding: 0;
+    padding-right: 10px;
   }
 
   .register-user {
-    height: calc(100vh - 40px);
-    border-radius: 0;
+    padding: 20px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
-  #register-container {
-    justify-content: flex-end;
-    height: calc(100vh - 40px);
-    padding: 0;
+  .background {
+    padding-right: 0;
   }
+}
 
-  .register-user {
-    border-radius: 0;
+@media only screen and (min-height: 850px) {
+  #register-container {
+    height: calc(100vh - 50px);
   }
 }
