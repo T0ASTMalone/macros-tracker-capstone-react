@@ -1,5 +1,7 @@
 #dashboard {
   padding: 0 10px;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .section-title {
@@ -52,7 +54,7 @@
 
 #stats-background {
   background-color: #f5fafa;
-  border-bottom-left-radius: 20px;
+  border-bottom-left-radius: 40px;
   border-bottom-right-radius: 60px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;

@@ -1,3 +1,10 @@
+#register-container {
+  display: flex;
+  justify-content: center;
+  background-color: #007fff;
+  padding: 10px;
+}
+
 label {
   margin-bottom: 10px;
 }
@@ -12,13 +19,17 @@ label {
 
 .login,
 .login-error {
-  min-width: 290px;
+  min-width: 280px;
 }
 
 .register-user {
+  flex-grow: 0.3;
   padding: 10px;
-  min-width: 320px;
+  min-width: 300px;
+  max-width: 1000px;
   align-items: center;
+  background-color: #f5fafa;
+  border-radius: 10px;
 }
 
 .register-user,
@@ -76,7 +87,7 @@ label {
 .slide-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-width: 280px;
 }
 
 .slider {
@@ -147,4 +158,16 @@ label {
 
 .inputs {
   margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 1440px) {
+  #register-container {
+    justify-content: flex-end;
+    height: calc(100vh - 40px);
+    padding: 0;
+  }
+
+  .register-user {
+    border-radius: 0;
+  }
 }

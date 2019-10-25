@@ -65,3 +65,22 @@
     transform: scale(1) translate3d(0, 0, 0);
   }
 }
+
+@media only screen and (min-width: 600px) {
+  .pop-up {
+    margin: 0 auto;
+    width: 600px;
+  }
+}
+
+@media only screen and (min-height: 700px) and (max-height: 999px) {
+  .pop-up {
+    height: 650px;
+  }
+}
+
+@media only screen and (min-height: 1000px) {
+  .pop-up {
+    height: 850px;
+  }
+}

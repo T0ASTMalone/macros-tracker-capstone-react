@@ -216,7 +216,7 @@ export default class Register extends Component {
   render() {
     const unit = this.state.unit.value;
     return (
-      <>
+      <div id="register-container">
         <form
           action='register-user'
           className='register-user'
@@ -471,7 +471,7 @@ export default class Register extends Component {
             Register
           </button>
         </form>
-      </>
+      </div>
     );
   }
 }
