@@ -93,7 +93,8 @@ export default class SignIn extends Component {
           <input
             id="user"
             type="email"
-            className="input email"
+            className="sign-in-input login"
+            placeHolder="email"
             onChange={e => this.handleUpdateEmail(e.target.value)}
             //required
           />
@@ -104,7 +105,8 @@ export default class SignIn extends Component {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            className="input password"
+            className="sign-in-input login"
+            placeHolder="password"
             onChange={e => this.handleUpdatePassword(e.target.value)}
             //required
             id="password"
@@ -112,6 +114,7 @@ export default class SignIn extends Component {
           <SignInError
             hasError={this.validatePassword()}
             touched={this.state.password.touched}
+            className="login-error"
           />
           <button className="button">Sign In</button>
         </form>

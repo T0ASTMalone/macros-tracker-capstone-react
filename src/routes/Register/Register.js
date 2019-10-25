@@ -216,233 +216,238 @@ export default class Register extends Component {
     const unit = this.state.unit.value;
     return (
       <div id="register-container">
-        <form
-          action="register-user"
-          className="register-user"
-          onSubmit={this.handleSubmit}
-        >
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            className="login"
-            type="email"
-            required
-            placeHolder="email"
-            onChange={e => this.updateEmail(e.target.value)}
-          />
-          <div className="login-error">
-            <RegisterError hasError={this.validateEmail()} />
-          </div>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            className="login"
-            required
-            placeHolder="password"
-            onChange={e => this.updatePassword(e.target.value)}
-          />
-          <div className="login-error">
-            <RegisterError hasError={this.validatePassword()} />
-          </div>
-          <label htmlFor="confirm-password">Confirm Password</label>
-          <input
-            type="password"
-            id="confirm-password"
-            className="login"
-            required
-            placeHolder="confirm-password"
-            onChange={e => this.updateConfirmPassword(e.target.value)}
-          />
-          <div className="login-error">
-            <RegisterError hasError={this.validateConfirmPassword()} />
-          </div>
-          <div className="user-info">
-            <div className="age-gen">
-              <div className="inputs">
-                <div>
-                  <label htmlFor="age">Age</label>
-                  <br />
-                  <input
-                    type="number"
-                    min="16"
-                    id="age"
-                    className="info"
-                    placeHolder="yrs"
-                    onChange={e => this.updateAge(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="gender">Gender</label>
-                  <br />
-                  <select
-                    id="gender"
-                    className="info"
-                    onChange={e => this.updateGender(e.target.value)}
-                    defaultValue="male"
-                  >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
-                </div>
-              </div>
-              <div className="error-messages">
-                <div className="error">
-                  <RegisterError hasError={this.validateAge()} />
-                </div>
-                <div className="error">
-                  <RegisterError hasError={this.validateGender()} />
-                </div>
-              </div>
-            </div>
+        <div className="background">
+          <form
+            action="register-user"
+            className="register-user"
+            onSubmit={this.handleSubmit}
+          >
+            <h2 className="form-name">Register</h2>
 
-            <div className="button-container">
-              <button
-                type="button"
-                className={
-                  unit === 'metric'
-                    ? 'active button unit metric'
-                    : 'button unit metric'
-                }
-                value="metric"
-                name="unit"
-                select="true"
-                onClick={e => this.handleUnitSelect(e.target.value)}
-              >
-                Metric
-              </button>
-              <button
-                type="button"
-                className={
-                  unit === 'imperial'
-                    ? 'active button unit imperial'
-                    : 'button unit imperial'
-                }
-                value="imperial"
-                name="unit"
-                onClick={e => this.handleUnitSelect(e.target.value)}
-              >
-                Imperial
-              </button>
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              className="login"
+              type="email"
+              required
+              placeHolder="email"
+              onChange={e => this.updateEmail(e.target.value)}
+            />
+            <div className="login-error">
+              <RegisterError hasError={this.validateEmail()} />
             </div>
-            <div className="physical">
-              <div className="inputs">
-                {this.state.unit.value === 'metric' ? (
-                  <>
-                    <div className="">
-                      <label htmlFor="cm">Height</label>
-                      <br />
-                      <input
-                        type="number"
-                        step="0.01"
-                        id="cm"
-                        className="height info"
-                        min="0"
-                        placeHolder="cm"
-                        onChange={e => this.updateCm(e.target.value)}
-                      />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="">
-                      <label htmlFor="ft">Height</label>
-                      <br />
-                      <input
-                        type="number"
-                        id="ft"
-                        className="height info"
-                        min="0"
-                        placeHolder="ft"
-                        onChange={e => this.updateFeet(e.target.value)}
-                      />
-                    </div>
-
-                    <div className="">
-                      <label htmlFor="in">in</label>
-                      <br />
-                      <input
-                        type="number"
-                        id="in"
-                        className="height info"
-                        min="0"
-                        placeHolder="in"
-                        onChange={e => this.updateInches(e.target.value)}
-                      />
-                    </div>
-                  </>
-                )}
-                <div className="">
-                  <label htmlFor="weight">Weight</label>
-                  <br />
-                  <input
-                    type="number"
-                    step="0.01"
-                    id="weight"
-                    className="info"
-                    min="0"
-                    placeHolder={unit === 'imperial' ? 'lbs' : 'kg'}
-                    onChange={e => this.updateWeight(e.target.value)}
-                  />
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              className="login"
+              required
+              placeHolder="password"
+              onChange={e => this.updatePassword(e.target.value)}
+            />
+            <div className="login-error">
+              <RegisterError hasError={this.validatePassword()} />
+            </div>
+            <label htmlFor="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              className="login"
+              required
+              placeHolder="confirm-password"
+              onChange={e => this.updateConfirmPassword(e.target.value)}
+            />
+            <div className="login-error">
+              <RegisterError hasError={this.validateConfirmPassword()} />
+            </div>
+            <div className="user-info">
+              <div className="age-gen">
+                <div className="inputs">
+                  <div>
+                    <label htmlFor="age">Age</label>
+                    <br />
+                    <input
+                      type="number"
+                      min="16"
+                      id="age"
+                      className="info"
+                      placeHolder="yrs"
+                      onChange={e => this.updateAge(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="gender">Gender</label>
+                    <br />
+                    <select
+                      id="gender"
+                      className="info"
+                      onChange={e => this.updateGender(e.target.value)}
+                      defaultValue="male"
+                    >
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="error-messages">
+                  <div className="error">
+                    <RegisterError hasError={this.validateAge()} />
+                  </div>
+                  <div className="error">
+                    <RegisterError hasError={this.validateGender()} />
+                  </div>
                 </div>
               </div>
 
-              <div className="error-messages">
-                <div className="error">
-                  <RegisterError hasError={this.validateHeight()} />
+              <div className="button-container">
+                <button
+                  type="button"
+                  className={
+                    unit === 'metric'
+                      ? 'active button unit metric'
+                      : 'button unit metric'
+                  }
+                  value="metric"
+                  name="unit"
+                  select="true"
+                  onClick={e => this.handleUnitSelect(e.target.value)}
+                >
+                  Metric
+                </button>
+                <button
+                  type="button"
+                  className={
+                    unit === 'imperial'
+                      ? 'active button unit imperial'
+                      : 'button unit imperial'
+                  }
+                  value="imperial"
+                  name="unit"
+                  onClick={e => this.handleUnitSelect(e.target.value)}
+                >
+                  Imperial
+                </button>
+              </div>
+              <div className="physical">
+                <div className="inputs">
+                  {this.state.unit.value === 'metric' ? (
+                    <>
+                      <div className="">
+                        <label htmlFor="cm">Height</label>
+                        <br />
+                        <input
+                          type="number"
+                          step="0.01"
+                          id="cm"
+                          className="height info"
+                          min="0"
+                          placeHolder="cm"
+                          onChange={e => this.updateCm(e.target.value)}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="">
+                        <label htmlFor="ft">Height</label>
+                        <br />
+                        <input
+                          type="number"
+                          id="ft"
+                          className="height info"
+                          min="0"
+                          placeHolder="ft"
+                          onChange={e => this.updateFeet(e.target.value)}
+                        />
+                      </div>
+
+                      <div className="">
+                        <label htmlFor="in">in</label>
+                        <br />
+                        <input
+                          type="number"
+                          id="in"
+                          className="height info"
+                          min="0"
+                          placeHolder="in"
+                          onChange={e => this.updateInches(e.target.value)}
+                        />
+                      </div>
+                    </>
+                  )}
+                  <div className="">
+                    <label htmlFor="weight">Weight</label>
+                    <br />
+                    <input
+                      type="number"
+                      step="0.01"
+                      id="weight"
+                      className="info"
+                      min="0"
+                      placeHolder={unit === 'imperial' ? 'lbs' : 'kg'}
+                      onChange={e => this.updateWeight(e.target.value)}
+                    />
+                  </div>
                 </div>
-                <div className="weight">
-                  <RegisterError hasError={this.validateWeight()} />
+
+                <div className="error-messages">
+                  <div className="error">
+                    <RegisterError hasError={this.validateHeight()} />
+                  </div>
+                  <div className="error">
+                    <RegisterError hasError={this.validateWeight()} />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="">
-              <label htmlFor="fitness-goals">Fitness Goals</label>
-              <br />
-              <select
-                name="fitness-goals"
-                id="fitness-goals"
-                className="goals"
-                onChange={e => this.updateGoals(e.target.value)}
-              >
-                <option value="">-- Select Goal --</option>
-                <option value="maintain">Maintain weight</option>
-                <option value="gain">Gain weight</option>
-                <option value="lose">Lose weight</option>
-              </select>
-            </div>
-            <div className="error-messages goals-error">
-              <div id="goals-error" className="error-goals">
-                <RegisterError hasError={this.validateGoal()} />
+              <div className="">
+                <label htmlFor="fitness-goals">Fitness Goals</label>
+                <br />
+                <select
+                  name="fitness-goals"
+                  id="fitness-goals"
+                  className="goals"
+                  onChange={e => this.updateGoals(e.target.value)}
+                >
+                  <option value="">-- Select Goal --</option>
+                  <option value="maintain">Maintain weight</option>
+                  <option value="gain">Gain weight</option>
+                  <option value="lose">Lose weight</option>
+                </select>
               </div>
-            </div>
+              <div className="error-messages goals-error">
+                <div id="goals-error" className="error-goals">
+                  <RegisterError hasError={this.validateGoal()} />
+                </div>
+              </div>
 
-            <div className="slide-container">
-              <label htmlFor="level-of-activity">Level of activity</label>
+              <div className="slide-container">
+                <label id="activity-lvl-label" htmlFor="level-of-activity">
+                  Level of activity
+                </label>
 
-              <input
-                id="level-of-activity"
-                type="range"
-                min="1.2"
-                max="1.9"
-                className="slider"
-                step=".175"
-                defaultValue="1.55"
-                onChange={e => this.updateActivityLvl(e.target.value)}
-                list="defs"
-              />
-              <datalist id="defs">
-                <option value="1.2"></option>
-                <option value="1.375"></option>
-                <option value="1.55"></option>
-                <option value="1.725"></option>
-                <option value="1.9"></option>
-              </datalist>
-              <RegisterError hasError={this.validateActivityLvl()} />
-            </div>
+                <input
+                  id="level-of-activity"
+                  type="range"
+                  min="1.2"
+                  max="1.9"
+                  className="slider"
+                  step=".175"
+                  defaultValue="1.55"
+                  onChange={e => this.updateActivityLvl(e.target.value)}
+                  list="defs"
+                />
+                <datalist id="defs">
+                  <option value="1.2"></option>
+                  <option value="1.375"></option>
+                  <option value="1.55"></option>
+                  <option value="1.725"></option>
+                  <option value="1.9"></option>
+                </datalist>
+                <RegisterError hasError={this.validateActivityLvl()} />
+              </div>
 
-            {/*<div className="lvls">
+              {/*<div className="lvls">
               <div className="description">
                 <p>Sedentary</p>
               </div>
@@ -459,14 +464,15 @@ export default class Register extends Component {
                 <p>Extra Active</p>
               </div>
                 </div>*/}
-          </div>
-          <div className="error">
-            <p>{this.state.error}</p>
-          </div>
-          <button type="submit" className="button register">
-            Register
-          </button>
-        </form>
+            </div>
+            <div className="error">
+              <p>{this.state.error}</p>
+            </div>
+            <button type="submit" className="button register">
+              Register
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
