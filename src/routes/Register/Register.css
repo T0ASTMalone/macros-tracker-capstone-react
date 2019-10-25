@@ -160,6 +160,19 @@ label {
   margin-bottom: 20px;
 }
 
+@media only screen and (min-width: 1200px) {
+  #register-container {
+    justify-content: flex-end;
+    height: calc(100vh - 40px);
+    padding: 0;
+  }
+
+  .register-user {
+    height: calc(100vh - 40px);
+    border-radius: 0;
+  }
+}
+
 @media only screen and (min-width: 1440px) {
   #register-container {
     justify-content: flex-end;
