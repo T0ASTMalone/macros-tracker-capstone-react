@@ -1,9 +1,23 @@
+.landing-page-container {
+  max-width: 1420px;
+}
+
 .section {
-  border: 1px solid black;
+  background-color: #007fff;
+  border-radius: 10px;
   margin: 20px;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  color: white;
+  min-height: 300px;
+  animation: 1s ease-out 0s 1 slideInFromRight;
+}
+
+.section:nth-child(odd) {
+  background-color: #f5fafa;
+  color: #17224d;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
 }
 
 .title {
@@ -13,4 +27,27 @@
 
 .section-title {
   align-self: center;
+}
+
+@media only screen and (min-width: 1200px) {
+  .landing-page-container {
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

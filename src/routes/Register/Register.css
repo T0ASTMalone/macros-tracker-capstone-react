@@ -198,7 +198,7 @@ label {
   }
 }
 
-@media only screen and (min-height: 850px) {
+@media only screen and (min-height: 820px) {
   #register-container {
     height: calc(100vh - 50px);
   }
