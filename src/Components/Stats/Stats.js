@@ -5,16 +5,24 @@ import './Stats.css';
 export default function Stats(props) {
   return (
     <div className="stats">
-      <h2 className="section-title stats-title">Todays Stats</h2>
-      <p className="macros">
-        Protein: {props.progress.protein} / {props.macros.protein} g
-      </p>
-      <p className="macros">
-        Carbs: {props.progress.carbs}/ {props.macros.carbs} g
-      </p>
-      <p className="macros">
-        Fat: {props.progress.fats} / {props.macros.fats} g
-      </p>
+      <h2 className="section-title stats-title">Your Goals</h2>
+      <div className="stats-container">
+        <div className="macro-goal">
+          <p className="macros">
+            Protein: {props.progress.protein} / {props.macros.protein} g
+          </p>
+        </div>
+        <div className="macro-goal">
+          <p className="macros">
+            Carbs: {props.progress.carbs}/ {props.macros.carbs} g
+          </p>
+        </div>
+        <div className="macro-goal">
+          <p className="macros">
+            Fat: {props.progress.fats} / {props.macros.fats} g
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
