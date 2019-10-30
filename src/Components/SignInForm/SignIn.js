@@ -95,7 +95,7 @@ export default class SignIn extends Component {
             id='user'
             type='email'
             className='sign-in-input login'
-            placeHolder='email'
+            placeholder='email'
             onChange={e => this.handleUpdateEmail(e.target.value)}
             //required
           />
@@ -106,8 +106,9 @@ export default class SignIn extends Component {
           <label htmlFor='password'>Password</label>
           <input
             type='password'
+            q
             className='sign-in-input login'
-            placeHolder='password'
+            placeholder='password'
             onChange={e => this.handleUpdatePassword(e.target.value)}
             //required
             id='password'
