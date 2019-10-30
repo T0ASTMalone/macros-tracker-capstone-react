@@ -5,6 +5,8 @@ import TokenService from "../../Services/token-service";
 import MealListContext from "../../context/MealLIstContext";
 import MealsContext from "../../context/MealContext";
 import IdleService from "../../Services/idle-service";
+//import Favicon from "react-favicon";
+import logo from "../../screenshots/logo-small.png";
 
 export default class Header extends Component {
   static contextType = MealListContext;
@@ -50,11 +52,17 @@ export default class Header extends Component {
           return (
             <>
               <nav className='header'>
-                <h1>
-                  <Link className='header-title' to='/'>
-                    MacroFy
+                <div className='icon-name'>
+                  <Link className='icon-link' to='/'>
+                    <img className='icon' alt='icon' src={logo} />
                   </Link>
-                </h1>
+                  <h1>
+                    <Link className='header-title' to='/'>
+                      MacroFy
+                    </Link>
+                  </h1>
+                </div>
+
                 {TokenService.hasAuthToken()
                   ? this.renderLogoutLink(handleLogout)
                   : this.renderLoginLink()}

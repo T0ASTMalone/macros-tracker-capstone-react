@@ -10,6 +10,19 @@
   height: 40px;
 }
 
+.icon-name {
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+
+.icon {
+  border-radius: 3px;
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+}
+
 .header-title {
   font-size: 30px;
 }
@@ -35,5 +48,11 @@ a {
 @media only screen and (min-width: 1440px) {
   .header {
     padding: 0;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .header-title {
+    display: none;
   }
 }
