@@ -2,6 +2,12 @@
 
 The macros tracker allows you to track your macro nutrients (Proteins, Carbs, and Fats) throughout your day in order to meet your daily goals. By creating meals and adding them to your day you can see the total macros you have eaten and how many you have left.
 
+## Website
+
+The website is a Heroku/Zeit application and may take a minute to start up when logging in.
+
+url: https://miguels-macro-tracker.now.sh/
+
 ## Site map
 
 ---
@@ -81,3 +87,8 @@ MacroFy was built with:
 - Express.js
 - PostgreSQL
 - Mocha and Chai for testing
+
+## Development Road Map
+
+- Add workout tracker
+- Add search and filter options to food/meal log
