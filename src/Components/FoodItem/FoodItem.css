@@ -14,12 +14,19 @@
 }
 
 .food-log-item-name {
-  min-width: 320px;
+  min-width: 500px;
   margin-top: 0;
 }
 
 .macro {
   margin: 0;
+}
+
+@media only screen and (max-width: 450px) {
+  .scroll {
+    animation: floatText 10s infinite linear;
+    -webkit-animation-delay: 1.75s;
+  }
 }
 
 @keyframes floatText {
@@ -30,12 +37,5 @@
   90%,
   100% {
     transform: translateX(-120%);
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  .scroll {
-    animation: floatText 10s infinite linear;
-    -webkit-animation-delay: 2s;
   }
 }
