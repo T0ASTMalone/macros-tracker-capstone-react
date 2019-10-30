@@ -1,13 +1,13 @@
-import config from '../config';
-import TokenService from './token-service';
-import IdleService from './idle-service';
+import config from "../config";
+import TokenService from "./token-service";
+import IdleService from "./idle-service";
 
 const AuthApiService = {
   postUser(user) {
     return fetch(`${config.API_ENDPOINT}/users`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json"
       },
       body: JSON.stringify(user)
     }).then(res =>
@@ -17,9 +17,9 @@ const AuthApiService = {
 
   postLogin(credentials) {
     return fetch(`${config.API_ENDPOINT}/auth/login`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json"
       },
       body: JSON.stringify(credentials)
     })
@@ -27,7 +27,6 @@ const AuthApiService = {
         return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
       })
       .then(res => {
-        console.log(res);
         TokenService.saveAuthToken(res.authToken);
         IdleService.registerIdleTimerResets();
         TokenService.queueCallBackBeforeExpiry(() =>
@@ -39,7 +38,7 @@ const AuthApiService = {
 
   postRefreshToken() {
     return fetch(`${config.API_ENDPOINT}/auth/refresh`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         authorization: `Bearer ${TokenService.getAuthToken()}`
       }
@@ -55,7 +54,6 @@ const AuthApiService = {
         );
       })
       .catch(err => {
-        console.log('refresh token request error');
         console.error(err);
       });
   }

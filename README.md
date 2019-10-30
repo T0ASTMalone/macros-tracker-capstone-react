@@ -42,37 +42,37 @@ As a user, I want to sign in so I can access my profile.
 
 As a user, I want to see my current goals and my progress so far.
 
-![Dashboard Page](/src/screenshots/wireframes/dash.jpg)
+![Dashboard Page](/src/screenshots/styled-screenshots/progress.PNG)
 
 **Add Meal**
 
 As a user, I want to add a meal to my day so that I can track my macros.
 
-![Create Meal Page](/src/screenshots/wireframes/create-meal.jpg)
+![Create Meal Page](/src/screenshots/styled-screenshots/creating-meal.PNG)
 
 **Add Food**
 
 As a user, I want to add a food to my meal.
 
-![Add Food Page](/src/screenshots/wireframes/add-food.jpg)
+![Add Food Page](/src/screenshots/styled-screenshots/create-food.PNG)
 
 **Food log**
 
 As a user, I want to see the foods that I have logged.
 
-![Food Log Page](/src/screenshots/wireframes/add-existing.jpg)
+![Food Log Page](/src/screenshots/styled-screenshots/food-log.PNG)
 
 **Meal log**
 
 As a user, I want to see the meals that I have logged.
 
-![Food Log Page](/src/screenshots/wireframes/add-existing.jpg)
+![Food Log Page](/src/screenshots/styled-screenshots/meal-log.PNG)
 
 ## Technical
 
 ---
 
-Macrofy was built with:
+MacroFy was built with:
 
 #### Front End
 

@@ -18,7 +18,6 @@ export default class SignInPage extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className='sign-in-page'>
         <div className='sign-in-container'>

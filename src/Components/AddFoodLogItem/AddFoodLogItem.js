@@ -87,7 +87,6 @@ export default class AddFoodLogItem extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <form action='add-food' className='add-food' onSubmit={this.handleSubmit}>
         <label htmlFor='servings'>Servings</label>

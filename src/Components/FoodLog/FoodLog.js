@@ -10,6 +10,7 @@ export default class FoodLog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      error = null,
       foods: []
     };
   }
@@ -28,11 +29,12 @@ export default class FoodLog extends React.Component {
       const userFoods = await MacroFyServices.getAllFoods(id);
       this.setState({ foods: [...userFoods] });
     } catch (error) {
-      console.log(error);
+      this.setState({error})
     }
   }
 
   render() {
+    const {err} = this.state.error;
     return (
       <div id="food-log" className="container">
         <section className="food-log-container">
@@ -52,10 +54,10 @@ export default class FoodLog extends React.Component {
             })
           ) : (
             <div className="empty-log">
-              <p>
-                Nothing to see here. Start adding meals by searching for foods
-                or creating new ones. Then clicking the create meal button.
-              </p>
+                {err ? 
+                  <p>this.state.error</p> :  
+                  <p>Nothing to see here. Start adding meals by searching for foods
+                  or creating new ones. Then clicking the create meal button.</p>}
             </div>
           )}
         </section>

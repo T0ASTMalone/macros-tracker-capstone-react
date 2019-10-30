@@ -231,7 +231,7 @@ export default class Register extends Component {
               className='login'
               type='email'
               required
-              placeholer='email'
+              placeholder='email'
               onChange={e => this.updateEmail(e.target.value)}
             />
             <div className='login-error'>
@@ -243,7 +243,7 @@ export default class Register extends Component {
               type='password'
               className='login'
               required
-              placeholer='password'
+              placeholder='password'
               onChange={e => this.updatePassword(e.target.value)}
             />
             <div className='login-error'>
@@ -255,7 +255,7 @@ export default class Register extends Component {
               id='confirm-password'
               className='login'
               required
-              placeholer='confirm-password'
+              placeholder='confirm-password'
               onChange={e => this.updateConfirmPassword(e.target.value)}
             />
             <div className='login-error'>
@@ -272,7 +272,7 @@ export default class Register extends Component {
                       min='16'
                       id='age'
                       className='info'
-                      placeholer='yrs'
+                      placeholder='yrs'
                       onChange={e => this.updateAge(e.target.value)}
                     />
                   </div>
@@ -342,7 +342,7 @@ export default class Register extends Component {
                           id='cm'
                           className='height info'
                           min='0'
-                          placeholer='cm'
+                          placeholder='cm'
                           onChange={e => this.updateCm(e.target.value)}
                         />
                       </div>
@@ -357,7 +357,7 @@ export default class Register extends Component {
                           id='ft'
                           className='height info'
                           min='0'
-                          placeholer='ft'
+                          placeholder='ft'
                           onChange={e => this.updateFeet(e.target.value)}
                         />
                       </div>
@@ -370,7 +370,7 @@ export default class Register extends Component {
                           id='in'
                           className='height info'
                           min='0'
-                          placeholer='in'
+                          placeholder='in'
                           onChange={e => this.updateInches(e.target.value)}
                         />
                       </div>
@@ -385,7 +385,7 @@ export default class Register extends Component {
                       id='weight'
                       className='info'
                       min='0'
-                      placeholer={unit === "imperial" ? "lbs" : "kg"}
+                      placeholder={unit === "imperial" ? "lbs" : "kg"}
                       onChange={e => this.updateWeight(e.target.value)}
                     />
                   </div>

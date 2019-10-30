@@ -80,7 +80,6 @@ export default class SignIn extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { error } = this.state;
     return (
       <div className='sign-in-form'>
