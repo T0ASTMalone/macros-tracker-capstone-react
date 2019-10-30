@@ -8,7 +8,7 @@ The macros tracker allows you to track your macro nutrients (Proteins, Carbs, an
 
 url: https://www.gloomaps.com/JKGJNe7Aqb
 
-![Site Map](/screenshots/macros-tracker-sitemap.png)
+![Site Map](/src/screenshots/macros-tracker-sitemap.png)
 
 ## User Stories
 
@@ -18,13 +18,13 @@ url: https://www.gloomaps.com/JKGJNe7Aqb
 
 As a user, I want to find out what the site is about.
 
-![Landing Page](/screenshots/wireframes/landing.jpg)
+![Landing Page](/src/screenshots/wireframes/landing.jpg)
 
 **Register**
 
 As a user, I want to register so that I can start tracking my macros.
 
-![Register Page](/screenshots/wireframes/register.jpg)
+![Register Page](/src/screenshots/wireframes/register.jpg)
 
 **User Info**
 
@@ -36,37 +36,37 @@ As a user, I want to create my goals.
 
 As a user, I want to sign in so I can access my profile.
 
-![Login Page](/screenshots/wireframes/login.jpg)
+![Login Page](/src/screenshots/wireframes/login.jpg)
 
 **Dashboard**
 
 As a user, I want to see my current goals and my progress so far.
 
-![Dashboard Page](/screenshots/wireframes/dash.jpg)
+![Dashboard Page](/src/screenshots/wireframes/dash.jpg)
 
 **Add Meal**
 
 As a user, I want to add a meal to my day so that I can track my macros.
 
-![Create Meal Page](/screenshots/wireframes/create-meal.jpg)
+![Create Meal Page](/src/screenshots/wireframes/create-meal.jpg)
 
 **Add Food**
 
 As a user, I want to add a food to my meal.
 
-![Add Food Page](/screenshots/wireframes/add-food.jpg)
+![Add Food Page](/src/screenshots/wireframes/add-food.jpg)
 
 **Food log**
 
 As a user, I want to see the foods that I have logged.
 
-![Food Log Page](/screenshots/wireframes/add-existing.jpg)
+![Food Log Page](/src/screenshots/wireframes/add-existing.jpg)
 
 **Meal log**
 
 As a user, I want to see the meals that I have logged.
 
-![Food Log Page](/screenshots/wireframes/add-existing.jpg)
+![Food Log Page](/src/screenshots/wireframes/add-existing.jpg)
 
 ## Technical
 
