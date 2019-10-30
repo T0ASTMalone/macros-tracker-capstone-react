@@ -70,6 +70,7 @@ export default class Register extends Component {
 
   clearValues = () => {
     this.setState({
+      error: null,
       email: { value: "", touched: false },
       password: { value: "", touched: false },
       confirmPassword: { value: "", touched: false },
@@ -167,8 +168,12 @@ export default class Register extends Component {
   }
   validateConfirmPassword() {
     const confirmPassword = this.state.confirmPassword.value;
+    const password = this.state.password.value;
     if (confirmPassword < 1) {
       return "You must confirm the password";
+    }
+    if (confirmPassword !== password) {
+      return "Password does not match";
     }
   }
   validateGoal() {
@@ -178,7 +183,7 @@ export default class Register extends Component {
     }
   }
   validateHeight() {
-    const height = this.state.feet.value;
+    const height = this.state.feet.value || this.state.cm.value;
     if (height < 1) {
       return "A height is required";
     }
@@ -209,163 +214,267 @@ export default class Register extends Component {
   }
 
   render() {
+    const unit = this.state.unit.value;
     return (
-      <>
-        <form
-          action='register-user'
-          className='register-user'
-          onSubmit={this.handleSubmit}
-        >
-          <label htmlFor='email'>Email</label>
-          <input
-            type='email'
-            required
-            onChange={e => this.updateEmail(e.target.value)}
-          />
-          <RegisterError hasError={this.validateEmail()} />
-          <label htmlFor='password'>Password</label>
-          <input
-            id='password'
-            type='password'
-            required
-            onChange={e => this.updatePassword(e.target.value)}
-          />
-          <RegisterError hasError={this.validatePassword()} />
-          <label htmlFor='confirm-password'>Confirm Password</label>
-          <input
-            type='password'
-            id='confirm-password'
-            required
-            onChange={e => this.updateConfirmPassword(e.target.value)}
-          />
-          <RegisterError hasError={this.validateConfirmPassword()} />
-          <div className='user-info'>
-            <label htmlFor='age'>Age</label>
-            <input
-              type='number'
-              min='16'
-              id='age'
-              onChange={e => this.updateAge(e.target.value)}
-            />
-            <RegisterError hasError={this.validateAge()} />
-            <label htmlFor='gender'>Gender</label>
-            <select
-              id='gender'
-              onChange={e => this.updateGender(e.target.value)}
-              defaultValue='male'
-            >
-              <option value='male'>Male</option>
-              <option value='female'>Female</option>
-            </select>
-            <RegisterError hasError={this.validateGender()} />
-            <div className='button-container'>
-              <button
-                type='button'
-                className='button metric'
-                value='metric'
-                name='unit'
-                select='true'
-                onClick={e => this.handleUnitSelect(e.target.value)}
-              >
-                Metric
-              </button>
-              <button
-                type='button'
-                className='button imperial'
-                value='imperial'
-                name='unit'
-                onClick={e => this.handleUnitSelect(e.target.value)}
-              >
-                Imperial
-              </button>
-            </div>
+      <div id='register-container'>
+        <div className='background'>
+          <form
+            action='register-user'
+            className='register-user'
+            onSubmit={this.handleSubmit}
+          >
+            <h2 className='form-name'>Register</h2>
 
-            <label htmlFor='height'>Height</label>
-            {this.state.unit.value === "metric" ? (
-              <>
-                <label htmlFor='cm'>cm</label>
-                <input
-                  type='number'
-                  step='0.01'
-                  id='cm'
-                  className='height'
-                  min='0'
-                  onChange={e => this.updateCm(e.target.value)}
-                />
-              </>
-            ) : (
-              <>
-                <label htmlFor='ft'>ft</label>
-                <input
-                  type='number'
-                  id='ft'
-                  className='height'
-                  min='0'
-                  onChange={e => this.updateFeet(e.target.value)}
-                />
-                <label htmlFor='in'>in</label>
-                <input
-                  type='number'
-                  id='in'
-                  className='height'
-                  min='0'
-                  onChange={e => this.updateInches(e.target.value)}
-                />
-                <RegisterError hasError={this.validateHeight()} />
-              </>
-            )}
-
-            <label htmlFor='weight'>Weight</label>
+            <label htmlFor='email'>Email</label>
             <input
-              type='number'
-              step='0.01'
-              id='weight'
-              min='0'
-              onChange={e => this.updateWeight(e.target.value)}
+              id='email'
+              className='login'
+              type='email'
+              required
+              placeHolder='email'
+              onChange={e => this.updateEmail(e.target.value)}
             />
-            <RegisterError hasError={this.validateWeight()} />
-            <div className='slidecontainer'>
-              <label htmlFor='level-of-activity'>Level of activity</label>
-              <input
-                id='level-of-activity'
-                type='range'
-                min='1.2'
-                max='1.9'
-                className='slider'
-                step='.175'
-                defaultValue='1.55'
-                onChange={e => this.updateActivityLvl(e.target.value)}
-                list='volsettings'
-              />
-              <datalist id='volsettings'>
-                <option value='1.2'>0</option>
-                <option value='1.375'>1</option>
-                <option value='1.55'>2</option>
-                <option value='1.725'>3</option>
-                <option value='1.9'>4</option>
-              </datalist>
-              <RegisterError hasError={this.validateActivityLvl()} />
+            <div className='login-error'>
+              <RegisterError hasError={this.validateEmail()} />
             </div>
-            <label htmlFor='fitness-goals'>Fitness Goals</label>
-            <select
-              name='fitness-goals'
-              id='fitness-goals'
-              onChange={e => this.updateGoals(e.target.value)}
-            >
-              <option value='maintain'>Maintain weight</option>
-              <option value='gain'>Gain weight</option>
-              <option value='lose'>Lose weight</option>
-            </select>
-            <RegisterError hasError={this.validateGoal()} />
-          </div>
-          <div className='error'>
-            <p>{this.state.error}</p>
-          </div>
-          <button type='submit' className='button register'>
-            Register
-          </button>
-        </form>
-      </>
+            <label htmlFor='password'>Password</label>
+            <input
+              id='password'
+              type='password'
+              className='login'
+              required
+              placeHolder='password'
+              onChange={e => this.updatePassword(e.target.value)}
+            />
+            <div className='login-error'>
+              <RegisterError hasError={this.validatePassword()} />
+            </div>
+            <label htmlFor='confirm-password'>Confirm Password</label>
+            <input
+              type='password'
+              id='confirm-password'
+              className='login'
+              required
+              placeHolder='confirm-password'
+              onChange={e => this.updateConfirmPassword(e.target.value)}
+            />
+            <div className='login-error'>
+              <RegisterError hasError={this.validateConfirmPassword()} />
+            </div>
+            <div className='user-info'>
+              <div className='age-gen'>
+                <div className='inputs'>
+                  <div>
+                    <label htmlFor='age'>Age</label>
+                    <br />
+                    <input
+                      type='number'
+                      min='16'
+                      id='age'
+                      className='info'
+                      placeHolder='yrs'
+                      onChange={e => this.updateAge(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor='gender'>Gender</label>
+                    <br />
+                    <select
+                      id='gender'
+                      className='info'
+                      onChange={e => this.updateGender(e.target.value)}
+                      defaultValue='male'
+                    >
+                      <option value='male'>Male</option>
+                      <option value='female'>Female</option>
+                    </select>
+                  </div>
+                </div>
+                <div className='error-messages'>
+                  <div className='error'>
+                    <RegisterError hasError={this.validateAge()} />
+                  </div>
+                  <div className='error'>
+                    <RegisterError hasError={this.validateGender()} />
+                  </div>
+                </div>
+              </div>
+
+              <div className='button-container'>
+                <button
+                  type='button'
+                  className={
+                    unit === "metric"
+                      ? "active button unit metric"
+                      : "button unit metric"
+                  }
+                  value='metric'
+                  name='unit'
+                  select='true'
+                  onClick={e => this.handleUnitSelect(e.target.value)}
+                >
+                  Metric
+                </button>
+                <button
+                  type='button'
+                  className={
+                    unit === "imperial"
+                      ? "active button unit imperial"
+                      : "button unit imperial"
+                  }
+                  value='imperial'
+                  name='unit'
+                  onClick={e => this.handleUnitSelect(e.target.value)}
+                >
+                  Imperial
+                </button>
+              </div>
+              <div className='physical'>
+                <div className='inputs'>
+                  {this.state.unit.value === "metric" ? (
+                    <>
+                      <div className=''>
+                        <label htmlFor='cm'>Height</label>
+                        <br />
+                        <input
+                          type='number'
+                          step='0.01'
+                          id='cm'
+                          className='height info'
+                          min='0'
+                          placeHolder='cm'
+                          onChange={e => this.updateCm(e.target.value)}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className=''>
+                        <label htmlFor='ft'>Height</label>
+                        <br />
+                        <input
+                          type='number'
+                          id='ft'
+                          className='height info'
+                          min='0'
+                          placeHolder='ft'
+                          onChange={e => this.updateFeet(e.target.value)}
+                        />
+                      </div>
+
+                      <div className=''>
+                        <label htmlFor='in'>in</label>
+                        <br />
+                        <input
+                          type='number'
+                          id='in'
+                          className='height info'
+                          min='0'
+                          placeHolder='in'
+                          onChange={e => this.updateInches(e.target.value)}
+                        />
+                      </div>
+                    </>
+                  )}
+                  <div className=''>
+                    <label htmlFor='weight'>Weight</label>
+                    <br />
+                    <input
+                      type='number'
+                      step='0.01'
+                      id='weight'
+                      className='info'
+                      min='0'
+                      placeHolder={unit === "imperial" ? "lbs" : "kg"}
+                      onChange={e => this.updateWeight(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className='error-messages'>
+                  <div className='error'>
+                    <RegisterError hasError={this.validateHeight()} />
+                  </div>
+                  <div className='error'>
+                    <RegisterError hasError={this.validateWeight()} />
+                  </div>
+                </div>
+              </div>
+
+              <div className=''>
+                <label htmlFor='fitness-goals'>Fitness Goals</label>
+                <br />
+                <select
+                  name='fitness-goals'
+                  id='fitness-goals'
+                  className='goals'
+                  onChange={e => this.updateGoals(e.target.value)}
+                >
+                  <option value=''>-- Select Goal --</option>
+                  <option value='maintain'>Maintain weight</option>
+                  <option value='gain'>Gain weight</option>
+                  <option value='lose'>Lose weight</option>
+                </select>
+              </div>
+              <div className='error-messages goals-error'>
+                <div id='goals-error' className='error-goals'>
+                  <RegisterError hasError={this.validateGoal()} />
+                </div>
+              </div>
+
+              <div className='slide-container'>
+                <label id='activity-lvl-label' htmlFor='level-of-activity'>
+                  Level of activity
+                </label>
+
+                <input
+                  id='level-of-activity'
+                  type='range'
+                  min='1.2'
+                  max='1.9'
+                  className='slider'
+                  step='.175'
+                  defaultValue='1.55'
+                  onChange={e => this.updateActivityLvl(e.target.value)}
+                  list='defs'
+                />
+                <datalist id='defs'>
+                  <option value='1.2'></option>
+                  <option value='1.375'></option>
+                  <option value='1.55'></option>
+                  <option value='1.725'></option>
+                  <option value='1.9'></option>
+                </datalist>
+                <RegisterError hasError={this.validateActivityLvl()} />
+              </div>
+
+              {/*<div className="lvls">
+              <div className="description">
+                <p>Sedentary</p>
+              </div>
+              <div className='description'>
+                <p>Lightly Active</p>
+              </div>
+              <div className='description'>
+                <p>Moderately Active</p>
+              </div>
+              <div className='description'>
+                <p>Very Active</p>
+              </div>
+              <div className='description'>
+                <p>Extra Active</p>
+              </div>
+                </div>*/}
+            </div>
+            <div className='error'>
+              <p>{this.state.error}</p>
+            </div>
+            <button type='submit' className='button register'>
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
     );
   }
 }

@@ -210,6 +210,7 @@ export default class AddFoodItem extends Component {
                 this.validateProtein() ||
                 this.validateServings()
               }
+              className="button"
             >
               Add Food
             </button>
@@ -219,8 +220,8 @@ export default class AddFoodItem extends Component {
           <header>
             <h2 className="section-title">Add existing food</h2>
           </header>
-          <button className="button" onClick={this.handleRedirect}>
-            Add from food Log
+          <button className="button food-log" onClick={this.handleRedirect}>
+            Food Log
           </button>
         </section>
       </div>

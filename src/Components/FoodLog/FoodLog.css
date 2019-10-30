@@ -3,13 +3,15 @@
 }
 
 .food-item-container {
-  border: 1px solid black;
   margin: 20px 0;
   padding: 10px;
   flex-direction: row;
   height: 120px;
   display: flex;
   align-items: center;
+  background-color: #f5fafa;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
 }
 
 .food-item-container:first-child {
@@ -38,5 +40,10 @@
 .food-item-container,
 .add-food {
   display: flex;
-  justify-content: space-between;
+}
+
+@media only screen and (min-width: 400px) {
+  .food-item-container {
+    justify-content: space-between;
+  }
 }

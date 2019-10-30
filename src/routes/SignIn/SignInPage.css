@@ -1,0 +1,35 @@
+.sign-in-page {
+  padding: 10px;
+  max-width: 1420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.sign-in-container {
+  flex-grow: 0.3;
+  background-color: #f5fafa;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-in-form-name {
+  width: 80%;
+  align-self: center;
+}
+
+@media only screen and (min-width: 1200px) {
+  .sign-in-page {
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 0;
+  }
+
+  .sign-in-container {
+    min-width: 300px;
+  }
+}

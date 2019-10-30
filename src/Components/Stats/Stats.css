@@ -1,11 +1,28 @@
 .stats {
-  margin: 20px;
-  border: 1px solid black;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  color: white;
 }
 
 .header {
   align-self: center;
+}
+
+.stats-title {
+  color: white;
+}
+
+.stats-container {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.macro-goal {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  font-size: 20px;
 }

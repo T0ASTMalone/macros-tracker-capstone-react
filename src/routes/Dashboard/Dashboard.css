@@ -1,5 +1,7 @@
 #dashboard {
   padding: 0 10px;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .section-title {
@@ -26,8 +28,54 @@
   min-height: 350px;
 }
 
-@media only screen and (min-width: 500px) {
-  #dashboard {
-    margin: auto 0;
-  }
+#overview {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 60px;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 60px;
+}
+
+#meal-builder {
+  margin: 0;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 0;
+  background-color: #f5fafa;
+  border-bottom-right-radius: 60px;
+  border-bottom-left-radius: 0;
+}
+
+#stats {
+  background-color: #077fff;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 60px;
+}
+
+#stats-background {
+  background-color: #f5fafa;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 60px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+#overview-background {
+  background-color: #f5fafa;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 70px;
+  border-top-left-radius: 70px;
+}
+
+footer {
+  height: 30px;
+}
+
+#builder-background {
+  background-color: #077fff;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 0;
 }

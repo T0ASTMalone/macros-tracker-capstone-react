@@ -36,19 +36,28 @@ export default class FoodLog extends React.Component {
     return (
       <div id="food-log" className="container">
         <section className="food-log-container">
-          {this.state.foods.map((food, i) => {
-            const { protein, carbs, fats } = food;
-            const macros = { protein, carbs, fats };
-            return (
-              <div key={food.id} className="food-item-container">
-                <FoodItem macros={macros} name={food.food_name} />
-                <AddFoodLogItem
-                  food={food}
-                  hide={this.props.hide || this.props.hideMeal}
-                />
-              </div>
-            );
-          })}
+          {this.state.foods ? (
+            this.state.foods.map((food, i) => {
+              const { protein, carbs, fats } = food;
+              const macros = { protein, carbs, fats };
+              return (
+                <div key={food.id} className="food-item-container food-item">
+                  <FoodItem macros={macros} name={food.food_name} />
+                  <AddFoodLogItem
+                    food={food}
+                    hide={this.props.hide || this.props.hideMeal}
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <div className="empty-log">
+              <p>
+                Nothing to see here. Start adding meals by searching for foods
+                or creating new ones. Then clicking the create meal button.
+              </p>
+            </div>
+          )}
         </section>
       </div>
     );

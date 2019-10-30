@@ -1,8 +1,11 @@
 .header {
+  max-width: 1420px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0 10px;
+  height: 50px;
+  flex-grow: 1;
   z-index: 99;
   height: 40px;
 }
@@ -16,4 +19,21 @@ a:visited,
 a {
   color: #17224d;
   text-decoration: none;
+}
+
+.header-title {
+  font-size: 30px;
+}
+
+a:active,
+a:visited,
+a {
+  color: #17224d;
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 1440px) {
+  .header {
+    padding: 0;
+  }
 }

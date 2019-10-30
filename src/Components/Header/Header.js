@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css';
-import TokenService from '../../Services/token-service';
-import MealListContext from '../../context/MealLIstContext';
-import MealsContext from '../../context/MealContext';
-import IdleService from '../../Services/idle-service';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./Header.css";
+import TokenService from "../../Services/token-service";
+import MealListContext from "../../context/MealLIstContext";
+import MealsContext from "../../context/MealContext";
+import IdleService from "../../Services/idle-service";
 
 export default class Header extends Component {
   static contextType = MealListContext;
@@ -18,8 +18,8 @@ export default class Header extends Component {
 
   renderLogoutLink(logout) {
     return (
-      <div className="Header__logged-in">
-        <Link className="login-out" onClick={logout} to="/">
+      <div className='Header__logged-in'>
+        <Link className='login-out' onClick={logout} to='/'>
           Logout
         </Link>
       </div>
@@ -28,11 +28,11 @@ export default class Header extends Component {
 
   renderLoginLink() {
     return (
-      <div className="Header__not-logged-in">
-        <Link className="login-out" to="/register">
+      <div className='Header__not-logged-in'>
+        <Link className='login-out' to='/register'>
           Register
-        </Link>
-        <Link className="login-out" to="/sign-in">
+        </Link>{" "}
+        <Link className='login-out' to='/sign-in'>
           Log in
         </Link>
       </div>
@@ -49,9 +49,9 @@ export default class Header extends Component {
           };
           return (
             <>
-              <nav className="header">
+              <nav className='header'>
                 <h1>
-                  <Link className="header-title" to="/">
+                  <Link className='header-title' to='/'>
                     MacroFy
                   </Link>
                 </h1>

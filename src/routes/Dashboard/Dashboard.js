@@ -83,37 +83,37 @@ export default class Dashboard extends Component {
       progress = this.getProgress();
     }
     return (
-      <div id='dashboard'>
-        <div id='overview-background' className='back-background'>
-          <div id='overview' className='overview dash-section'>
-            <h2 className='section-title'>Progress</h2>
-            <div className='overview-container'>
+      <div id="dashboard">
+        <div id="overview-background" className="back-background">
+          <div id="overview" className="overview dash-section">
+            <h2 className="section-title">Progress</h2>
+            <div className="overview-container">
               <Overview
                 radius={50}
                 stroke={8}
-                name='P'
+                name="P"
                 progress={progress.macrosPercent.proteinPercent}
-                class='protein'
+                class="protein"
               />
               <Overview
                 radius={50}
                 stroke={8}
                 progress={progress.macrosPercent.carbsPercent}
-                class='carbs'
-                name='C'
+                class="carbs"
+                name="C"
               />
               <Overview
                 radius={50}
                 stroke={8}
                 progress={progress.macrosPercent.fatsPercent}
-                class='fats'
-                name='F'
+                class="fats"
+                name="F"
               />
             </div>
           </div>
         </div>
-        <div id='builder-background' className='back-background'>
-          <section id='meal-builder' className='dash-section'>
+        <div id="builder-background" className="back-background">
+          <section id="meal-builder" className="dash-section">
             <AddMeal show={show} />
             {this.state.showPopUp && (
               <PopUp
@@ -124,8 +124,9 @@ export default class Dashboard extends Component {
             )}
           </section>
         </div>
-        <div id='stats-background' className='back-background'>
-          <section id='stats' className='dash-section'>
+
+        <div id="stats-background" className="back-background">
+          <section id="stats" className="dash-section">
             <Stats
               macros={this.context.userMacros}
               progress={progress.macros}

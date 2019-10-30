@@ -181,7 +181,7 @@ export default class AddMeal extends React.Component {
                             <FoodItem name={food.food_name} macros={macros} />
                             <button
                               type='button'
-                              className='delete'
+                              className='delete button'
                               onClick={() => this.handleDeleteFoodItem(food.id)}
                             >
                               Delete

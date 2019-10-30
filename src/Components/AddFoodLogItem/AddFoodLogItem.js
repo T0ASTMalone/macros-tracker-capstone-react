@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import "./AddFoodLogItem.css";
 import PropTypes from "prop-types";
 import MealContext from "../../context/MealContext";
 import uuid from "uuid";
 import config from "../../config";
 import MacrosService from "../../Services/macros-services";
-import "./AddFoodLogItem.css";
 
 export default class AddFoodLogItem extends Component {
   state = {

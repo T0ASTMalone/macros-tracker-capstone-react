@@ -1,21 +1,27 @@
 .meal-item {
   padding: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 90%;
+  transition: 1s ease-in-out;
 }
 
 .meal {
+  background-color: #f5fafa;
+  border-radius: 10px;
   padding-bottom: 10px;
-}
-
-.show-foods {
-  width: 30px;
 }
 
 .meal-macros {
   display: flex;
-  width: 200px;
   justify-content: space-between;
+}
+
+.show-foods {
+  background-color: #f5fafa;
+  width: 30px;
+}
+
+.chevron {
+  height: 20px;
 }

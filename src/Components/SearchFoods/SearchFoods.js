@@ -63,6 +63,15 @@ export default class SearchBar extends Component {
             {results.map((food, i) => {
               return (
                 <div key={food.id} className='food-item-container'>
+                  {food.image !== undefined ? (
+                    <img
+                      className='food-img'
+                      src={food.image}
+                      alt={food.name}
+                    />
+                  ) : (
+                    <></>
+                  )}
                   <FoodItem name={food.title} image={food.image} />
                   <AddFoodLogItem hide={this.props.hide} foodId={food.id} />
                 </div>

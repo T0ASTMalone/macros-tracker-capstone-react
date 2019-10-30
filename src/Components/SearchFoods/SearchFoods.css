@@ -16,7 +16,9 @@
 }
 
 .search-results {
+  background-color: #17224d;
   padding: 5px;
+  border-radius: 10px;
 }
 
 .search-button {

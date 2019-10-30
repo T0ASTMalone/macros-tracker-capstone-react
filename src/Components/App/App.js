@@ -11,6 +11,7 @@ import LandingPage from "../../routes/LandingPage/LandingPage";
 import TokenService from "../../Services/token-service";
 import AuthApiService from "../../Services/auth-api-services";
 import IdleService from "../../Services/idle-service";
+import Footer from "../../Components/Footer/Footer";
 
 export default class App extends Component {
   state = { hasError: false };
@@ -58,6 +59,7 @@ export default class App extends Component {
             <PrivateRoute path={"/user/:id"} component={Dashboard} />
           </Switch>
         </main>
+        <Route exact path={"/"} component={Footer} />
       </div>
     );
   }

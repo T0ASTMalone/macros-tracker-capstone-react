@@ -1,16 +1,39 @@
 .pop-up {
-  border: 1px solid black;
+  border-radius: 30px;
   position: fixed;
   min-width: 275px;
   max-width: 700px;
   height: 500px;
+  background: #17224d;
   right: 0;
   left: 0;
   top: 11%;
-  background-color: white;
   margin-right: 20px;
   margin-left: 20px;
   padding: 15px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation-name: bounceIn;
+  animation-duration: 450ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.component {
+  height: 100%;
+  overflow: auto;
+}
+
+.component::-webkit-scrollbar {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0);
+  width: 5px;
+}
+
+.component::-webkit-scrollbar-thumb {
+  background-color: white;
+  width: 5px;
+  border-radius: 5px;
 }
 
 .close-window {
@@ -24,9 +47,23 @@
   top: -20px;
 }
 
-.component {
-  height: 100%;
-  overflow: auto;
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
 }
 
 @media only screen and (min-width: 600px) {
