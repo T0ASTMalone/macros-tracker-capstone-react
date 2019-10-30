@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './FoodLog.css';
-import FoodItem from '../FoodItem/FoodItem';
-import AddFoodLogItem from '../AddFoodLogItem/AddFoodLogItem';
-import MealListContext from '../../context/MealLIstContext';
-import MacroFyServices from '../../Services/macrofy-api-service';
+import React from "react";
+import PropTypes from "prop-types";
+import "./FoodLog.css";
+import FoodItem from "../FoodItem/FoodItem";
+import AddFoodLogItem from "../AddFoodLogItem/AddFoodLogItem";
+import MealListContext from "../../context/MealLIstContext";
+import MacroFyServices from "../../Services/macrofy-api-service";
 
 export default class FoodLog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error = null,
+      error: null,
       foods: []
     };
   }
@@ -29,21 +29,21 @@ export default class FoodLog extends React.Component {
       const userFoods = await MacroFyServices.getAllFoods(id);
       this.setState({ foods: [...userFoods] });
     } catch (error) {
-      this.setState({error})
+      this.setState({ error });
     }
   }
 
   render() {
-    const {err} = this.state.error;
+    const { err } = this.state.error;
     return (
-      <div id="food-log" className="container">
-        <section className="food-log-container">
+      <div id='food-log' className='container'>
+        <section className='food-log-container'>
           {this.state.foods ? (
             this.state.foods.map((food, i) => {
               const { protein, carbs, fats } = food;
               const macros = { protein, carbs, fats };
               return (
-                <div key={food.id} className="food-item-container food-item">
+                <div key={food.id} className='food-item-container food-item'>
                   <FoodItem macros={macros} name={food.food_name} />
                   <AddFoodLogItem
                     food={food}
@@ -53,11 +53,15 @@ export default class FoodLog extends React.Component {
               );
             })
           ) : (
-            <div className="empty-log">
-                {err ? 
-                  <p>this.state.error</p> :  
-                  <p>Nothing to see here. Start adding meals by searching for foods
-                  or creating new ones. Then clicking the create meal button.</p>}
+            <div className='empty-log'>
+              {err ? (
+                <p>this.state.error</p>
+              ) : (
+                <p>
+                  Nothing to see here. Start adding meals by searching for foods
+                  or creating new ones. Then clicking the create meal button.
+                </p>
+              )}
             </div>
           )}
         </section>
