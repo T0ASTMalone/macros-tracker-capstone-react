@@ -18,25 +18,19 @@ url: https://www.gloomaps.com/JKGJNe7Aqb
 
 As a user, I want to find out what the site is about.
 
-![Landing Page](/src/screenshots/wireframes/landing.jpg)
+![Landing Page](/src/screenshots/styled-screenshots/landing.PNG)
 
 **Register**
 
-As a user, I want to register so that I can start tracking my macros.
+As a user, I want to register and create my goals so I can start tracking my macros.
 
-![Register Page](/src/screenshots/wireframes/register.jpg)
-
-**User Info**
-
-As a user, I want to create my goals.
-
-![User Info Page](/screenshots/wireframes/user-info.jpg)
+![User Info Page](/src/screenshots/styled-screenshots/register.PNG)
 
 **Log in**
 
 As a user, I want to sign in so I can access my profile.
 
-![Login Page](/src/screenshots/wireframes/login.jpg)
+![Login Page](/src/screenshots/styled-screenshots/sign-in.PNG)
 
 **Dashboard**
 
