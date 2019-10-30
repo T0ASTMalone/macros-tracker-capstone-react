@@ -42,6 +42,7 @@ label {
   padding: 10px;
   min-width: 300px;
   max-width: 1000px;
+  max-height: 915px;
   align-items: center;
   background-color: #f5fafa;
   border-radius: 10px;
@@ -200,5 +201,11 @@ label {
 @media only screen and (max-height: 911px) {
   #register-container {
     height: auto;
+  }
+}
+
+@media only screen and (min-width: 767px) and (min-height: 1023px) {
+  #register-container {
+    height: calc(100vh - 50px);
   }
 }

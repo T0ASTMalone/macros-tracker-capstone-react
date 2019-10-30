@@ -82,6 +82,12 @@
   text-align: center;
 }
 
+@media only screen and (min-width: 600px) {
+  .landing-page-container {
+    padding: 0 50px;
+  }
+}
+
 @media only screen and (min-width: 1000px) {
   .screen-shot {
     width: 400px;
