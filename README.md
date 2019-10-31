@@ -8,6 +8,14 @@ The website is a Heroku/Zeit application and may take a minute to start up when 
 
 url: https://miguels-macro-tracker.now.sh/
 
+Demo User:
+
+email:
+notanemail@gmail.com
+
+password:
+ThisIsJust@TestPassword1
+
 ## Site map
 
 ---
