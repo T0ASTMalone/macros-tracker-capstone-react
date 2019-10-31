@@ -110,10 +110,10 @@ export default class AddFoodLogItem extends Component {
 AddFoodLogItem.propTypes = {
   food: PropTypes.shape({
     date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-    id: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     food_name: PropTypes.string,
-    meal_id: PropTypes.string,
-    servings: PropTypes.string,
+    meal_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    servings: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     protein: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     carbs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     fats: PropTypes.oneOfType([PropTypes.string, PropTypes.number])

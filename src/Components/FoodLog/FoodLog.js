@@ -34,7 +34,7 @@ export default class FoodLog extends React.Component {
   }
 
   render() {
-    const { err } = this.state.error;
+    const err = this.state.error;
     return (
       <div id='food-log' className='container'>
         <section className='food-log-container'>

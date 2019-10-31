@@ -1,5 +1,3 @@
-//move into component folder
-
 import React from "react";
 import "./AddMeal.css";
 import PropTypes from "prop-types";
@@ -32,7 +30,6 @@ export default class AddMeal extends React.Component {
   }
 
   handleAddFood = () => {
-    //this.props.show.showAddFood();
     this.props.show.showPopUp("Add");
     this.setState({ error: null });
   };
@@ -42,7 +39,6 @@ export default class AddMeal extends React.Component {
   };
 
   handleAddExisting = () => {
-    //this.props.show.showMealLog();
     this.props.show.showPopUp("MealLog");
     this.setState({ error: null });
   };
@@ -227,7 +223,6 @@ export default class AddMeal extends React.Component {
 
 AddMeal.propTypes = {
   show: PropTypes.shape({
-    showAddFood: PropTypes.func.isRequired,
-    showMealLog: PropTypes.func.isRequired
+    showPopUp: PropTypes.func.isRequired
   })
 };

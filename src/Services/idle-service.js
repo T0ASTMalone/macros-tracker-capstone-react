@@ -1,11 +1,11 @@
 let _timeoutId;
 let _idleCallback = null;
 let _notIdleEvents = [
-  'mousedown',
-  'mousemove',
-  'keypress',
-  'scroll',
-  'touchstart'
+  "mousedown",
+  "mousemove",
+  "keypress",
+  "scroll",
+  "touchstart"
 ];
 
 let _FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
@@ -16,7 +16,6 @@ const IdleService = {
   },
 
   resetIdleTimer(ev) {
-    console.info('event', ev.type);
     clearTimeout(_timeoutId);
     _timeoutId = setTimeout(_idleCallback, _FIVE_MINUTES_IN_MS);
   },
