@@ -14,7 +14,6 @@ export default class SignInPage extends Component {
     const { location, history } = this.props;
     const destination = (location.state || {}).from || `/user/${id}`;
     history.push(destination);
-    //this.props.refresh();
   };
 
   render() {
