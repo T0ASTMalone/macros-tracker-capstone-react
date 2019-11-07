@@ -45,6 +45,11 @@ a {
   text-decoration: none;
 }
 
+.to-dash {
+  background-color: #f5fafa;
+  color: #17224d;
+}
+
 @media only screen and (min-width: 1440px) {
   .header {
     padding: 0;

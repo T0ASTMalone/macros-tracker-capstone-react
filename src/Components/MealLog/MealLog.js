@@ -19,6 +19,7 @@ export default class MealLog extends Component {
 
   async getMeals() {
     const id = this.context.userId;
+    console.log(id);
     const meals = await MacroFyServices.getAllMeals(id);
     this.setState({ mealLog: [...meals] });
   }
