@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import "./AddFoodLogItem.css";
-import PropTypes from "prop-types";
-import MealContext from "../../context/MealContext";
-import uuid from "uuid";
-import config from "../../config";
-import MacrosService from "../../Services/macros-services";
+import React, { Component } from 'react';
+import './AddFoodLogItem.css';
+import PropTypes from 'prop-types';
+import MealContext from '../../context/MealContext';
+import uuid from 'uuid';
+import config from '../../config';
+import MacrosService from '../../Services/macros-services';
 
 export default class AddFoodLogItem extends Component {
   state = {
     servings: {
-      value: "",
+      value: '',
       touched: false
     }
   };
@@ -17,6 +17,10 @@ export default class AddFoodLogItem extends Component {
   static contextType = MealContext;
 
   updateServings = servings => {
+    if (this.props.updateServings) {
+      let id = this.props.food.id;
+      this.props.updateServings(id, servings);
+    }
     this.setState({ servings: { value: servings, touched: true } });
   };
 
@@ -30,9 +34,9 @@ export default class AddFoodLogItem extends Component {
     const {
       id,
       food_name,
-      protein = "0",
-      carbs = "0",
-      fats = "0"
+      protein = '0',
+      carbs = '0',
+      fats = '0'
     } = this.props.food;
     const servings = this.state.servings.value;
     const newFood = {
@@ -44,14 +48,14 @@ export default class AddFoodLogItem extends Component {
       servings
     };
     this.addFood(newFood);
-    this.props.hide("showFoodLog");
+    this.props.hide('showFoodLog');
   };
 
   makeSearchFood = food => {
-    let { protein = "0g", carbs = "0g", fat = "0g" } = food.nutrition;
+    let { protein = '0g', carbs = '0g', fat = '0g' } = food.nutrition;
     let macros = { protein, carbs, fat };
     Object.keys(macros).map(key => {
-      return (macros[key] = macros[key].substr(0, macros[key].indexOf("g")));
+      return (macros[key] = macros[key].substr(0, macros[key].indexOf('g')));
     });
 
     const newFood = {
@@ -87,21 +91,27 @@ export default class AddFoodLogItem extends Component {
   };
 
   render() {
+    let editMode = this.props.edit || false;
     return (
-      <form action='add-food' className='add-food' onSubmit={this.handleSubmit}>
-        <label htmlFor='servings'>Servings</label>
+      <form action="add-food" className="add-food" onSubmit={this.handleSubmit}>
+        <label htmlFor="servings">Servings</label>
         <input
           onChange={e => this.updateServings(e.target.value)}
-          type='number'
-          id='servings'
-          min='1'
+          type="number"
+          id="servings"
+          min="1"
           required
-          name='servings'
-          className='input'
+          name="servings"
+          className="input"
+          placeholder={editMode ? this.props.food.servings : ''}
         />
-        <button className='add-food-button button' type='submit'>
-          Add
-        </button>
+        {editMode ? (
+          <></>
+        ) : (
+          <button className="add-food-button button" type="submit">
+            Add
+          </button>
+        )}
       </form>
     );
   }

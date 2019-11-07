@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./Dashboard.css";
-import Overview from "../../Components/Overview/Overview";
-import Stats from "../../Components/Stats/Stats";
-import MealListContext from "../../context/MealLIstContext";
-import MacrosService from "../../Services/macros-services";
-import AddMeal from "../../Components/AddMeal/AddMeal";
-import FoodLog from "../../Components/FoodLog/FoodLog";
-import MealLog from "../../Components/MealLog/MealLog";
-import AddFoodItem from "../../Components/AddFoodItem/AddFoodItem";
-import MacroFyServices from "../../Services/macrofy-api-service";
-import PopUp from "../../Components/utils/PopUp";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './Dashboard.css';
+import Overview from '../../Components/Overview/Overview';
+import Stats from '../../Components/Stats/Stats';
+import MealListContext from '../../context/MealLIstContext';
+import MacrosService from '../../Services/macros-services';
+import AddMeal from '../../Components/AddMeal/AddMeal';
+import FoodLog from '../../Components/FoodLog/FoodLog';
+import MealLog from '../../Components/MealLog/MealLog';
+import AddFoodItem from '../../Components/AddFoodItem/AddFoodItem';
+import MacroFyServices from '../../Services/macrofy-api-service';
+import PopUp from '../../Components/utils/PopUp';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -52,22 +52,22 @@ export default class Dashboard extends Component {
 
   showPopUp = component => {
     switch (component) {
-      case "Add":
+      case 'Add':
         this.setState({ component: AddFoodItem, showPopUp: true });
         break;
-      case "FoodLog":
+      case 'FoodLog':
         this.setState({ component: FoodLog, showPopUp: true });
         break;
-      case "MealLog":
+      case 'MealLog':
         this.setState({ component: MealLog, showPopUp: true });
         break;
       default:
-        this.setState({ error: "sorry something when wrong" });
+        this.setState({ error: 'sorry something when wrong' });
     }
   };
 
   hidePopUp = () => {
-    this.setState({ component: "", showPopUp: false });
+    this.setState({ component: '', showPopUp: false });
   };
 
   render() {
@@ -81,37 +81,37 @@ export default class Dashboard extends Component {
       progress = this.getProgress();
     }
     return (
-      <div id='dashboard'>
-        <div id='overview-background' className='back-background'>
-          <div id='overview' className='overview dash-section'>
-            <h2 className='section-title'>Progress</h2>
-            <div className='overview-container'>
+      <div id="dashboard">
+        <div id="overview-background" className="back-background">
+          <div id="overview" className="overview dash-section">
+            <h2 className="section-title">Progress</h2>
+            <div className="overview-container">
               <Overview
                 radius={50}
                 stroke={8}
-                name='P'
+                name="P"
                 progress={progress.macrosPercent.proteinPercent}
-                class='protein'
+                class="protein"
               />
               <Overview
                 radius={50}
                 stroke={8}
                 progress={progress.macrosPercent.carbsPercent}
-                class='carbs'
-                name='C'
+                class="carbs"
+                name="C"
               />
               <Overview
                 radius={50}
                 stroke={8}
                 progress={progress.macrosPercent.fatsPercent}
-                class='fats'
-                name='F'
+                class="fats"
+                name="F"
               />
             </div>
           </div>
         </div>
-        <div id='builder-background' className='back-background'>
-          <section id='meal-builder' className='dash-section'>
+        <div id="builder-background" className="back-background">
+          <section id="meal-builder" className="dash-section">
             <AddMeal show={show} />
             {this.state.showPopUp && (
               <PopUp
@@ -123,8 +123,8 @@ export default class Dashboard extends Component {
           </section>
         </div>
 
-        <div id='stats-background' className='back-background'>
-          <section id='stats' className='dash-section'>
+        <div id="stats-background" className="back-background">
+          <section id="stats" className="dash-section">
             <Stats
               macros={this.context.userMacros}
               progress={progress.macros}

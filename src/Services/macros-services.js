@@ -52,6 +52,8 @@ const MacrosService = {
       }
       return key;
     });
+
+    return food;
   }
 };
 

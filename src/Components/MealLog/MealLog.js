@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./MealLog.css";
-import MealItem from "../Mealitem/MealItem";
-import MealsContext from "../../context/MealContext";
-import MacroFyServices from "../../Services/macrofy-api-service";
-import FoodLog from "../FoodLog/FoodLog";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './MealLog.css';
+import MealItem from '../Mealitem/MealItem';
+import MealsContext from '../../context/MealContext';
+import MacroFyServices from '../../Services/macrofy-api-service';
+import FoodLog from '../FoodLog/FoodLog';
+import EditMeal from '../EditMeal/EditMeal';
 
 export default class MealLog extends Component {
   constructor(props) {
@@ -16,10 +17,14 @@ export default class MealLog extends Component {
 
   static contextType = MealsContext;
 
-  async componentDidMount() {
+  async getMeals() {
     const id = this.context.userId;
     const meals = await MacroFyServices.getAllMeals(id);
     this.setState({ mealLog: [...meals] });
+  }
+
+  async componentDidMount() {
+    await this.getMeals();
   }
 
   async handleAddMeal(meal) {
@@ -34,22 +39,28 @@ export default class MealLog extends Component {
     this.setState({ [id]: foods });
   }
 
+  async handleEditMeal(id) {
+    await this.showMealFoods(id);
+    this.setState({ [id]: { foods: this.state[id], edit: true } });
+  }
+
   hideMealFoods(id) {
     this.setState({ [id]: null });
+    this.getMeals();
   }
 
   render() {
     return (
-      <div className='container'>
-        <section id='meal-log-container' className='meal-log-container'>
+      <div className="container">
+        <section id="meal-log-container" className="meal-log-container">
           {this.state.mealLog ? (
             this.state.mealLog.map((meal, i) => {
               const { date_added, protein, carbs, fats, meal_name } = meal;
               const macros = { protein, carbs, fats };
               return (
-                <div key={i} className='meal-log-item'>
-                  <div className='meal'>
-                    <div className='meal-info'>
+                <div key={i} className="meal-log-item">
+                  <div className="meal">
+                    <div className="meal-info">
                       <MealItem
                         key={i}
                         id={i}
@@ -57,47 +68,68 @@ export default class MealLog extends Component {
                         name={meal_name}
                         dateAdded={date_added}
                       />
-                      <button
-                        className='add-meal-log-item button'
-                        onClick={() => this.handleAddMeal(meal)}
-                      >
-                        Add
-                      </button>
+                      <div className="meal-buttons">
+                        <button
+                          className="add-meal-log-item button"
+                          onClick={() => this.handleAddMeal(meal)}
+                        >
+                          Add
+                        </button>
+                        <button
+                          className="edit-meal button"
+                          onClick={() => this.handleEditMeal(meal.meal_id)}
+                        >
+                          Edit
+                        </button>
+                      </div>
                     </div>
                     {this.state[meal.meal_id] ? (
                       <button
-                        className='show-foods'
+                        className="show-foods"
                         onClick={() => this.hideMealFoods(meal.meal_id)}
                       >
                         <img
-                          className='chevron'
-                          alt='chevron down'
-                          src='https://img.icons8.com/material-rounded/24/000000/chevron-up.png'
+                          className="chevron"
+                          alt="chevron down"
+                          src="https://img.icons8.com/material-rounded/24/000000/chevron-up.png"
                         />
                       </button>
                     ) : (
                       <button
-                        className='show-foods'
+                        className="show-foods"
                         onClick={() => this.showMealFoods(meal.meal_id)}
                       >
                         <img
-                          className='chevron'
-                          src='https://img.icons8.com/material-rounded/60/000000/chevron-down.png'
-                          alt='chevron down'
+                          className="chevron"
+                          src="https://img.icons8.com/material-rounded/60/000000/chevron-down.png"
+                          alt="chevron down"
                         />
                       </button>
                     )}
                   </div>
 
-                  <div className='meal-foods'>
+                  <div className="meal-foods">
                     {this.state[meal.meal_id] ? (
-                      <FoodLog
-                        className={
-                          this.state[meal.meal_id].hide ? "hidden" : "none"
-                        }
-                        foods={this.state[meal.meal_id]}
-                        hide={this.props.hide}
-                      />
+                      this.state[meal.meal_id].edit ? (
+                        <EditMeal
+                          className={
+                            this.state[meal.meal_id].hide ? 'hidden' : 'none'
+                          }
+                          meal={this.state[meal.meal_id]}
+                          hide={id => this.hideMealFoods(id)}
+                        />
+                      ) : (
+                        <>
+                          <FoodLog
+                            className={
+                              this.state[meal.meal_id].hide ? 'hidden' : 'none'
+                            }
+                            foods={this.state[meal.meal_id]}
+                            hide={this.props.hide}
+                            edit={false}
+                          />
+                        </>
+                      )
                     ) : (
                       <></>
                     )}
@@ -106,7 +138,7 @@ export default class MealLog extends Component {
               );
             })
           ) : (
-            <div className='empty-log'>
+            <div className="empty-log">
               <p>
                 Nothing to see here. Start adding meals by searching for foods
                 or creating new ones. Then clicking the create meal button.
