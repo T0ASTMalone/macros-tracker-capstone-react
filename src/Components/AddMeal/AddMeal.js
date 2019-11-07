@@ -74,6 +74,7 @@ export default class AddMeal extends React.Component {
         food.user_id = response.user_id;
         food.meal_id = response.meal_id;
       });
+      console.log(foods);
       await MacroFyServices.postFoods(foods);
     } catch (error) {
       console.error(error);

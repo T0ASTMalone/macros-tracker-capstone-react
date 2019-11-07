@@ -38,8 +38,25 @@
   padding: 10px;
 }
 
+.meal-buttons {
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .add-meal-log-item {
   height: 40px;
+}
+
+.update-btn-container {
+  text-align: center;
+}
+
+.update-meal-button {
+  margin-top: 10px;
+  background-color: #007fff;
+  color: #f5fafa;
 }
 
 .meal-foods {

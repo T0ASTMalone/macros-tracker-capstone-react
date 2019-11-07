@@ -51,10 +51,8 @@ export default class Dashboard extends Component {
   }
 
   showPopUp = component => {
-    console.log('ran');
     switch (component) {
       case 'Add':
-        console.log('ran');
         this.setState({ component: AddFoodItem, showPopUp: true });
         break;
       case 'FoodLog':

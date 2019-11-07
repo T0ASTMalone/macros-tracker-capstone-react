@@ -5,6 +5,7 @@ import MealItem from '../Mealitem/MealItem';
 import MealsContext from '../../context/MealContext';
 import MacroFyServices from '../../Services/macrofy-api-service';
 import FoodLog from '../FoodLog/FoodLog';
+import EditMeal from '../EditMeal/EditMeal';
 
 export default class MealLog extends Component {
   constructor(props) {
@@ -34,6 +35,11 @@ export default class MealLog extends Component {
     this.setState({ [id]: foods });
   }
 
+  async handleEditMeal(id) {
+    await this.showMealFoods(id);
+    this.setState({ [id]: { foods: this.state[id], edit: true } });
+  }
+
   hideMealFoods(id) {
     this.setState({ [id]: null });
   }
@@ -57,12 +63,20 @@ export default class MealLog extends Component {
                         name={meal_name}
                         dateAdded={date_added}
                       />
-                      <button
-                        className="add-meal-log-item button"
-                        onClick={() => this.handleAddMeal(meal)}
-                      >
-                        Add
-                      </button>
+                      <div className="meal-buttons">
+                        <button
+                          className="add-meal-log-item button"
+                          onClick={() => this.handleAddMeal(meal)}
+                        >
+                          Add
+                        </button>
+                        <button
+                          className="edit-meal button"
+                          onClick={() => this.handleEditMeal(meal.meal_id)}
+                        >
+                          Edit
+                        </button>
+                      </div>
                     </div>
                     {this.state[meal.meal_id] ? (
                       <button
@@ -91,13 +105,26 @@ export default class MealLog extends Component {
 
                   <div className="meal-foods">
                     {this.state[meal.meal_id] ? (
-                      <FoodLog
-                        className={
-                          this.state[meal.meal_id].hide ? 'hidden' : 'none'
-                        }
-                        foods={this.state[meal.meal_id]}
-                        hide={this.props.hide}
-                      />
+                      this.state[meal.meal_id].edit ? (
+                        <EditMeal
+                          className={
+                            this.state[meal.meal_id].hide ? 'hidden' : 'none'
+                          }
+                          meal={this.state[meal.meal_id]}
+                          hide={this.props.hide}
+                        />
+                      ) : (
+                        <>
+                          <FoodLog
+                            className={
+                              this.state[meal.meal_id].hide ? 'hidden' : 'none'
+                            }
+                            foods={this.state[meal.meal_id]}
+                            hide={this.props.hide}
+                            edit={false}
+                          />
+                        </>
+                      )
                     ) : (
                       <></>
                     )}

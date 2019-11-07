@@ -33,6 +33,7 @@ export default class FoodLog extends React.Component {
   }
 
   render() {
+    const { updateServings } = this.props;
     return (
       <div id="food-log" className="container">
         <section className="food-log-container">
@@ -46,6 +47,8 @@ export default class FoodLog extends React.Component {
                   <AddFoodLogItem
                     food={food}
                     hide={this.props.hide || this.props.hideMeal}
+                    edit={this.props.edit}
+                    updateServings={updateServings}
                   />
                 </div>
               );

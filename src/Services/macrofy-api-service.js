@@ -83,6 +83,31 @@ const MacroFyServices = {
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
+  },
+  patchMeal(id, mealInfo) {
+    console.log(mealInfo);
+    return fetch(`${config.API_ENDPOINT}/meals/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify(mealInfo)
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : console.log(res)
+    );
+  },
+  patchFood(id, foodInfo) {
+    return fetch(`${config.API_ENDPOINT}/foods/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify(foodInfo)
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : console.log(res)
+    );
   }
 };
 

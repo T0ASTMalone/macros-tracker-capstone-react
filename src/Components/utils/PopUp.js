@@ -3,7 +3,6 @@ import './PopUp.css';
 
 export default function PopUp({ component, ...props }) {
   const Component = component;
-  console.log(props);
   return (
     <div className="pop-up">
       <button className="close-window" onClick={props.hide}>

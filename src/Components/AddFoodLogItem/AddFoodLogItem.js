@@ -17,6 +17,10 @@ export default class AddFoodLogItem extends Component {
   static contextType = MealContext;
 
   updateServings = servings => {
+    if (this.props.updateServings) {
+      let id = this.props.food.id;
+      this.props.updateServings(id, servings);
+    }
     this.setState({ servings: { value: servings, touched: true } });
   };
 
@@ -87,7 +91,7 @@ export default class AddFoodLogItem extends Component {
   };
 
   render() {
-    console.log(this.props);
+    let editMode = this.props.edit || false;
     return (
       <form action="add-food" className="add-food" onSubmit={this.handleSubmit}>
         <label htmlFor="servings">Servings</label>
@@ -99,10 +103,15 @@ export default class AddFoodLogItem extends Component {
           required
           name="servings"
           className="input"
+          placeHolder={editMode ? this.props.food.servings : ''}
         />
-        <button className="add-food-button button" type="submit">
-          Add
-        </button>
+        {editMode ? (
+          <></>
+        ) : (
+          <button className="add-food-button button" type="submit">
+            Add
+          </button>
+        )}
       </form>
     );
   }
