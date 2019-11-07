@@ -66,7 +66,12 @@ export default class Dashboard extends Component {
     }
   };
 
-  hidePopUp = () => {
+  hidePopUp = async () => {
+    const id = this.props.match.params.id;
+    this.context.clearMeals();
+    const meals = await MacroFyServices.getTodaysMeals(id);
+    await this.getUserInfo(id);
+    this.context.setMealList(meals);
     this.setState({ component: '', showPopUp: false });
   };
 
