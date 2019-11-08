@@ -11,7 +11,7 @@ export default class LandingPage extends Component {
       <div className="landing-page-container">
         <div className="grid-container">
           <div id="col-1" className="column">
-            <section id="col-item1" className="section Macrofy">
+            <section id="col-item1" className="section MacroFy">
               <h1 className="App-title">MacroFy</h1>
               <h3>Make your goals</h3>
               <h3>Then meet your goals</h3>
@@ -61,7 +61,7 @@ export default class LandingPage extends Component {
                 </div>
                 <div className="landing-description">
                   <p>
-                    Macrofy provides an interface that allows you to easily
+                    MacroFy provides an interface that allows you to easily
                     search for or create new foods and add them to meals, then
                     add those meals to your day to meet your macronutrient goals
                     for the day.
