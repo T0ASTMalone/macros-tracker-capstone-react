@@ -1,21 +1,21 @@
-import React from "react";
-import "./AddMeal.css";
-import PropTypes from "prop-types";
-import FoodItem from "../FoodItem/FoodItem";
-import MealsContext from "../../context/MealContext";
-import MealListContext from "../../context/MealLIstContext";
-import MacrosService from "../../Services/macros-services";
-import AddMealError from "./AddMealError";
-import MacroFyServices from "../../Services/macrofy-api-service";
+import React from 'react';
+import './AddMeal.css';
+import PropTypes from 'prop-types';
+import FoodItem from '../FoodItem/FoodItem';
+import MealsContext from '../../context/MealContext';
+import MealListContext from '../../context/MealLIstContext';
+import MacrosService from '../../Services/macros-services';
+import AddMealError from './AddMealError';
+import MacroFyServices from '../../Services/macrofy-api-service';
 
 export default class AddMeal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
-      mealId: "",
+      mealId: '',
       mealName: {
-        value: "",
+        value: '',
         touched: false
       }
     };
@@ -30,16 +30,16 @@ export default class AddMeal extends React.Component {
   }
 
   handleAddFood = () => {
-    this.props.show.showPopUp("Add");
+    this.props.show.showPopUp('Add');
     this.setState({ error: null });
   };
 
-  handleDeleteFoodItem = id => {
-    this.context.deleteFood(id);
+  handleDeleteFoodItem = key => {
+    this.context.deleteFood(key);
   };
 
   handleAddExisting = () => {
-    this.props.show.showPopUp("MealLog");
+    this.props.show.showPopUp('MealLog');
     this.setState({ error: null });
   };
 
@@ -54,10 +54,10 @@ export default class AddMeal extends React.Component {
   validateName = () => {
     const name = this.state.mealName.value.trim();
     if (name.length < 1) {
-      return "A meal name is required";
+      return 'A meal name is required';
     }
     if (name.length > 50) {
-      return "The meal name must be under 50 characters";
+      return 'The meal name must be under 50 characters';
     }
   };
 
@@ -67,6 +67,7 @@ export default class AddMeal extends React.Component {
       foods.forEach(food => {
         delete food.date_added;
         delete food.id;
+        delete food.foodKey;
         food.user_id = response.user_id;
         food.meal_id = response.meal_id;
       });
@@ -96,16 +97,16 @@ export default class AddMeal extends React.Component {
             const mealName = this.state.mealName.value;
             if (meal.foods.length < 1 && mealName.length < 1) {
               this.setState({
-                error: "There needs to be at least one food item",
-                mealName: { value: "", touched: true }
+                error: 'There needs to be at least one food item',
+                mealName: { value: '', touched: true }
               });
             } else if (mealName.length < 1) {
               this.setState({
-                mealName: { value: "", touched: true }
+                mealName: { value: '', touched: true }
               });
             } else if (meal.foods.length < 1) {
               this.setState({
-                error: "There needs to be at least one food item"
+                error: 'There needs to be at least one food item'
               });
             } else {
               ListContext.addMeal(meal);
@@ -128,41 +129,41 @@ export default class AddMeal extends React.Component {
               let foods = meal.foods;
               this.postMeal(mealLogMeal, foods);
               this.context.clearFoods();
-              this.setState({ mealName: { value: "", touched: false } });
+              this.setState({ mealName: { value: '', touched: false } });
             }
           };
 
           return (
-            <div className='add-meal'>
-              <div className='food-items'>
+            <div className="add-meal">
+              <div className="food-items">
                 <header>
-                  <h1 className='section-title'>Create Meal</h1>
+                  <h1 className="section-title">Create Meal</h1>
                 </header>
                 <form
-                  action='create-meal'
-                  className='add-meal'
+                  action="create-meal"
+                  className="add-meal"
                   onSubmit={e => handleAddMeal(e)}
                 >
-                  <label htmlFor='meal-name'>Meal Name</label>
+                  <label htmlFor="meal-name">Meal Name</label>
                   <input
-                    type='text'
-                    id='meal-name'
-                    className='meal-name'
+                    type="text"
+                    id="meal-name"
+                    className="meal-name"
                     value={this.state.mealName.value}
                     onChange={e => this.updateName(e.target.value)}
-                    placeholder='Chicken and waffles'
+                    placeholder="Chicken and waffles"
                   />
                   <AddMealError
                     hasError={this.validateName()}
                     touched={this.state.mealName.touched}
                   />
-                  <div className='foods' id='foods'>
+                  <div className="foods" id="foods">
                     {this.context.meal.foods === undefined ||
                     this.context.meal.foods < 1 ? (
-                      <div className='food-item empty'>
+                      <div className="food-item empty">
                         <button
-                          type='button'
-                          className=''
+                          type="button"
+                          className=""
                           onClick={this.handleAddFood}
                         >
                           +
@@ -172,13 +173,16 @@ export default class AddMeal extends React.Component {
                       this.context.meal.foods.map((food, i) => {
                         const { protein, carbs, fats } = food;
                         const macros = { protein, carbs, fats };
+                        console.log(this.context.meal.foods);
                         return (
-                          <div key={i} className='food-item new'>
+                          <div key={i} className="food-item new">
                             <FoodItem name={food.food_name} macros={macros} />
                             <button
-                              type='button'
-                              className='delete button'
-                              onClick={() => this.handleDeleteFoodItem(food.id)}
+                              type="button"
+                              className="delete button"
+                              onClick={() =>
+                                this.handleDeleteFoodItem(food.foodKey)
+                              }
                             >
                               Delete
                             </button>
@@ -188,27 +192,27 @@ export default class AddMeal extends React.Component {
                     )}
                   </div>
                   {this.state.error !== null ? (
-                    <div className='error'>{this.state.error}</div>
+                    <div className="error">{this.state.error}</div>
                   ) : (
                     <></>
                   )}
-                  <div className='button-container'>
+                  <div className="button-container">
                     <button
-                      className='button add-item'
+                      className="button add-item"
                       onClick={this.handleAddFood}
-                      type='button'
+                      type="button"
                     >
                       Add Food
                     </button>
                     <button
-                      type='button'
-                      className='button add-item'
+                      type="button"
+                      className="button add-item"
                       onClick={this.handleAddExisting}
                     >
                       Meal Log
                     </button>
                   </div>
-                  <button className='button create-meal' type='submit'>
+                  <button className="button create-meal" type="submit">
                     Create Meal
                   </button>
                 </form>

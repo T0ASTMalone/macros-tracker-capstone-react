@@ -6,6 +6,7 @@ import MealsContext from '../../context/MealContext';
 import MacroFyServices from '../../Services/macrofy-api-service';
 import FoodLog from '../FoodLog/FoodLog';
 import EditMeal from '../EditMeal/EditMeal';
+import uuid from 'uuid';
 
 export default class MealLog extends Component {
   constructor(props) {
@@ -31,6 +32,8 @@ export default class MealLog extends Component {
   async handleAddMeal(meal) {
     const { meal_id } = meal;
     const mealFoods = await MacroFyServices.getMealFoods(meal_id);
+    mealFoods.map(food => (food.foodKey = uuid()));
+    console.log(mealFoods);
     this.context.addFood(mealFoods);
     this.props.hide();
   }

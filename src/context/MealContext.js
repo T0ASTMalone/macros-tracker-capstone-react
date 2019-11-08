@@ -45,9 +45,9 @@ export class MealProvider extends Component {
       : this.setFoods([...this.state.meal.foods, ...food]);
   };
 
-  deleteFood = foodId => {
+  deleteFood = foodKey => {
     const updatedFoods = this.state.meal.foods.filter(food => {
-      return food.id !== foodId;
+      return food.foodKey !== foodKey;
     });
     this.setFoods([...updatedFoods]);
   };

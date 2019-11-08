@@ -5,7 +5,6 @@ import TokenService from '../../Services/token-service';
 import MealListContext from '../../context/MealLIstContext';
 import MealsContext from '../../context/MealContext';
 import IdleService from '../../Services/idle-service';
-//import Favicon from "react-favicon";
 import logo from '../../screenshots/logo-small.png';
 
 export default class Header extends Component {

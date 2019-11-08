@@ -45,7 +45,8 @@ export default class AddFoodLogItem extends Component {
       protein,
       carbs,
       fats,
-      servings
+      servings,
+      foodKey: uuid()
     };
     this.addFood(newFood);
     this.props.hide('showFoodLog');
@@ -64,7 +65,8 @@ export default class AddFoodLogItem extends Component {
       protein: macros.protein,
       carbs: macros.carbs,
       fats: macros.fat,
-      servings: this.state.servings.value
+      servings: this.state.servings.value,
+      foodKey: uuid()
     };
     this.addFood(newFood);
     this.props.hide
