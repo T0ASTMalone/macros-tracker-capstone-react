@@ -17,7 +17,7 @@ export default class Header extends Component {
     IdleService.unRegisterIdleResets();
   };
 
-  renderLogoutLink(logout) {
+  renderLogoutLink(signOut) {
     const id = this.context.userId;
     console.log(id);
     return (
@@ -30,8 +30,8 @@ export default class Header extends Component {
             Back to Dashboard ->
           </button>
         ) : (
-          <Link className="login-out" onClick={logout} to="/">
-            Logout
+          <Link className="login-out" onClick={signOut} to="/">
+            Sign out
           </Link>
         )}
       </div>
@@ -43,9 +43,10 @@ export default class Header extends Component {
       <div className="Header__not-logged-in">
         <Link className="login-out" to="/register">
           Register
-        </Link>{' '}
+        </Link>
+        {' | '}
         <Link className="login-out" to="/sign-in">
-          Log in
+          Sign in
         </Link>
       </div>
     );

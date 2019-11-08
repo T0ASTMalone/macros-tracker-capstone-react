@@ -12,7 +12,7 @@
 
 .meal-info {
   flex-direction: column;
-  width: 200px;
+  min-width: 240px;
   padding: 10px;
 }
 
@@ -34,7 +34,6 @@
   background-color: #17224d;
   border-radius: 10px;
   transition: 1s ease-in-out;
-  padding: 10px;
 }
 
 .meal-buttons {
