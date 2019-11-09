@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./SignIn.css";
-import SignInError from "./SignInError";
-import AuthApiService from "../../Services/auth-api-services";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './SignIn.css';
+import SignInError from './SignInError';
+import AuthApiService from '../../Services/auth-api-services';
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -10,11 +10,11 @@ export default class SignIn extends Component {
     this.state = {
       error: null,
       email: {
-        value: "",
+        value: '',
         touched: false
       },
       password: {
-        value: "",
+        value: '',
         touched: false
       }
     };
@@ -42,8 +42,8 @@ export default class SignIn extends Component {
     })
       .then(res => {
         this.setState({
-          email: { value: "", touched: false },
-          password: { value: "", touched: false }
+          email: { value: '', touched: false },
+          password: { value: '', touched: false }
         });
         this.props.onLoginSuccess(res.payload.user_id);
       })
@@ -62,39 +62,40 @@ export default class SignIn extends Component {
   validateEmail() {
     const email = this.state.email.value;
     if (email < 1) {
-      return "An email is required";
+      return 'An email is required';
     }
   }
 
   validatePassword() {
     const password = this.state.password.value;
     if (password < 1) {
-      return "A password is required";
+      return 'A password is required';
     }
   }
   validateConfirmPassword() {
     const confirmPassword = this.state.confirmPassword.value;
     if (confirmPassword < 1) {
-      return "You must confirm the password";
+      return 'You must confirm the password';
     }
   }
 
   render() {
     const { error } = this.state;
     return (
-      <div className='sign-in-form'>
+      <>
         <form
-          action='sign-in'
-          className='sign-in'
+          action="sign-in"
+          className="sign-in"
           onSubmit={this.handleSubmitJwtAuth}
         >
-          <div role='alert'>{error && <p className='red'>{error}</p>}</div>
-          <label htmlFor='user'>Email</label>
+          <h2 className="sign-in-form-name">Sign In</h2>
+          <div role="alert">{error && <p className="red">{error}</p>}</div>
+          <label htmlFor="user">Email</label>
           <input
-            id='user'
-            type='email'
-            className='sign-in-input login'
-            placeholder='email'
+            id="user"
+            type="email"
+            className="sign-in-input login"
+            placeholder="email"
             onChange={e => this.handleUpdateEmail(e.target.value)}
             //required
           />
@@ -102,23 +103,23 @@ export default class SignIn extends Component {
             hasError={this.validateEmail()}
             touched={this.state.email.touched}
           />
-          <label htmlFor='password'>Password</label>
+          <label htmlFor="password">Password</label>
           <input
-            type='password'
-            className='sign-in-input login'
-            placeholder='password'
+            type="password"
+            className="sign-in-input login"
+            placeholder="password"
             onChange={e => this.handleUpdatePassword(e.target.value)}
             //required
-            id='password'
+            id="password"
           />
           <SignInError
             hasError={this.validatePassword()}
             touched={this.state.password.touched}
-            className='login-error'
+            className="login-error"
           />
-          <button className='button'>Sign In</button>
+          <button className="button">Sign In</button>
         </form>
-      </div>
+      </>
     );
   }
 }

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import "./SignInPage.css";
-import SignIn from "../../Components/SignInForm/SignIn";
+import React, { Component } from 'react';
+import './SignInPage.css';
+import SignIn from '../../Components/SignInForm/SignIn';
 
 export default class SignInPage extends Component {
   static defaultProps = {
@@ -18,9 +18,8 @@ export default class SignInPage extends Component {
 
   render() {
     return (
-      <div className='sign-in-page'>
-        <div className='sign-in-container'>
-          <h2 className='sign-in-form-name'>Sign In</h2>
+      <div className="sign-in-page">
+        <div className="sign-in-container">
           <SignIn onLoginSuccess={this.handleLoginSuccess} />
         </div>
       </div>

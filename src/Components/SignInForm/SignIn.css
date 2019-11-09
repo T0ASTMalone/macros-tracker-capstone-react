@@ -1,4 +1,5 @@
 .sign-in-form {
+  flex-grow: 0.3;
   display: flex;
   flex-direction: column;
 }
@@ -8,17 +9,21 @@
 }
 
 .sign-in {
+  flex-grow: 0.3;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 1000px;
 }
 
 .button {
   align-self: center;
 }
 
-.input {
+#user,
+#password.sign-in-input {
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .red {
@@ -26,7 +31,6 @@
 }
 
 .sign-in-input {
-  width: 80%;
   margin-bottom: 15px;
 }
 
