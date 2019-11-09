@@ -88,7 +88,7 @@ export default class SignIn extends Component {
           className="sign-in"
           onSubmit={this.handleSubmitJwtAuth}
         >
-          <h2 className="sign-in-form-name">Sign In</h2>
+          <h2 className="form-name">Sign In</h2>
           <div role="alert">{error && <p className="red">{error}</p>}</div>
           <label htmlFor="user">Email</label>
           <input
@@ -117,7 +117,9 @@ export default class SignIn extends Component {
             touched={this.state.password.touched}
             className="login-error"
           />
-          <button className="button">Sign In</button>
+          <button id="sign-in-button" className="button">
+            Sign In
+          </button>
         </form>
       </>
     );
