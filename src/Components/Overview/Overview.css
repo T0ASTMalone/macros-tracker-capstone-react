@@ -32,10 +32,38 @@
   flex-direction: column;
 }
 
+svg {
+  height: 100px;
+  width: 100px;
+}
+
 circle {
   transition: 1s ease-in-out;
 }
 
 .progress-macro {
   font-size: 28px;
+}
+
+#background-circle {
+  stroke: #17224d5e;
+}
+
+.circle {
+  stroke-width: 8;
+  cx: 50;
+  cy: 50;
+  r: 34;
+  stroke-dasharray: 213.62830044410595 213.62830044410595;
+}
+
+@media only screen and (min-width: 1000px) {
+  .circle {
+    stroke-width: 8;
+    cx: 50;
+    cy: 50;
+    r: 44;
+    stroke-dasharray: 276.46015351590177 276.46015351590177;
+    transition: 1.5s ease-in-out;
+  }
 }

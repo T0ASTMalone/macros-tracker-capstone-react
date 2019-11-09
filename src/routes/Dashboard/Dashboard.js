@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Dashboard.css';
 import Overview from '../../Components/Overview/Overview';
-import Stats from '../../Components/Stats/Stats';
 import MealListContext from '../../context/MealLIstContext';
 import MacrosService from '../../Services/macros-services';
 import AddMeal from '../../Components/AddMeal/AddMeal';
@@ -85,6 +84,8 @@ export default class Dashboard extends Component {
     if (this.context.mealList.length >= 1) {
       progress = this.getProgress();
     }
+
+    console.log(progress.macros);
     return (
       <div id="dashboard">
         <div id="overview-background" className="back-background">
@@ -92,25 +93,31 @@ export default class Dashboard extends Component {
             <h2 className="section-title">Progress</h2>
             <div className="overview-container">
               <Overview
-                radius={50}
+                radius={window.innerWidth > 750 ? 60 : 50}
                 stroke={8}
                 name="P"
                 progress={progress.macrosPercent.proteinPercent}
-                class="protein"
+                macro="protein"
+                mSoFar={progress.macros}
+                total={this.context.userMacros.protein}
               />
               <Overview
-                radius={50}
+                radius={window.innerWidth > 750 ? 60 : 50}
                 stroke={8}
                 progress={progress.macrosPercent.carbsPercent}
-                class="carbs"
+                macro="carbs"
                 name="C"
+                mSoFar={progress.macros}
+                total={this.context.userMacros.carbs}
               />
               <Overview
-                radius={50}
+                radius={window.innerWidth > 750 ? 60 : 50}
                 stroke={8}
                 progress={progress.macrosPercent.fatsPercent}
-                class="fats"
+                macro="fats"
                 name="F"
+                mSoFar={progress.macros}
+                total={this.context.userMacros.fats}
               />
             </div>
           </div>
@@ -125,15 +132,6 @@ export default class Dashboard extends Component {
                 component={this.state.component}
               />
             )}
-          </section>
-        </div>
-
-        <div id="stats-background" className="back-background">
-          <section id="stats" className="dash-section">
-            <Stats
-              macros={this.context.userMacros}
-              progress={progress.macros}
-            />
           </section>
         </div>
         <footer></footer>

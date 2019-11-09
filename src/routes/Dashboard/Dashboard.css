@@ -16,6 +16,7 @@
 .overview-container {
   width: 95%;
   justify-content: space-around;
+  margin-bottom: 33px;
 }
 
 .overview,
@@ -25,7 +26,7 @@
 
 .dash-section,
 .back-background {
-  min-height: 350px;
+  min-height: 375px;
 }
 
 #overview {
@@ -75,7 +76,7 @@ footer {
 #builder-background {
   background-color: #077fff;
   border-top-right-radius: 30px;
-  border-bottom-right-radius: 0;
+  border-bottom-right-radius: 70px;
   border-bottom-left-radius: 30px;
   border-top-left-radius: 0;
 }
