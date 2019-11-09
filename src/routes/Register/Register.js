@@ -68,6 +68,27 @@ export default class Register extends Component {
     return weight;
   };
 
+  touchedAll = () => {
+    this.setState({
+      error: null,
+      email: { value: this.state.email.value, touched: true },
+      password: { value: this.state.password.value, touched: true },
+      confirmPassword: {
+        value: this.state.confirmPassword.value,
+        touched: true
+      },
+      age: { value: this.state.age.value, touched: true },
+      gender: { value: this.state.gender.value, touched: true },
+      feet: { value: this.state.feet.value, touched: true },
+      cm: { value: this.state.cm.value, touched: true },
+      inches: { value: this.state.inches.value, touched: true },
+      weight: { value: this.state.weight.value, touched: true },
+      goals: { value: this.state.goals.value, touched: true },
+      activityLvl: { value: this.state.activityLvl.value, touched: true },
+      unit: { value: this.state.unit.value, touched: true }
+    });
+  };
+
   clearValues = () => {
     this.setState({
       error: null,
@@ -78,7 +99,7 @@ export default class Register extends Component {
       gender: { value: 'male', touched: false },
       feet: { value: '', touched: false },
       cm: { value: '', touched: false },
-      inches: { value: '', touched: true },
+      inches: { value: '', touched: false },
       weight: { value: '', touched: false },
       goals: { value: '', touched: false },
       activityLvl: { value: '', touched: false },
@@ -88,25 +109,40 @@ export default class Register extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const info = this.state;
-    const user = {
-      email: info.email.value,
-      password: info.password.value,
-      age: info.age.value,
-      gender: info.gender.value,
-      height: this.convertHeight(),
-      weight: this.convertWeight(),
-      goals: info.goals.value,
-      activity_lvl: info.activityLvl.value
-    };
-    AuthApiService.postUser(user)
-      .then(res => {
-        this.clearValues();
-        this.handleRegistrationSuccess();
-      })
-      .catch(err => {
-        this.setState({ error: err.error });
-      });
+    this.touchedAll();
+    if (
+      this.validateWeight() ||
+      this.validatePassword() ||
+      this.validateHeight() ||
+      this.validateGoal() ||
+      this.validateGender() ||
+      this.validateEmail() ||
+      this.validateConfirmPassword() ||
+      this.validateAge() ||
+      this.validateActivityLvl()
+    ) {
+      this.setState({ error: 'Pleas fill out the required fields' });
+    } else {
+      const info = this.state;
+      const user = {
+        email: info.email.value,
+        password: info.password.value,
+        age: info.age.value,
+        gender: info.gender.value,
+        height: this.convertHeight(),
+        weight: this.convertWeight(),
+        goals: info.goals.value,
+        activity_lvl: info.activityLvl.value
+      };
+      AuthApiService.postUser(user)
+        .then(res => {
+          this.clearValues();
+          this.handleRegistrationSuccess();
+        })
+        .catch(err => {
+          this.setState({ error: err.error });
+        });
+    }
   };
 
   handleRegistrationSuccess = () => {
@@ -214,8 +250,21 @@ export default class Register extends Component {
   }
 
   render() {
-    const unit = this.state.unit.value;
-    const lvl = this.state.activityLvl.value;
+    const {
+      email,
+      gender,
+      weight,
+      activityLvl,
+      age,
+      feet,
+      cm,
+      goals,
+      confirmPassword,
+      password,
+      unit
+    } = this.state;
+    const unitVal = unit.value;
+    const lvl = activityLvl.value;
     return (
       <div id="register-container">
         <div className="background">
@@ -236,7 +285,10 @@ export default class Register extends Component {
               onChange={e => this.updateEmail(e.target.value)}
             />
             <div className="login-error">
-              <RegisterError hasError={this.validateEmail()} />
+              <RegisterError
+                hasError={this.validateEmail()}
+                touched={email.touched}
+              />
             </div>
             <label htmlFor="password">Password</label>
             <input
@@ -248,7 +300,10 @@ export default class Register extends Component {
               onChange={e => this.updatePassword(e.target.value)}
             />
             <div className="login-error">
-              <RegisterError hasError={this.validatePassword()} />
+              <RegisterError
+                hasError={this.validatePassword()}
+                touched={password.touched}
+              />
             </div>
             <label htmlFor="confirm-password">Confirm Password</label>
             <input
@@ -260,7 +315,10 @@ export default class Register extends Component {
               onChange={e => this.updateConfirmPassword(e.target.value)}
             />
             <div className="login-error">
-              <RegisterError hasError={this.validateConfirmPassword()} />
+              <RegisterError
+                hasError={this.validateConfirmPassword()}
+                touched={confirmPassword.touched}
+              />
             </div>
             <div className="user-info">
               <div className="age-gen">
@@ -293,10 +351,16 @@ export default class Register extends Component {
                 </div>
                 <div className="error-messages">
                   <div className="error">
-                    <RegisterError hasError={this.validateAge()} />
+                    <RegisterError
+                      hasError={this.validateAge()}
+                      touched={age.touched}
+                    />
                   </div>
                   <div className="error">
-                    <RegisterError hasError={this.validateGender()} />
+                    <RegisterError
+                      hasError={this.validateGender()}
+                      touched={gender.touched}
+                    />
                   </div>
                 </div>
               </div>
@@ -305,7 +369,7 @@ export default class Register extends Component {
                 <button
                   type="button"
                   className={
-                    unit === 'metric'
+                    unitVal === 'metric'
                       ? 'active button unit metric'
                       : 'button unit metric'
                   }
@@ -319,7 +383,7 @@ export default class Register extends Component {
                 <button
                   type="button"
                   className={
-                    unit === 'imperial'
+                    unitVal === 'imperial'
                       ? 'active button unit imperial'
                       : 'button unit imperial'
                   }
@@ -332,7 +396,7 @@ export default class Register extends Component {
               </div>
               <div className="physical">
                 <div className="inputs">
-                  {this.state.unit.value === 'metric' ? (
+                  {unitVal === 'metric' ? (
                     <>
                       <div className="">
                         <label htmlFor="cm">Height</label>
@@ -386,7 +450,7 @@ export default class Register extends Component {
                       id="weight"
                       className="info"
                       min="0"
-                      placeholder={unit === 'imperial' ? 'lbs' : 'kg'}
+                      placeholder={unitVal === 'imperial' ? 'lbs' : 'kg'}
                       onChange={e => this.updateWeight(e.target.value)}
                     />
                   </div>
@@ -394,10 +458,16 @@ export default class Register extends Component {
 
                 <div className="error-messages">
                   <div className="error">
-                    <RegisterError hasError={this.validateHeight()} />
+                    <RegisterError
+                      hasError={this.validateHeight()}
+                      touched={feet.touched || cm.touched}
+                    />
                   </div>
                   <div className="error">
-                    <RegisterError hasError={this.validateWeight()} />
+                    <RegisterError
+                      hasError={this.validateWeight()}
+                      touched={weight.touched}
+                    />
                   </div>
                 </div>
               </div>
@@ -419,7 +489,10 @@ export default class Register extends Component {
               </div>
               <div className="error-messages goals-error">
                 <div id="goals-error" className="error-goals">
-                  <RegisterError hasError={this.validateGoal()} />
+                  <RegisterError
+                    hasError={this.validateGoal()}
+                    touched={goals.touched}
+                  />
                 </div>
               </div>
 
@@ -446,7 +519,10 @@ export default class Register extends Component {
                   <option value="1.725"></option>
                   <option value="1.9"></option>
                 </datalist>
-                <RegisterError hasError={this.validateActivityLvl()} />
+                <RegisterError
+                  hasError={this.validateActivityLvl()}
+                  touched={activityLvl.touched}
+                />
               </div>
 
               <div className="lvls">
