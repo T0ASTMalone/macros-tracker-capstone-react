@@ -402,13 +402,13 @@ export default class Register extends Component {
                 </div>
               </div>
 
-              <div className="">
+              <div className="goals-container">
                 <label htmlFor="fitness-goals">Fitness Goals</label>
                 <br />
                 <select
                   name="fitness-goals"
                   id="fitness-goals"
-                  className="goals"
+                  className="goals info"
                   onChange={e => this.updateGoals(e.target.value)}
                 >
                   <option value="">-- Select Goal --</option>

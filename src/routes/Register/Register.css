@@ -202,6 +202,10 @@ label {
   margin-left: 20px;
 }
 
+.goals-container {
+  text-align: center;
+}
+
 @media only screen and (min-width: 1200px) {
   #register-container {
     height: calc(100vh - 50px);
