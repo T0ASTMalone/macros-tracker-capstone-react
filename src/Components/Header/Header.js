@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css';
-import TokenService from '../../Services/token-service';
-import MealListContext from '../../context/MealLIstContext';
-import MealsContext from '../../context/MealContext';
-import IdleService from '../../Services/idle-service';
-import logo from '../../screenshots/logo-small.png';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./Header.css";
+import TokenService from "../../Services/token-service";
+import MealListContext from "../../context/MealLIstContext";
+import MealsContext from "../../context/MealContext";
+import IdleService from "../../Services/idle-service";
+import logo from "../../screenshots/logo-small.png";
 
 export default class Header extends Component {
   static contextType = MealListContext;
@@ -18,11 +18,9 @@ export default class Header extends Component {
   };
 
   renderLogoutLink(signOut) {
-    const id = this.context.userId;
-    console.log(id);
     return (
       <div className="Header__logged-in">
-        {this.props.location.pathname === '/' && TokenService.hasAuthToken() ? (
+        {this.props.location.pathname === "/" && TokenService.hasAuthToken() ? (
           <button
             className="to-dash"
             onClick={() => this.props.history.goBack()}
@@ -44,7 +42,7 @@ export default class Header extends Component {
         <Link className="login-out" to="/register">
           Register
         </Link>
-        {' | '}
+        {" | "}
         <Link className="login-out" to="/sign-in">
           Sign in
         </Link>
@@ -53,7 +51,6 @@ export default class Header extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <MealsContext.Consumer>
         {MealsContext => {

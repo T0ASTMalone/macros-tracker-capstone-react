@@ -1,6 +1,6 @@
-import React from 'react';
-import './Overview.css';
-import PropTypes from 'prop-types';
+import React from "react";
+import "./Overview.css";
+import PropTypes from "prop-types";
 
 export default class Overview extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Overview extends React.Component {
 
   static defaultProps = {
     progress: 0,
-    name: '',
+    name: "",
     stroke: 8,
     radius: 60
   };
@@ -41,9 +41,7 @@ export default class Overview extends React.Component {
   }*/
 
   render() {
-    console.log(this.circumference);
     const { progress, name } = this.props;
-    console.log(this.props);
     const strokeDashoffset =
       this.circumference - (progress / 100) * this.circumference;
     const { total, macro, mSoFar } = this.props;
@@ -55,7 +53,7 @@ export default class Overview extends React.Component {
             id="background-circle"
             fill="transparent"
             className="circle"
-            strokeDasharray={this.circumference + ' ' + this.circumference}
+            strokeDasharray={this.circumference + " " + this.circumference}
           />
 
           <circle
@@ -63,7 +61,7 @@ export default class Overview extends React.Component {
             fill="transparent"
             className="circle"
             id="progress-circle"
-            strokeDasharray={this.circumference + ' ' + this.circumference}
+            strokeDasharray={this.circumference + " " + this.circumference}
             style={{ strokeDashoffset }}
           />
 

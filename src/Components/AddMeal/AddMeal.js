@@ -1,21 +1,21 @@
-import React from 'react';
-import './AddMeal.css';
-import PropTypes from 'prop-types';
-import FoodItem from '../FoodItem/FoodItem';
-import MealsContext from '../../context/MealContext';
-import MealListContext from '../../context/MealLIstContext';
-import MacrosService from '../../Services/macros-services';
-import AddMealError from './AddMealError';
-import MacroFyServices from '../../Services/macrofy-api-service';
+import React from "react";
+import "./AddMeal.css";
+import PropTypes from "prop-types";
+import FoodItem from "../FoodItem/FoodItem";
+import MealsContext from "../../context/MealContext";
+import MealListContext from "../../context/MealLIstContext";
+import MacrosService from "../../Services/macros-services";
+import AddMealError from "./AddMealError";
+import MacroFyServices from "../../Services/macrofy-api-service";
 
 export default class AddMeal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
-      mealId: '',
+      mealId: "",
       mealName: {
-        value: '',
+        value: "",
         touched: false
       }
     };
@@ -30,7 +30,7 @@ export default class AddMeal extends React.Component {
   }
 
   handleAddFood = () => {
-    this.props.show.showPopUp('Add');
+    this.props.show.showPopUp("Add");
     this.setState({ error: null });
   };
 
@@ -39,7 +39,7 @@ export default class AddMeal extends React.Component {
   };
 
   handleAddExisting = () => {
-    this.props.show.showPopUp('MealLog');
+    this.props.show.showPopUp("MealLog");
     this.setState({ error: null });
   };
 
@@ -54,10 +54,10 @@ export default class AddMeal extends React.Component {
   validateName = () => {
     const name = this.state.mealName.value.trim();
     if (name.length < 1) {
-      return 'A meal name is required';
+      return "A meal name is required";
     }
     if (name.length > 50) {
-      return 'The meal name must be under 50 characters';
+      return "The meal name must be under 50 characters";
     }
   };
 
@@ -97,16 +97,16 @@ export default class AddMeal extends React.Component {
             const mealName = this.state.mealName.value;
             if (meal.foods.length < 1 && mealName.length < 1) {
               this.setState({
-                error: 'There needs to be at least one food item',
-                mealName: { value: '', touched: true }
+                error: "There needs to be at least one food item",
+                mealName: { value: "", touched: true }
               });
             } else if (mealName.length < 1) {
               this.setState({
-                mealName: { value: '', touched: true }
+                mealName: { value: "", touched: true }
               });
             } else if (meal.foods.length < 1) {
               this.setState({
-                error: 'There needs to be at least one food item'
+                error: "There needs to be at least one food item"
               });
             } else {
               ListContext.addMeal(meal);
@@ -129,7 +129,7 @@ export default class AddMeal extends React.Component {
               let foods = meal.foods;
               this.postMeal(mealLogMeal, foods);
               this.context.clearFoods();
-              this.setState({ mealName: { value: '', touched: false } });
+              this.setState({ mealName: { value: "", touched: false } });
             }
           };
 
@@ -173,7 +173,6 @@ export default class AddMeal extends React.Component {
                       this.context.meal.foods.map((food, i) => {
                         const { protein, carbs, fats } = food;
                         const macros = { protein, carbs, fats };
-                        console.log(this.context.meal.foods);
                         return (
                           <div key={i} className="food-item new">
                             <FoodItem name={food.food_name} macros={macros} />

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import FoodLog from '../FoodLog/FoodLog';
-import MacrosService from '../../Services/macros-services';
-import MacroFyServices from '../../Services/macrofy-api-service';
+import React, { Component } from "react";
+import FoodLog from "../FoodLog/FoodLog";
+import MacrosService from "../../Services/macros-services";
+import MacroFyServices from "../../Services/macrofy-api-service";
 
 export default class EditMeal extends Component {
   state = {};
@@ -45,7 +45,6 @@ export default class EditMeal extends Component {
 
   render() {
     const { meal, hide } = this.props;
-    console.log(hide);
     return (
       <>
         <FoodLog

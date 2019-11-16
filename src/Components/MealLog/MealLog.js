@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './MealLog.css';
-import MealItem from '../Mealitem/MealItem';
-import MealsContext from '../../context/MealContext';
-import MacroFyServices from '../../Services/macrofy-api-service';
-import FoodLog from '../FoodLog/FoodLog';
-import EditMeal from '../EditMeal/EditMeal';
-import uuid from 'uuid';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./MealLog.css";
+import MealItem from "../Mealitem/MealItem";
+import MealsContext from "../../context/MealContext";
+import MacroFyServices from "../../Services/macrofy-api-service";
+import FoodLog from "../FoodLog/FoodLog";
+import EditMeal from "../EditMeal/EditMeal";
+import uuid from "uuid";
 
 export default class MealLog extends Component {
   constructor(props) {
@@ -20,7 +20,6 @@ export default class MealLog extends Component {
 
   async getMeals() {
     const id = this.context.userId;
-    console.log(id);
     const meals = await MacroFyServices.getAllMeals(id);
     this.setState({ mealLog: [...meals] });
   }
@@ -33,7 +32,6 @@ export default class MealLog extends Component {
     const { meal_id } = meal;
     const mealFoods = await MacroFyServices.getMealFoods(meal_id);
     mealFoods.map(food => (food.foodKey = uuid()));
-    console.log(mealFoods);
     this.context.addFood(mealFoods);
     this.props.hide();
   }
@@ -117,7 +115,7 @@ export default class MealLog extends Component {
                       this.state[meal.meal_id].edit ? (
                         <EditMeal
                           className={
-                            this.state[meal.meal_id].hide ? 'hidden' : 'none'
+                            this.state[meal.meal_id].hide ? "hidden" : "none"
                           }
                           meal={this.state[meal.meal_id]}
                           hide={id => this.hideMealFoods(id)}
@@ -126,7 +124,7 @@ export default class MealLog extends Component {
                         <>
                           <FoodLog
                             className={
-                              this.state[meal.meal_id].hide ? 'hidden' : 'none'
+                              this.state[meal.meal_id].hide ? "hidden" : "none"
                             }
                             foods={this.state[meal.meal_id]}
                             hide={this.props.hide}

@@ -1,5 +1,5 @@
-import TokenService from '../Services/token-service';
-import config from '../config';
+import TokenService from "../Services/token-service";
+import config from "../config";
 
 const MacroFyServices = {
   getAllMeals(id) {
@@ -7,7 +7,7 @@ const MacroFyServices = {
     return fetch(`${config.API_ENDPOINT}/meals`, {
       headers: {
         user,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
     }).then(res =>
@@ -17,8 +17,8 @@ const MacroFyServices = {
   getTodaysMeals(id) {
     return fetch(`${config.API_ENDPOINT}/meals/${id}/today`, {
       headers: {
-        method: 'GET',
-        'Content-Type': 'application/json',
+        method: "GET",
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
     }).then(res =>
@@ -29,9 +29,9 @@ const MacroFyServices = {
     const user = { user_id: id };
     return fetch(`${config.API_ENDPOINT}/foods`, {
       headers: {
-        method: 'GET',
+        method: "GET",
         user,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
     }).then(res =>
@@ -41,8 +41,8 @@ const MacroFyServices = {
   getMealFoods(meal_id) {
     return fetch(`${config.API_ENDPOINT}/meals/${meal_id}/foods`, {
       headers: {
-        method: 'GET',
-        'Content-Type': 'application/json',
+        method: "GET",
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
     }).then(res =>
@@ -51,9 +51,9 @@ const MacroFyServices = {
   },
   getUserInfo(id) {
     return fetch(`${config.API_ENDPOINT}/users/${id}`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
     }).then(res =>
@@ -62,9 +62,9 @@ const MacroFyServices = {
   },
   postMeal(meal) {
     return fetch(`${config.API_ENDPOINT}/meals`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify(meal)
@@ -74,9 +74,9 @@ const MacroFyServices = {
   },
   postFoods(foods) {
     return fetch(`${config.API_ENDPOINT}/foods`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify(foods)
@@ -85,29 +85,28 @@ const MacroFyServices = {
     );
   },
   patchMeal(id, mealInfo) {
-    console.log(mealInfo);
     return fetch(`${config.API_ENDPOINT}/meals/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify(mealInfo)
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : console.log(res)
-    );
+    }).then(res => {
+      if (!res.ok) res.json().then(e => Promise.reject(e));
+    });
   },
   patchFood(id, foodInfo) {
     return fetch(`${config.API_ENDPOINT}/foods/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify(foodInfo)
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : console.log(res)
-    );
+    }).then(res => {
+      if (!res.ok) res.json().then(e => Promise.reject(e));
+    });
   }
 };
 
