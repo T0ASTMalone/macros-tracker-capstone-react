@@ -133,7 +133,13 @@ export default class MealLog extends Component {
                         </>
                       )
                     ) : (
-                      <></>
+                      <div className="empty-log">
+                        <p>
+                          Nothing to see here. Start adding meals by searching
+                          for foods or creating new ones. Then clicking the
+                          create meal button.
+                        </p>
+                      </div>
                     )}
                   </div>
                 </div>

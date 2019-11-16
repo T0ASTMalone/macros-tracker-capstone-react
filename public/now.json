@@ -16,6 +16,11 @@
       "dest": "/manifest.json"
     },
     {
+      "src": "^/logo-small.png$",
+      "dest": "/logo-small.png",
+      "headers": { "Content-Type": "image/png" }
+    },
+    {
       "src": ".*",
       "dest": "/index.html"
     }

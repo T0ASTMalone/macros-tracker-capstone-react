@@ -70,6 +70,10 @@
   margin-bottom: 0;
 }
 
+.empty-log p {
+  color: #f5fafa;
+}
+
 @media only screen and (min-width: 425px) {
   .meal-info {
     width: 100%;

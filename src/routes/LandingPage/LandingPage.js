@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import progress from '../../screenshots/styled-screenshots/progress.PNG';
-import mealLog from '../../screenshots/styled-screenshots/meal-log.PNG';
-import goals from '../../screenshots/styled-screenshots/goals.png';
-import './LandingPage.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import progress from "../../screenshots/styled-screenshots/progress.PNG";
+import mealLog from "../../screenshots/styled-screenshots/meal-log.PNG";
+import goals from "../../screenshots/styled-screenshots/goals.png";
+import "./LandingPage.css";
 
 export default class LandingPage extends Component {
   render() {
@@ -13,8 +13,15 @@ export default class LandingPage extends Component {
           <div id="col-1" className="column">
             <section id="col-item1" className="section MacroFy">
               <h1 className="App-title">MacroFy</h1>
-              <h3>Make your goals</h3>
-              <h3>Then meet your goals</h3>
+              <h3 className="tag-line">Make your goals</h3>
+              <h3 className="tag-line">Then meet your goals</h3>
+              <div className="landing-description main-section">
+                <p>
+                  With MacroFy you can track your macro nutrients (Proteins,
+                  Carbs, and Fats) throughout your day in order to meet your
+                  daily goals.
+                </p>
+              </div>
             </section>
             <section id="col-item2" className="section about">
               <h2 className="section-title">Make your goals</h2>
@@ -23,8 +30,8 @@ export default class LandingPage extends Component {
               </div>
               <div className="landing-description">
                 <p>
-                  Based on your information and your fitness needs MacroFy will
-                  calculate your daily macro nutrient goals.
+                  Based on your information and fitness needs MacroFy will
+                  calculate your daily macro nutrient goals upon registration.
                 </p>
               </div>
             </section>
@@ -74,9 +81,9 @@ export default class LandingPage extends Component {
 
         <section id="get-started" className="section">
           <h2 className="section-title">Start meeting your goals</h2>
-          <Link to={'/register'}>Register</Link>
+          <Link to={"/register"}>Register</Link>
           <p className="">or</p>
-          <Link to={'/sign-in'}>Sign In</Link>
+          <Link to={"/sign-in"}>Sign In</Link>
         </section>
       </div>
     );

@@ -42,6 +42,10 @@
   display: flex;
 }
 
+.empty-log {
+  color: #f5fafa;
+}
+
 @media only screen and (min-width: 400px) {
   .food-item-container {
     justify-content: space-between;

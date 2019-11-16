@@ -5,6 +5,11 @@
 
 .App-title {
   font-size: 50px;
+  margin: 30px 0 10px 0;
+}
+
+.tag-line {
+  font-size: 20px;
 }
 
 .grid-container {
@@ -26,13 +31,21 @@
   display: flex;
   flex-direction: column;
   color: white;
-  min-height: 350px;
   animation: 1.5s ease-out 0s 1 slideInFromRight;
   box-shadow: 10px 10px 10px 0 #17224d70;
 }
 
+.section p {
+  line-height: 1.5;
+}
+
 .section:nth-child(odd) {
   animation: 1.5s ease-out 0s 1 slideInFromLeft;
+}
+
+#col-item1 {
+  height: 425px;
+  padding: 10px 20px;
 }
 
 #col-item1,
@@ -44,10 +57,6 @@
 #col-item2,
 #col-item4 {
   background-color: #007fff;
-}
-
-.section:first-child {
-  height: 500px;
 }
 
 .section-title {
@@ -74,12 +83,17 @@
 .landing-description {
   padding: 10px;
 }
+.main-section {
+  padding: 10px 0;
+}
 
 #get-started {
   background-color: #f5fafa;
   color: #17224d;
   margin: 10px;
   text-align: center;
+  min-height: 300px;
+  max-height: 300px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -98,6 +112,11 @@
   .grid-container {
     flex-direction: row;
     justify-content: center;
+  }
+
+  .section,
+  #col-item1 {
+    height: 500px;
   }
 
   #col-1 {
@@ -136,6 +155,11 @@
   .grid-container {
     flex-direction: row;
     justify-content: center;
+  }
+
+  .section,
+  #col-item1 {
+    height: 500px;
   }
 
   #col-1 {
