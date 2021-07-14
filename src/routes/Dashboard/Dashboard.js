@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './Dashboard.css';
-import Overview from '../../Components/Overview/Overview';
-import MealListContext from '../../context/MealLIstContext';
-import MacrosService from '../../Services/macros-services';
-import AddMeal from '../../Components/AddMeal/AddMeal';
-import FoodLog from '../../Components/FoodLog/FoodLog';
-import MealLog from '../../Components/MealLog/MealLog';
-import AddFoodItem from '../../Components/AddFoodItem/AddFoodItem';
-import MacroFyServices from '../../Services/macrofy-api-service';
-import PopUp from '../../Components/utils/PopUp';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./Dashboard.css";
+import Overview from "../../Components/Overview/Overview";
+import MealListContext from "../../context/MealLIstContext";
+import MacrosService from "../../Services/macros-services";
+import AddMeal from "../../Components/AddMeal/AddMeal";
+import FoodLog from "../../Components/FoodLog/FoodLog";
+import MealLog from "../../Components/MealLog/MealLog";
+import AddFoodItem from "../../Components/AddFoodItem/AddFoodItem";
+import MacroFyServices from "../../Services/macrofy-api-service";
+import PopUp from "../../Components/utils/PopUp";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -51,17 +51,17 @@ export default class Dashboard extends Component {
 
   showPopUp = component => {
     switch (component) {
-      case 'Add':
+      case "Add":
         this.setState({ component: AddFoodItem, showPopUp: true });
         break;
-      case 'FoodLog':
+      case "FoodLog":
         this.setState({ component: FoodLog, showPopUp: true });
         break;
-      case 'MealLog':
+      case "MealLog":
         this.setState({ component: MealLog, showPopUp: true });
         break;
       default:
-        this.setState({ error: 'sorry something when wrong' });
+        this.setState({ error: "sorry something when wrong" });
     }
   };
 
@@ -71,7 +71,7 @@ export default class Dashboard extends Component {
     const meals = await MacroFyServices.getTodaysMeals(id);
     await this.getUserInfo(id);
     this.context.setMealList(meals);
-    this.setState({ component: '', showPopUp: false });
+    this.setState({ component: "", showPopUp: false });
   };
 
   render() {
@@ -87,17 +87,17 @@ export default class Dashboard extends Component {
 
     console.log(progress.macros);
     return (
-      <div id="dashboard">
-        <div id="overview-background" className="back-background">
-          <div id="overview" className="overview dash-section">
-            <h2 className="section-title">Progress</h2>
-            <div className="overview-container">
+      <div id='dashboard'>
+        <div id='overview-background' className='back-background'>
+          <div id='overview' className='overview dash-section'>
+            <h2 className='section-title'>Progress</h2>
+            <div className='overview-container'>
               <Overview
                 radius={window.innerWidth > 750 ? 60 : 50}
                 stroke={8}
-                name="P"
+                name='P'
                 progress={progress.macrosPercent.proteinPercent}
-                macro="protein"
+                macro='protein'
                 mSoFar={progress.macros}
                 total={this.context.userMacros.protein}
               />
@@ -105,8 +105,8 @@ export default class Dashboard extends Component {
                 radius={window.innerWidth > 750 ? 60 : 50}
                 stroke={8}
                 progress={progress.macrosPercent.carbsPercent}
-                macro="carbs"
-                name="C"
+                macro='carbs'
+                name='C'
                 mSoFar={progress.macros}
                 total={this.context.userMacros.carbs}
               />
@@ -114,16 +114,16 @@ export default class Dashboard extends Component {
                 radius={window.innerWidth > 750 ? 60 : 50}
                 stroke={8}
                 progress={progress.macrosPercent.fatsPercent}
-                macro="fats"
-                name="F"
+                macro='fats'
+                name='F'
                 mSoFar={progress.macros}
                 total={this.context.userMacros.fats}
               />
             </div>
           </div>
         </div>
-        <div id="builder-background" className="back-background">
-          <section id="meal-builder" className="dash-section">
+        <div id='builder-background' className='back-background'>
+          <section id='meal-builder' className='dash-section'>
             <AddMeal show={show} />
             {this.state.showPopUp && (
               <PopUp
